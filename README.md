@@ -8,10 +8,20 @@
 - [Dependencies](#dependencies)
 
 ## Overview
-<Include project description?
+With so many organizations, meetings, and events to keep track of, there can only be so much
+that can be incorporated into a person’s schedule. This can extend to their academics,
+extracurriculars, and even personal lives. Typically, someone would keep track of their schedule
+via Google calendar, but adding events individually and delegating tasks between their day. On
+another hand, most of the information surrounding events, meetings, and practices lie hidden in
+separate discord pages, unread facebook announcements, and disregarded emails. Our Flexible
+Scheduler and Task Distributor Project is a web application that will allow people, generally
+students, to arrange their extracurriculars in one place and arrange tasks in a todo-list style.
 
 ## Team
-<a href="https://github.com/msalloum" target="_blank"><img src="https://avatars3.githubusercontent.com/u/1790819?s=400&v=4" align="left" height="30px">Mariam Salloum </a>
+<a href="https://github.com/vishshukla" target="_blank"><img src="https://avatars1.githubusercontent.com/u/26678573?s=460&u=04a17536273c6d62592e4613751bc4253e9c02b2&v=4" align="left" height="30px">Vishwas Shukla </a>
+<a href="https://github.com/VirajDhillon" target="_blank"><img src="https://avatars1.githubusercontent.com/u/33117585?s=460&u=4250cb7f819c4a88c634246c63761737b658a11b&v=4" align="left" height="30px">Viraj Dhillon </a>
+<a href="https://github.com/nicohhle" target="_blank"><img src="https://avatars1.githubusercontent.com/u/28742068?s=460&u=18c93fa5ffec8524896fd18dfef546e0dddc1ca0&v=4" align="left" height="30px">Nicole Nguyen </a>
+<a href="https://github.com/Sherv24" target="_blank"><img src="https://avatars2.githubusercontent.com/u/33410214?s=460&u=86bb74111f89004b7ca7f71aee8f77b1397c75c6&v=4" align="left" height="30px">Sherwin Sahebi </a>
 
 ## Usage
 Demo: <Link to youtube video>
