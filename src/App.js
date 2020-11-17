@@ -2,14 +2,13 @@ import React from 'react';
 import './App.css';
 import  Calendar  from './components/Calendar'
 import  Home  from './components/Home'
-import Clubs from './components/Clubs'
+import  Clubs from './components/Clubs'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
-// import { DataManager,WebApiAdaptor } from '@syncfusion/ej2-data';
 
 class App extends React.Component {
 
@@ -48,8 +47,7 @@ class App extends React.Component {
           <Route path="/clubs">
             <Clubs />
           </Route>
-          <Route path="/404" component={NoMatch} />
-          <Route component={NoMatch}/>
+          <Route path="/*" component={NoMatch} />
         </Switch>
       </div>
     </Router>
