@@ -1,11 +1,11 @@
 import React from 'react'
 
 /** COMMENT DURING PROD **/
-const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-// const PROD_API = 'http://team-vision-cs178.herokuapp.com/api/'
+const API = 'http://team-vision-cs178.herokuapp.com/api/'
 
 class Clubs extends React.Component {
     state = {
