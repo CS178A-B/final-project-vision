@@ -38,7 +38,6 @@ class App extends React.Component {
   }
 
   fetchEvents = () => {
-    console.log("in fetchEvents")
     const data = new FormData();
     data.append("username", localStorage.getItem("username"))
     fetch( API + "getCalendarInfo", {
@@ -69,7 +68,6 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log("in component did mount")
     this.fetchEvents();
   }
   render() {

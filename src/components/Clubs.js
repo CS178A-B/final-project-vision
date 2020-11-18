@@ -19,7 +19,6 @@ class Clubs extends React.Component {
     }
 
     handleSubmit = e =>{
-        console.log("in handleSubmit")
         let output = "";
         for (let key in this.state){
             let value = this.state[key]
