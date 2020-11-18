@@ -23,4 +23,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('calendar',views.index),
     path('clubs',views.index),
+    path('api/getCalendarInfo', views.getCalendarInfo),
+    path('api/addOrganization', views.addOrganization)
+    #TODO
+    # update (PUT)
+    # delete (DELETE)
+    # add (POST)
 ]
