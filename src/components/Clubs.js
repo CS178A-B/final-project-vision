@@ -1,5 +1,12 @@
 import React from 'react'
 
+/** COMMENT DURING PROD **/
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+
+
+/** UNCOMMENT DURING PROD **/ 
+// const PROD_API = 'http://team-vision-cs178.herokuapp.com/api/'
+
 class Clubs extends React.Component {
     state = {
         "ACM" : false,
@@ -12,14 +19,26 @@ class Clubs extends React.Component {
     }
 
     handleSubmit = e =>{
-        let clubs = []
+        console.log("in handleSubmit")
+        let output = "";
         for (let key in this.state){
             let value = this.state[key]
             if (value===true) {
-                clubs.push(key)
+                output += key + ", ";
             }
         }
-        console.log(clubs)
+        // remove last comma and space
+        output = output.substring(0, output.length -2);
+
+        const data = new FormData()
+        data.append("username", window.localStorage.getItem("username"))
+        data.append("organizations", output)
+        // call api to add calendar events
+        fetch(API + "addOrganization", {
+            method: 'POST',
+            body: data
+        }).then(this.props.action)
+        .catch(e => console.log(e))
     }
 
     render() {

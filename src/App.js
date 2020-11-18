@@ -31,14 +31,14 @@ class App extends React.Component {
       // cached calendar events does not exist, make empty.
       localStorage.setItem("calendarEvents", [])
     }
-    console.log(cachedEvents)
     // have username and current known schedule in a cache.
     this.state = {
       calendarEvents: []
     }
   }
 
-  componentDidMount() {
+  fetchEvents = () => {
+    console.log("in fetchEvents")
     const data = new FormData();
     data.append("username", localStorage.getItem("username"))
     fetch( API + "getCalendarInfo", {
@@ -47,23 +47,30 @@ class App extends React.Component {
     }).then(res => res.json())
       .then(data => {
         let newEvents = []
-        console.log(data)
           const orgs = data.organizations;
+          let orgsSeen = {}
           for(let orgIdx in orgs) {
             for(let orgName in orgs[orgIdx]) {
-              for(let eventIdx in orgs[orgIdx][orgName] ) {
-                for(let currentEvent in orgs[orgIdx][orgName][eventIdx]) {
-                  console.log(currentEvent)
-                  newEvents.push(currentEvent)
+              //TODO TEMPORARY MEASURE TO AVOID DUPLICATES (  NEED TO MAKE CHANGE ON THE DATABASE TO NOT ALLOW DUPLICATE CLUB JOINS)
+              if(orgsSeen[orgName] === undefined) {
+                for(let eventIdx in orgs[orgIdx][orgName] ) {
+                    //TODO add orgName to title of each event in Database, Ex:  "General Meeting" -> "Chess Club - General Meeting"
+                  orgs[orgIdx][orgName][eventIdx]["Subject"] = orgName + " - " + orgs[orgIdx][orgName][eventIdx]["Subject"];
+                    newEvents.push(orgs[orgIdx][orgName][eventIdx])
                 }
-              }
+             } orgsSeen[orgName] = true;
+
             }
           }
-          console.log(orgs[0]["ACM"][0])
+          delete newEvents["json"] // post process and delete the unnecessary field
           this.setState({calendarEvents: newEvents})
-          console.log(this.state)
       })
       .catch(e => console.log(e))
+  }
+
+  componentDidMount() {
+    console.log("in component did mount")
+    this.fetchEvents();
   }
   render() {
     return ( 
@@ -98,7 +105,7 @@ class App extends React.Component {
             <Calendar calendarEvents={this.state.calendarEvents} />
           </Route>
           <Route path="/clubs">
-            <Clubs />
+            <Clubs action={this.fetchEvents} />
           </Route>
           <Route path="/*" component={NoMatch} />
         </Switch>

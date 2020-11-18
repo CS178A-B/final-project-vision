@@ -22,7 +22,7 @@ hard_coded_orgs = {
             "Subject": "Hackathon",
             "Location": "UCR",
             "StartTime": "2020-11-21T04:00:00.000Z",
-            "EndTime": "2019-11-21T05:30:00.000Z",
+            "EndTime": "2020-11-21T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
             {"Id": 2,
             "Subject": "Professional Development",
@@ -34,14 +34,14 @@ hard_coded_orgs = {
     },
     "Persian Club" : {"Persian Club":
         [
-            {"Id": 1,
+            {"Id": 3,
             "Subject": "Evening Meeting",
             "Location": "UCR",
             "StartTime": "2020-11-16T04:00:00.000Z",
             "EndTime": "2020-11-16T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
-            {"Id": 2,
+            {"Id": 4,
             "Subject": "Culture Night",
             "Location": "UCR",
             "StartTime": "2020-11-23T06:30:00.000Z",
@@ -51,14 +51,14 @@ hard_coded_orgs = {
     },
     "Chess Club" : {"Chess Club":
         [
-            {"Id": 1,
+            {"Id": 5,
             "Subject": "General Meeting",
             "Location": "UCR",
             "StartTime": "2020-11-05T02:00:00.000Z",
             "EndTime": "2020-11-05T03:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
-            {"Id": 2,
+            {"Id": 6,
             "Subject": "Tournament",
             "Location": "UCR",
             "StartTime": "2020-12-05T05:30:00.000Z",
