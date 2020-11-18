@@ -7,10 +7,11 @@ from bson.json_util import dumps, loads
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import ensure_csrf_cookie
 import json
+import os
 # Serve Single Page Application
 index = never_cache(TemplateView.as_view(template_name='index.html'))
 
-cluster = MongoClient("mongodb+srv://VirajDhillon:681442376acE@cluster0.avnss.mongodb.net/<dbname>?retryWrites=true&w=majority")
+cluster = MongoClient(os.environ.get("MONGODB_URL"))
 db = cluster["Login"]
 collection = db["Events"]
 id = 0
@@ -22,47 +23,47 @@ hard_coded_orgs = {
             "Subject": "Hackathon",
             "Location": "UCR",
             "StartTime": "2020-11-21T04:00:00.000Z",
-            "EndTime": "2019-11-21T05:30:00.000Z",
+            "EndTime": "2020-11-21T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
             {"Id": 2,
             "Subject": "Professional Development",
             "Location": "UCR",
             "StartTime": "2020-11-23T06:30:00.000Z",
-            "EndTime": "2019-11-23T08:30:00.000Z",
+            "EndTime": "2020-11-23T08:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     },
     "Persian Club" : {"Persian Club":
         [
-            {"Id": 1,
+            {"Id": 3,
             "Subject": "Evening Meeting",
             "Location": "UCR",
             "StartTime": "2020-11-16T04:00:00.000Z",
-            "EndTime": "2019-11-16T05:30:00.000Z",
+            "EndTime": "2020-11-16T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
-            {"Id": 2,
+            {"Id": 4,
             "Subject": "Culture Night",
             "Location": "UCR",
             "StartTime": "2020-11-23T06:30:00.000Z",
-            "EndTime": "2019-11-23T08:30:00.000Z",
+            "EndTime": "2020-11-23T08:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     },
     "Chess Club" : {"Chess Club":
         [
-            {"Id": 1,
+            {"Id": 5,
             "Subject": "General Meeting",
             "Location": "UCR",
             "StartTime": "2020-11-05T02:00:00.000Z",
-            "EndTime": "2019-11-05T03:30:00.000Z",
+            "EndTime": "2020-11-05T03:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
-            {"Id": 2,
+            {"Id": 6,
             "Subject": "Tournament",
             "Location": "UCR",
             "StartTime": "2020-12-05T05:30:00.000Z",
-            "EndTime": "2019-12-05T09:30:00.000Z",
+            "EndTime": "2020-12-05T09:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     }

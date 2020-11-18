@@ -10,8 +10,66 @@ import {
   Link
 } from "react-router-dom";
 
-class App extends React.Component {
+/** COMMENT DURING PROD **/
+// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
+
+/** UNCOMMENT DURING PROD **/ 
+const API = 'http://team-vision-cs178.herokuapp.com/api/'
+
+class App extends React.Component {
+  constructor() {
+    super();
+    if(window.localStorage.getItem("username") === null) { //making a hash(unique username)
+      const crypto = require("crypto");
+      const id = crypto.randomBytes(16).toString("hex");
+      localStorage.setItem("username", id);
+    }
+
+    let cachedEvents = localStorage.getItem("calendarEvents");
+    if(cachedEvents === null) {
+      // cached calendar events does not exist, make empty.
+      localStorage.setItem("calendarEvents", [])
+    }
+    // have username and current known schedule in a cache.
+    this.state = {
+      calendarEvents: []
+    }
+  }
+
+  fetchEvents = () => {
+    const data = new FormData();
+    data.append("username", localStorage.getItem("username"))
+    fetch( API + "getCalendarInfo", {
+      method: 'POST',
+      body: data
+    }).then(res => res.json())
+      .then(data => {
+        let newEvents = []
+          const orgs = data.organizations;
+          let orgsSeen = {}
+          for(let orgIdx in orgs) {
+            for(let orgName in orgs[orgIdx]) {
+              //TODO TEMPORARY MEASURE TO AVOID DUPLICATES (  NEED TO MAKE CHANGE ON THE DATABASE TO NOT ALLOW DUPLICATE CLUB JOINS)
+              if(orgsSeen[orgName] === undefined) {
+                for(let eventIdx in orgs[orgIdx][orgName] ) {
+                    //TODO add orgName to title of each event in Database, Ex:  "General Meeting" -> "Chess Club - General Meeting"
+                  orgs[orgIdx][orgName][eventIdx]["Subject"] = orgName + " - " + orgs[orgIdx][orgName][eventIdx]["Subject"];
+                    newEvents.push(orgs[orgIdx][orgName][eventIdx])
+                }
+             } orgsSeen[orgName] = true;
+
+            }
+          }
+          delete newEvents["json"] // post process and delete the unnecessary field
+          this.setState({calendarEvents: newEvents})
+      })
+      .catch(e => console.log(e))
+  }
+
+  componentDidMount() {
+    this.fetchEvents();
+  }
   render() {
     return ( 
     <Router>
@@ -42,10 +100,10 @@ class App extends React.Component {
             <Home />
           </Route>
           <Route path="/calendar">
-            <Calendar />
+            <Calendar calendarEvents={this.state.calendarEvents} />
           </Route>
           <Route path="/clubs">
-            <Clubs />
+            <Clubs action={this.fetchEvents} />
           </Route>
           <Route path="/*" component={NoMatch} />
         </Switch>

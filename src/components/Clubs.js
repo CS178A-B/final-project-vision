@@ -1,21 +1,17 @@
 import React from 'react'
-import DataSource from '../mock_data/datasource.json';
-import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda, EventSettingsModel } from '@syncfusion/ej2-react-schedule';
 
-import '../styles/Clubs.css'
+/** COMMENT DURING PROD **/
+// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
-const dict = {
-    "isChessClub" : "ucrchessclub",
-    "isACM" : "ucracm",
-    "isPersianClub" : "ucrpersianclub"
-}
 
+/** UNCOMMENT DURING PROD **/ 
+const API = 'http://team-vision-cs178.herokuapp.com/api/'
 
 class Clubs extends React.Component {
     state = {
-        isChessClub : false,
-        isACM : false,
-        isPersianClub : false
+        "ACM" : false,
+        "Persian Club" : false,
+        "Chess Club" : false
     };
     
     handleClick = e =>{
@@ -23,14 +19,25 @@ class Clubs extends React.Component {
     }
 
     handleSubmit = e =>{
-        let clubs = []
+        let output = "";
         for (let key in this.state){
             let value = this.state[key]
             if (value===true) {
-                clubs.push(dict[key])
+                output += key + ", ";
             }
         }
-        console.log(clubs)
+        // remove last comma and space
+        output = output.substring(0, output.length -2);
+
+        const data = new FormData()
+        data.append("username", window.localStorage.getItem("username"))
+        data.append("organizations", output)
+        // call api to add calendar events
+        fetch(API + "addOrganization", {
+            method: 'POST',
+            body: data
+        }).then(this.props.action)
+        .catch(e => console.log(e))
     }
 
     render() {
@@ -39,15 +46,15 @@ class Clubs extends React.Component {
             <form>
                 <label>
                 Chess Club
-                <input type="checkbox" name="isChessClub" onClick={this.handleClick}/>
+                <input type="checkbox" name="Chess Club" onClick={this.handleClick}/>
                 </label><br />
                 <label>
                 ACM
-                <input type="checkbox" name="isACM" onClick={this.handleClick}/>
+                <input type="checkbox" name="ACM" onClick={this.handleClick}/>
                 </label><br />
                 <label>
                 Persian Club
-                <input type="checkbox" name="isPersianClub" onClick={this.handleClick}/>
+                <input type="checkbox" name="Persian Club" onClick={this.handleClick}/>
                 </label>                
             </form>
                 <button onClick={this.handleSubmit}>Submit</button>
