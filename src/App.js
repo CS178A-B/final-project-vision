@@ -10,8 +10,61 @@ import {
   Link
 } from "react-router-dom";
 
-class App extends React.Component {
+/** COMMENT DURING PROD **/
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
+
+/** UNCOMMENT DURING PROD **/ 
+// const PROD_API = 'http://team-vision-cs178.herokuapp.com/api/'
+
+class App extends React.Component {
+  constructor() {
+    super();
+    if(window.localStorage.getItem("username") === null) { //making a hash(unique username)
+      const crypto = require("crypto");
+      const id = crypto.randomBytes(16).toString("hex");
+      localStorage.setItem("username", id);
+    }
+
+    let cachedEvents = localStorage.getItem("calendarEvents");
+    if(cachedEvents === null) {
+      // cached calendar events does not exist, make empty.
+      localStorage.setItem("calendarEvents", [])
+    }
+    console.log(cachedEvents)
+    // have username and current known schedule in a cache.
+    this.state = {
+      calendarEvents: []
+    }
+  }
+
+  componentDidMount() {
+    const data = new FormData();
+    data.append("username", localStorage.getItem("username"))
+    fetch( API + "getCalendarInfo", {
+      method: 'POST',
+      body: data
+    }).then(res => res.json())
+      .then(data => {
+        let newEvents = []
+        console.log(data)
+          const orgs = data.organizations;
+          for(let orgIdx in orgs) {
+            for(let orgName in orgs[orgIdx]) {
+              for(let eventIdx in orgs[orgIdx][orgName] ) {
+                for(let currentEvent in orgs[orgIdx][orgName][eventIdx]) {
+                  console.log(currentEvent)
+                  newEvents.push(currentEvent)
+                }
+              }
+            }
+          }
+          console.log(orgs[0]["ACM"][0])
+          this.setState({calendarEvents: newEvents})
+          console.log(this.state)
+      })
+      .catch(e => console.log(e))
+  }
   render() {
     return ( 
     <Router>
@@ -42,7 +95,7 @@ class App extends React.Component {
             <Home />
           </Route>
           <Route path="/calendar">
-            <Calendar />
+            <Calendar calendarEvents={this.state.calendarEvents} />
           </Route>
           <Route path="/clubs">
             <Clubs />

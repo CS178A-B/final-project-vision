@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'whitenoise.runserver_nostatic',  # < As per whitenoise documentation
     'django.contrib.staticfiles',
     'rest_framework', # 3rd party apps
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',  # Whitenoise Middleware
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -54,6 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
+CORS_ORIGIN_ALLOW_ALL = True
 
 TEMPLATES = [
     {

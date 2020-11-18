@@ -28,7 +28,7 @@ hard_coded_orgs = {
             "Subject": "Professional Development",
             "Location": "UCR",
             "StartTime": "2020-11-23T06:30:00.000Z",
-            "EndTime": "2019-11-23T08:30:00.000Z",
+            "EndTime": "2020-11-23T08:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     },
@@ -38,14 +38,14 @@ hard_coded_orgs = {
             "Subject": "Evening Meeting",
             "Location": "UCR",
             "StartTime": "2020-11-16T04:00:00.000Z",
-            "EndTime": "2019-11-16T05:30:00.000Z",
+            "EndTime": "2020-11-16T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
             {"Id": 2,
             "Subject": "Culture Night",
             "Location": "UCR",
             "StartTime": "2020-11-23T06:30:00.000Z",
-            "EndTime": "2019-11-23T08:30:00.000Z",
+            "EndTime": "2020-11-23T08:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     },
@@ -55,14 +55,14 @@ hard_coded_orgs = {
             "Subject": "General Meeting",
             "Location": "UCR",
             "StartTime": "2020-11-05T02:00:00.000Z",
-            "EndTime": "2019-11-05T03:30:00.000Z",
+            "EndTime": "2020-11-05T03:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
             {"Id": 2,
             "Subject": "Tournament",
             "Location": "UCR",
             "StartTime": "2020-12-05T05:30:00.000Z",
-            "EndTime": "2019-12-05T09:30:00.000Z",
+            "EndTime": "2020-12-05T09:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     }
