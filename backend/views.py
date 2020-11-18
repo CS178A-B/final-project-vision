@@ -7,10 +7,11 @@ from bson.json_util import dumps, loads
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.csrf import ensure_csrf_cookie
 import json
+import os
 # Serve Single Page Application
 index = never_cache(TemplateView.as_view(template_name='index.html'))
 
-cluster = MongoClient("mongodb+srv://VirajDhillon:681442376acE@cluster0.avnss.mongodb.net/<dbname>?retryWrites=true&w=majority")
+cluster = MongoClient(os.environ.get("MONGODB_URL"))
 db = cluster["Login"]
 collection = db["Events"]
 id = 0
