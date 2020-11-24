@@ -10,7 +10,7 @@ export const Button = styled.button`
 `;
 
 // destructing --> exporting someting only using {}
-export const TopText = styled.h1`
- font-size: 20px;
-`;
+// export const TopText = styled.h1`
+//  font-size: 20px;
+// `;
 

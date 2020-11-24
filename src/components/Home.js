@@ -1,25 +1,22 @@
 import React from 'react';
 import CircularButton from './CircularButton';
 import LargeButton from './LargeButton/index.js';
+import Navbar from './Navbar';
+import Homeblock from './Homeblock';
+import Footer from './Footer';
 
-class Home extends React.Component { 
+class Home extends React.Component {
   render() {
     return (
       <div>
-        LANDING PAGE
-        <div>
-          <LargeButton
-              text="TRY VISION FOR FREE"
-              fontColor="white"
-              bgColor="yellow"
-          />
-        </div>
+        {/* TODO: Announcements bar */}
+        <Navbar />
+        <Homeblock />
+        <Footer />
+        {/* TODO: Footer */}
       </div>
     );
   }
 }
-
-
-// example
 
 export default Home;
