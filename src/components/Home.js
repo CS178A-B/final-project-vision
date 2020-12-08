@@ -1,5 +1,4 @@
 import React from 'react';
-import CircularButton from './CircularButton';
 import LargeButton from './LargeButton/index.js';
 import Navbar from './Navbar';
 import Homeblock from './Homeblock';
