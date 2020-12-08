@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { fontColor } from '../Colors.js';
+// import { fontColor } from '../Colors.js';
 
-module.exports = fontColor;
+// module.exports = fontColor;
 
 // parent homeblock wrapper
 export const Wrapper = styled.div`
@@ -42,7 +42,7 @@ export const Headertext = styled.div`
     - a whole component for a certain header text --> stack them instead of bunching in one h1 tag and separating styling
 */
 export const H1Line1 = styled.span`
-  color: {fRed};
+  color: #EB3B3B;
 `;
 
 export const H1Line2 = styled.span`
