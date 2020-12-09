@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button, TopText } from './styled';
-import { fontColor } from '../Colors.js';
 
 /*
 Functional Componet
