@@ -6,7 +6,7 @@ import styled from 'styled-components';
 // parent homeblock wrapper
 export const Wrapper = styled.div`
   width: 100%;
-  height: 500px;
+  height: 550px;
   border: 2px dashed black;
   display: flex;
   align-items: center;
@@ -29,6 +29,7 @@ export const RightGroup = styled.div`
   text-align: center;
 `;
 
+// Text-align (L/R) margin (T/B)
 export const Headertext = styled.div`
   width: 80%;
   height: 50%;
@@ -42,13 +43,5 @@ export const Headertext = styled.div`
     - a whole component for a certain header text --> stack them instead of bunching in one h1 tag and separating styling
 */
 export const H1Line1 = styled.span`
-  color: #EB3B3B;
-`;
-
-export const H1Line2 = styled.span`
-  color: #FFCB3D;
-`;
-
-export const H1Line3 = styled.span`
-  color: #3ABF7C;
+  color: ${props => props.color};
 `;

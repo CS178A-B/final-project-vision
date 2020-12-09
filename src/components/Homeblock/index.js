@@ -1,6 +1,8 @@
 import React from 'react';
 import LargeButton from '../LargeButton';
-import { H1Line1, H1Line2, H1Line3, Headertext, LeftGroup, RightGroup, Wrapper } from './styled';
+import { H1Line1, Headertext, LeftGroup, RightGroup, Wrapper } from './styled';
+import { fontColor } from '../Colors.js';
+import logo from '../assets/homeimg.png';
 
 class Homeblock extends React.Component {
   render() {
@@ -9,23 +11,22 @@ class Homeblock extends React.Component {
         <LeftGroup>
           <Headertext>
             <h1>
-              <H1Line1>Schedule events.<br/></H1Line1>
-              <H1Line2>Manage your groups.<br/></H1Line2>
-              <H1Line3>Assign tasks.</H1Line3>
-            </h1>
+            <H1Line1 color={fontColor.Red}>Schedule Events.<br/></H1Line1>
+              <H1Line1 color={fontColor.Yellow}>Manage your groups.<br/></H1Line1>
+              <H1Line1 color={fontColor.Green}>Assign tasks.</H1Line1>
+           </h1>
           </Headertext>
           <div>
             <LargeButton
               text="TRY VISION FOR FREE"
-              fontColor="blue"
+              fontColor={fontColor.Blue}
               bgColor="white"
             // LargeButton end
             /> 
           </div>
         </LeftGroup>
         <RightGroup>
-          IMAGE GOES HERE
-          {/* SVG */}
+          <img src={logo} alt="Logo" style={{ width: '100%' }} />
         </RightGroup>
       </Wrapper>
     );

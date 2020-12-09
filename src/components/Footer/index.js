@@ -6,9 +6,8 @@ class Footer extends React.Component {
     return(
       <Wrapper>
         {/* Concern: combine or style */}
-        FOOTER
-        {/* <h2>The flexible scheduler personalized for you.</h2>
-        <h3>Made for everybody.</h3> */}
+        <h3 style={{ margin: '10px', textAlign: 'center', backgroundColor: 'inherit' }}>The flexible scheduler personalized for you.</h3>
+        <h4 style={{  textAlign: 'center', marginTop: '0', marginBottom: '10px', backgroundColor: 'inherit' }}>Made for everybody.</h4>
       </Wrapper>
     );
   }

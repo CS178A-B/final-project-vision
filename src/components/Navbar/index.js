@@ -1,5 +1,6 @@
 import React from 'react';
 import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, Authentication } from './styled';
+import { buttonColor } from '../Colors.js';
 // import Logo from '../assets/IMG_3631.svg';
 
 class Navbar extends React.Component {
@@ -18,8 +19,8 @@ class Navbar extends React.Component {
           </LeftGroup>
 
           <RightGroup>
-            <Authentication>Login</Authentication>
-            <Authentication>Sign Up</Authentication>
+            <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication>
+            <Authentication style={{ backgroundColor: buttonColor.Green }}>Sign Up</Authentication>
           </RightGroup>
         </ButtonContainer>
       </Wrapper>

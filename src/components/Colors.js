@@ -1,33 +1,33 @@
 module.exports = {
   fontColor: {
-    fRed: '#EB3B3B',
-    fYellow: '#FFCB3D',
-    fGreen: '#3ABF7C',
-    fBlue: '#3A566E',
-    fWhite: '#FFFFFF'
+    Red: '#EB3B3B',
+    Yellow: '#FFCB3D',
+    Green: '#3ABF7C',
+    Blue: '#3A566E',
+    White: '#FFFFFF'
   },
 
   buttonColor: {
-    bGray: '#D6D6D6',
-    bGreen: '#B5D9C8',
-    bWhite: '#FCFCFC'
+    Gray: '#D6D6D6',
+    Green: '#B5D9C8',
+    White: '#FCFCFC'
   },
 
   bgColor: {
-    bgLightBlue: '#F1F9FF',
-    bgGray: '#CECECE',
-    bgDarkBlue: '#B5C9D9',
-    bgViolet: '#474BFF',
-    bgBlueGray: '#E1E5F0',
-    bgLightGray: '#F2F6FB',
-    bgPurple: '#D8DEED'
+    LightBlue: '#F1F9FF',
+    Gray: '#CECECE',
+    DarkBlue: '#B5C9D9',
+    Violet: '#474BFF',
+    BlueGray: '#E1E5F0',
+    LightGray: '#F2F6FB',
+    Purple: '#D8DEED'
   },
 
   authColor: {
-    aLightBlue: '#BCE0FD',
-    aDarkBlue: '#608EB4',
-    aNavy: '#3A566E',
-    aLinkBlue: '#608EB4',
-    aGray: '#B3C1CC',
+    LightBlue: '#BCE0FD',
+    DarkBlue: '#608EB4',
+    Navy: '#3A566E',
+    LinkBlue: '#608EB4',
+    Gray: '#B3C1CC',
   }
 };
