@@ -19,8 +19,8 @@ class Navbar extends React.Component {
           </LeftGroup>
 
           <RightGroup>
-            <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication>
-            <Authentication style={{ backgroundColor: buttonColor.Green }}>Sign Up</Authentication>
+            {/* <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication> */}
+            <Authentication style={{ backgroundColor: buttonColor.Green }}>Sign In</Authentication>
           </RightGroup>
         </ButtonContainer>
       </Wrapper>
