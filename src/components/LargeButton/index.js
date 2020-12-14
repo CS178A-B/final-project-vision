@@ -9,11 +9,11 @@ Functional Componet
 */
 
 // yarn add styled-components
-const LargeButton = ({ text, fontColor, bgColor }) => {
+const LargeButton = ({ text, fontColor, bgColor, padding, borderRadius }) => {
   return (
     <>
     {/* <TopText>HELLO</TopText> */}
-    <Button fontColor={fontColor} bgColor={bgColor}>
+    <Button fontColor={fontColor} bgColor={bgColor} padding={padding} borderRadius={borderRadius}>
       {text}
     </Button>
     {/* <button style={{ color: "blue", height: "200px", width: "500px" }}></button> */}

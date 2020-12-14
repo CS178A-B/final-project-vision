@@ -43,9 +43,9 @@ export const LeftGroup = styled.div`
 // authentication
 export const RightGroup = styled.div`
   width: 35%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  // display: flex;
+  // justify-content: space-between;
+  // align-items: center;
   border: 1px solid;
 `;
 

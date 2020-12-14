@@ -8,8 +8,8 @@ export const Button = styled.button`
     font-size: 16px;
     min-height: 15px;
     min-width: 40px;
-    padding: 20px;
-    border-radius: 50px;
+    padding: ${props => props.padding || '20px' };
+    border-radius: ${props => props.borderRadius || '50px'};
 `;
 
 // destructing --> exporting someting only using {}
