@@ -9,6 +9,9 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import About from './components/About';
+import Features from './Features';
+import Contact from './Contact';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -79,6 +82,15 @@ class App extends React.Component {
             <Link to="/">Home</Link>
           </li>
           <li>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/features">Features</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
+          </li>
+          <li>
             <Link to="/calendar">Calendar</Link>
           </li>
           <li>
@@ -98,6 +110,15 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/features">
+            <Features />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
           </Route>
           <Route path="/calendar">
             <Calendar calendarEvents={this.state.calendarEvents} />

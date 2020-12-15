@@ -3,7 +3,25 @@ import LargeButton from '../LargeButton';
 import { Smalltext, Wrapper } from './styled';
 import { fontColor } from '../Colors.js';
 
+// document.addEventListener("DOMContentLoaded",() => {
+//   const the_button = document.querySelector(".js-btn")
+//   the_button.addEventListener("click", handleClick)
+// })
+
+// function handleClick(event) {
+//   const modal = document.querySelector(".modal")
+//   const closeBtn = document.querySelector(".close")
+//   modal.style.display = "block";
+//   closeBtn.addEventListener("click", () => {
+//     modal.style.display = "none";
+//   })
+// }
+
 class Signin extends React.Component {
+  handleClick = () => {
+    this.props.toggle();
+  };
+
   render() {
     return (
       <Wrapper>

@@ -1,26 +1,40 @@
 import React from 'react';
-import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, Authentication } from './styled';
+import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, Authentication, LogoImage } from './styled';
 import { buttonColor } from '../Colors.js';
-// import Logo from '../assets/IMG_3631.svg';
+import Signin from '../Signin';
+import Logo from '../assets/logo.png';
 
 class Navbar extends React.Component {
+  state = {
+    seen: false
+  };
+
+  togglePop = () => {
+    this.setState({
+      seen: !this.state.seen
+    });
+  };
+  
   render() {
     return(
       <Wrapper>
         <LogoContainer>
-        LOGO GOES HERE with VISION
+        <LogoImage src={Logo} />
+        <h2>VISION</h2>
         {/* <Logo /> */}
         </LogoContainer>
         <ButtonContainer>
           <LeftGroup>
             <NavButton>About</NavButton>
             <NavButton>Features</NavButton>
-            <NavButton>Contact</NavButton>
+            <NavButton>Contact Us</NavButton>
           </LeftGroup>
 
           <RightGroup>
             {/* <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication> */}
-            <Authentication style={{ backgroundColor: buttonColor.Green }}>Sign In</Authentication>
+            <div onClick={this.togglePop}><Authentication style={{ backgroundColor: buttonColor.Green }} >Sign In</Authentication>
+            </div>
+            {this.state.seen ? <Signin toggle={this.togglePop} /> : null}
           </RightGroup>
         </ButtonContainer>
       </Wrapper>

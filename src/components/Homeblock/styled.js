@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { keyframes } from 'styled-components';
 // import { fontColor } from '../Colors.js';
 
 // module.exports = fontColor;
@@ -44,4 +45,18 @@ export const Headertext = styled.div`
 */
 export const H1Line1 = styled.span`
   color: ${props => props.color};
+`;
+
+// side img
+export const Float = keyframes`
+  0%, 100% { top: 40%; left: 50% }
+  50% { top: 38%; left: 52% }
+`;
+
+export const Windows = styled.img`
+  animation: ${Float} 19s linear infinite;
+  position: absolute;
+  left: 50%;
+  top: 35%;
+  width: 50%;
 `;

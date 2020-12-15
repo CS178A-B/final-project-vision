@@ -1,15 +1,15 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Homeblock from './Homeblock';
-import Footer from './Footer';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 
-class Home extends React.Component {
+class Features extends React.Component {
   render() {
     return (
       <div>
         {/* TODO: Announcements bar */}
         <Navbar />
-        <Homeblock />
+        {/* TODO: Features block */}
+        <h1> F E A T U R E S</h1>
         <div style={{ width: '100%', position: 'fixed', bottom: '0' }}>
           <Footer />
         </div>
@@ -18,4 +18,4 @@ class Home extends React.Component {
   }
 }
 
-export default Home;
+export default Features;

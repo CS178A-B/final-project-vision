@@ -15,9 +15,17 @@ export const LogoContainer = styled.div`
   width: 40%;
   height: 100%;
   display: flex;
+  align-items: center;
   border: 2px solid red;
   font-weight: bold;
   margin: 0px 50px 0px 50px;
+`;
+
+// logo
+export const LogoImage = styled.img`
+  width: 55px;
+  height: 50px;
+  padding-right: 10px;
 `;
 
 export const ButtonContainer = styled.div`

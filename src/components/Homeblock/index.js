@@ -1,8 +1,8 @@
 import React from 'react';
 import LargeButton from '../LargeButton';
-import { H1Line1, Headertext, LeftGroup, RightGroup, Wrapper } from './styled';
+import { H1Line1, Headertext, LeftGroup, RightGroup, Windows, Wrapper } from './styled';
 import { fontColor } from '../Colors.js';
-import logo from '../assets/homeimg.png';
+import Logo from '../assets/homeimg.png';
 
 class Homeblock extends React.Component {
   render() {
@@ -26,7 +26,7 @@ class Homeblock extends React.Component {
           </div>
         </LeftGroup>
         <RightGroup>
-          <img src={logo} alt="Logo" style={{ width: '100%' }} />
+          <Windows src={Logo} />
         </RightGroup>
       </Wrapper>
     );
