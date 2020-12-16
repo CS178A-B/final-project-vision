@@ -56,6 +56,7 @@ export const Float = keyframes`
 export const Windows = styled.img`
   animation: ${Float} 19s linear infinite;
   position: absolute;
+  z-index: 0;
   left: 50%;
   top: 35%;
   width: 50%;

@@ -18,9 +18,9 @@ import { fontColor } from '../Colors.js';
 // }
 
 class Signin extends React.Component {
-  handleClick = () => {
-    this.props.toggle();
-  };
+  // handleClick = () => {
+  //   this.props.toggle();
+  // };
 
   render() {
     return (
@@ -36,7 +36,7 @@ class Signin extends React.Component {
               padding='10px'
               borderRadius= "5px"
             // LargeButton end
-            /> 
+            />
 
       </Wrapper>
     );

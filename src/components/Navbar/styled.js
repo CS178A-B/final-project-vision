@@ -51,9 +51,6 @@ export const LeftGroup = styled.div`
 // authentication
 export const RightGroup = styled.div`
   width: 35%;
-  // display: flex;
-  // justify-content: space-between;
-  // align-items: center;
   border: 1px solid;
 `;
 
@@ -73,4 +70,5 @@ export const Authentication = styled.button`
   color: ${fontColor.Blue};
   background-color: green;  
   border-radius: 3px;
+  float: right;
 `;

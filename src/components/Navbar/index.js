@@ -6,22 +6,22 @@ import Logo from '../assets/logo.png';
 
 class Navbar extends React.Component {
   state = {
-    seen: false
+    showPopup: false
   };
 
   togglePop = () => {
     this.setState({
-      seen: !this.state.seen
+      showPopup: !this.state.showPopup
     });
   };
-  
+
   render() {
+    const { showPopup } = this.state;
     return(
       <Wrapper>
         <LogoContainer>
-        <LogoImage src={Logo} />
-        <h2>VISION</h2>
-        {/* <Logo /> */}
+          <LogoImage src={Logo} />
+          <h2>VISION</h2>
         </LogoContainer>
         <ButtonContainer>
           <LeftGroup>
@@ -34,7 +34,7 @@ class Navbar extends React.Component {
             {/* <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication> */}
             <div onClick={this.togglePop}><Authentication style={{ backgroundColor: buttonColor.Green }} >Sign In</Authentication>
             </div>
-            {this.state.seen ? <Signin toggle={this.togglePop} /> : null}
+            {showPopup ? <Signin toggle={this.togglePop} /> : null}
           </RightGroup>
         </ButtonContainer>
       </Wrapper>
