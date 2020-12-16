@@ -28,6 +28,9 @@ class Navbar extends React.Component {
             <NavButton>About</NavButton>
             <NavButton>Features</NavButton>
             <NavButton>Contact Us</NavButton>
+            <NavButton>Clubs</NavButton>
+            <NavButton>Calendar</NavButton>
+
           </LeftGroup>
 
           <RightGroup>
