@@ -4,11 +4,11 @@ import { fontColor } from '../Colors';
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 40px;
-  border: 2px solid black;
   display: flex;
   align-items: center;
   color: ${fontColor.Blue};
 `;
+// border: 2px solid black;
 
 // h/w relative to parent container
 export const LogoContainer = styled.div`
@@ -17,7 +17,6 @@ export const LogoContainer = styled.div`
   display: flex;
   align-items: center;
   border: 2px solid red;
-  font-weight: bold;
   margin: 0px 50px 0px 50px;
 `;
 

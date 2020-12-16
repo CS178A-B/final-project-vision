@@ -3,15 +3,15 @@ import { bgColor, fontColor } from '../Colors.js';
 
 export const Wrapper = styled.div`
   width: 100%;
-  min-height: 70px;
+  min-height: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0;
-  background-color: ${bgColor.DarkBlue};
+  background-color: ${bgColor.Gray};
   color: ${fontColor.White};
   position: fixed;
-  bottom: 0;
+  top: 0;
 `;
 
 // TODO; stick to the bottom of the page

@@ -6,6 +6,7 @@ import Logo from '../assets/homeimg.png';
 
 class Homeblock extends React.Component {
   render() {
+    const { togglePop } = this.props;
     return(
       <Wrapper>
         <LeftGroup>
@@ -17,7 +18,7 @@ class Homeblock extends React.Component {
            </h1>
           </Headertext>
           <div>
-            <LargeButton
+            <LargeButton onClick={togglePop}
               text="TRY VISION FOR FREE"
               fontColor={fontColor.Blue}
               bgColor="white"

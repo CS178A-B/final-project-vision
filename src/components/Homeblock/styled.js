@@ -7,7 +7,7 @@ import { keyframes } from 'styled-components';
 // parent homeblock wrapper
 export const Wrapper = styled.div`
   width: 100%;
-  height: 550px;
+  height: 570px;
   border: 2px dashed black;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@ export const LeftGroup = styled.div`
 
 export const RightGroup = styled.div`
   width: 50%;
-  height: 80%;
+  height: 90%;
   border: 2px dashed blue;
   text-align: center;
 `;
@@ -58,6 +58,7 @@ export const Windows = styled.img`
   position: absolute;
   z-index: 0;
   left: 50%;
-  top: 35%;
+  top: 50%;
   width: 50%;
+  margin-top: -285;
 `;
