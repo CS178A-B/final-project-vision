@@ -5,6 +5,7 @@ import { fontColor } from '../Colors.js';
 import Logo from '../assets/homeimg.png';
 
 class Homeblock extends React.Component {
+  // test
   render() {
     return(
       <Wrapper>
