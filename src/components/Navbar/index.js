@@ -1,43 +1,49 @@
 import React from 'react';
-import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, Authentication, LogoImage } from './styled';
+import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, SigninButton } from './styled';
 import { buttonColor } from '../Colors.js';
+import Logo from '../Logo';
 import Signin from '../Signin';
-import Logo from '../assets/logo.png';
+// import Logo from '../assets/logo.png';
+import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
   state = {
-    seen: false
+    showPopup: false
   };
 
   togglePop = () => {
     this.setState({
-      seen: !this.state.seen
+      showPopup: !this.state.showPopup
     });
   };
+
   
   render() {
+    const { showPopup } = this.state;
     return(
       <Wrapper>
         <LogoContainer>
-        <LogoImage src={Logo} />
-        <h2>VISION</h2>
-        {/* <Logo /> */}
+          {/* <LogoImage src={Logo} /> */}
+          <Logo />
+          <h2 style={{ fontFamily: 'Barlow, sans-serif', fontWeight: 'bold', letterSpacing: '0.1em' }}>VISION</h2> 
         </LogoContainer>
         <ButtonContainer>
           <LeftGroup>
-            <NavButton>About</NavButton>
-            <NavButton>Features</NavButton>
-            <NavButton>Contact Us</NavButton>
-            <NavButton>Calendar</NavButton>
-            <NavButton>Organizations</NavButton>
-
+            <Link to="/about">
+              <NavButton>About</NavButton>
+            </Link>
+            <Link to="/features">
+              <NavButton>Features</NavButton>
+            </Link>
+            <Link to="/contact">
+              <NavButton>Contact Us</NavButton>
+            </Link>  
           </LeftGroup>
 
           <RightGroup>
             {/* <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication> */}
-            <div onClick={this.togglePop}><Authentication style={{ backgroundColor: buttonColor.Green }} >Sign In</Authentication>
-            </div>
-            {this.state.seen ? <Signin toggle={this.togglePop} /> : null}
+            <SigninButton onClick={this.togglePop} style={{ backgroundColor: buttonColor.Green }} >Sign In</SigninButton>
+            {showPopup ? <Signin toggle={this.togglePop} /> : null}
           </RightGroup>
         </ButtonContainer>
       </Wrapper>
