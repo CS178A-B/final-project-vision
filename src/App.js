@@ -12,7 +12,10 @@ import {
   Link
 } from "react-router-dom";
 import ProtectedRoute from './auth/protected-route'
-import { separateMessageFromStack } from 'jest-message-util';
+import About from './components/About';
+import Features from './Features';
+import Contact from './Contact';
+// import GlobalFonts from './fonts/fonts';
 
 /** COMMENT DURING PROD **/
 const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -26,7 +29,6 @@ const App = props => {
   //   calendarEvents: []
   // });
   const [calendarEvents, setCalendarEvents] = useState([])
-  const [message, setMessage] = useState("")
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const {isLoading} = props.auth0;
 
@@ -61,7 +63,7 @@ const App = props => {
           setCalendarEvents(newEvents)
       })
     } catch (error) {
-      setMessage(error.message);
+      console.log(error)
     }
   }
 
@@ -73,31 +75,43 @@ const App = props => {
     return <Loading />
   }
 
-  const authLinks = () => {
-    return !isAuthenticated ? <div></div> : <div>
-            <li>
-              <Link to="/calendar">Calendar</Link>
-            </li>
-            <li>
-              <Link to="/profile">Profile</Link>
-            </li>
-            <li>
-              <Link to="/clubs">Clubs</Link>
-            </li>
-          </div>
-  }
+  // const authLinks = () => {
+  //   return !isAuthenticated ? <div></div> : <div>
+  //           <li>
+  //             <Link to="/calendar">Calendar</Link>
+  //           </li>
+  //           <li>
+  //             <Link to="/profile">Profile</Link>
+  //           </li>
+  //           <li>
+  //             <Link to="/clubs">Clubs</Link>
+  //           </li>
+  //         </div>
+  // }
 
     return (
       <div>
-        <ul>
+        {/* <GlobalFonts /> */}
+      {/* <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
           {authLinks()}
-        </ul>
+        </ul> */}
         <hr />
         <Switch>
-          <Route exact path="/" exact component={Home} />
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/features">
+            <Features />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
+          </Route>
           <Route path="/calendar">
             <Calendar calendarEvents={calendarEvents} />
           </Route>

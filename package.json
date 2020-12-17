@@ -45,6 +45,7 @@
   },
   "proxy": "http://localhost:8000",
   "devDependencies": {
-    "file-loader": "^6.1.1"
+    "file-loader": "^6.1.1",
+    "html-webpack-plugin": "^4.5.0"
   }
 }

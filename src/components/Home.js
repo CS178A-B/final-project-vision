@@ -1,26 +1,34 @@
-import React from 'react';
-import LargeButton from './LargeButton/index.js';
+import React, { useState } from 'react';
+//import LargeButton from './LargeButton/index.js';
 import Navbar from './Navbar';
 import Homeblock from './Homeblock';
 import Footer from './Footer';
-import LoginButton from './login-button';
-import AuthenticationButton from './authentication-button';
-import AuthNav from './auth-nav.js';
+// import LoginButton from './login-button';
+// import AuthenticationButton from './authentication-button';
+// import AuthNav from './auth-nav.js';
+import Signin from './Signin';
+import Header from './Header';
+// import GlobalFonts from '../fonts/fonts.js';
 
-class Home extends React.Component {
-  render() {
+const Home = props => {
+   // set up state here
+   const [showPopup, togglePopup] = useState(false);
+
+   const handleToggle = () => {
+     togglePopup(!showPopup)
+   } 
+
+
     return (
       <div>
-        {/* TODO: Announcements bar */}
+        {/* <GlobalFonts /> */}
+        <Header />
         <Navbar />
-        <Homeblock />
+        <Homeblock togglePop={handleToggle} />
+        {showPopup ? <Signin toggle={togglePopup} /> : null}
         <Footer />
-        <AuthenticationButton />
-
-        TODO: Footer
       </div>
     );
-  }
 }
 
 export default Home;

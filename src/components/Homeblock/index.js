@@ -1,11 +1,12 @@
 import React from 'react';
 import LargeButton from '../LargeButton';
-import { H1Line1, Headertext, LeftGroup, RightGroup, Wrapper } from './styled';
+import { H1Line1, Headertext, LeftGroup, Windows, Wrapper } from './styled';
 import { fontColor } from '../Colors.js';
-import logo from '../assets/homeimg.png';
+import Logo from '../assets/homeimg.png';
 
 class Homeblock extends React.Component {
   render() {
+    const { togglePop } = this.props;
     return(
       <Wrapper>
         <LeftGroup>
@@ -17,7 +18,7 @@ class Homeblock extends React.Component {
            </h1>
           </Headertext>
           <div>
-            <LargeButton
+            <LargeButton onClick={togglePop}
               text="TRY VISION FOR FREE"
               fontColor={fontColor.Blue}
               bgColor="white"
@@ -25,9 +26,9 @@ class Homeblock extends React.Component {
             /> 
           </div>
         </LeftGroup>
-        <RightGroup>
-          <img src={logo} alt="Logo" style={{ width: '100%' }} />
-        </RightGroup>
+        {/* <RightGroup> */}
+          <Windows src={Logo} />
+        {/* </RightGroup> */}
       </Wrapper>
     );
   }

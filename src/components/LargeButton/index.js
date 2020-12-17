@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TopText } from './styled';
+import { Button } from './styled';
 
 /*
 Functional Componet
@@ -9,11 +9,11 @@ Functional Componet
 */
 
 // yarn add styled-components
-const LargeButton = ({ text, fontColor, bgColor }) => {
+const LargeButton = ({ text, fontColor, bgColor, padding, borderRadius, onClick }) => {
   return (
     <>
     {/* <TopText>HELLO</TopText> */}
-    <Button fontColor={fontColor} bgColor={bgColor}>
+    <Button onClick={onClick} fontColor={fontColor} bgColor={bgColor} padding={padding} borderRadius={borderRadius}>
       {text}
     </Button>
     {/* <button style={{ color: "blue", height: "200px", width: "500px" }}></button> */}

@@ -3,9 +3,8 @@
 import React from "react";
 import { withAuth0 } from "@auth0/auth0-react";
 
-class LoginButton extends React.Component {
-  render() {
-    const { loginWithRedirect } = this.props.auth0;
+const LoginButton = props => {
+    const { loginWithRedirect } = props.auth0;
 
     return (
       <button
@@ -15,7 +14,6 @@ class LoginButton extends React.Component {
         Log In
       </button>
     );
-  }
 }
 
 export default withAuth0(LoginButton);
