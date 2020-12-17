@@ -4,12 +4,12 @@ import { bgColor } from '../Colors';
 export const Wrapper = styled.div`
   width: 100%;
   height: 500px;
-  border: 2px dashed black;
   display: grid;
   grid-template-columns: 18% 18% 18% 18%;
   margin: auto;
   justify-content: center;
 `;
+// border: 2px dashed black;
 
 export const ContactSection = styled.div`
   text-align: center;

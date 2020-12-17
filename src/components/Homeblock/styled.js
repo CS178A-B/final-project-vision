@@ -8,8 +8,8 @@ import { keyframes } from 'styled-components';
 export const Wrapper = styled.div`
   width: 100%;
   height: 570px;
-  border: 2px dashed black;
 `;
+// border: 2px dashed black;
 // display: flex;
 // flex-direction: right;
 // align-items: center;
@@ -21,8 +21,8 @@ export const LeftGroup = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   padding-left: 50px;
-  border: 2px dashed red;
 `;
+// border: 2px dashed red;
 
 // export const RightGroup = styled.div`
 //   width: 50%;
@@ -35,8 +35,8 @@ export const LeftGroup = styled.div`
 export const Headertext = styled.div`
   width: 80%;
   height: 50%;
-  border: 2px solid yellow;
 `;
+// border: 2px solid yellow;
 
 /* 
   Q/Concerns: 
