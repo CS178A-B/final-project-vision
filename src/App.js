@@ -9,7 +9,6 @@ import  Organizations from './components/Organizations'
 import {
   Switch,
   Route,
-  Link
 } from "react-router-dom";
 import ProtectedRoute from './auth/protected-route'
 import About from './components/About';
@@ -78,12 +77,6 @@ const App = props => {
     return (
       <div>
         {/* <GlobalFonts /> */}
-      {/* <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          {authLinks()}
-        </ul> */}
 
         <hr />
         <Switch>

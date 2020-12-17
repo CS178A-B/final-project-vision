@@ -13,11 +13,7 @@ const OrganizationsBlock = props => {
     
     const { getAccessTokenSilently } = useAuth0();
 
-    const [clubs, setClub] = useState({
-        ACM: false,
-        ChessClub: false,
-        PersianClub: false
-    });
+    const [clubs, setClub] = useState({});
 
     const handleClick = e =>{
         const clubName = e.target.name;
@@ -29,6 +25,8 @@ const OrganizationsBlock = props => {
     }
 
     const handleSubmit = async e =>{
+
+        console.log(clubs)
         try {
         const token = await getAccessTokenSilently();
         let output = "";
@@ -61,7 +59,7 @@ const OrganizationsBlock = props => {
                 <h1>O R G A N I Z A T I O N S</h1>
                 <label>
                 Chess Club
-                <input type="checkbox" name="Chess Club" onClick={handleClick}/>
+                <input type="checkbox" name="ChessClub" onClick={handleClick}/>
                 </label><br />
                 <label>
                 ACM
@@ -69,8 +67,24 @@ const OrganizationsBlock = props => {
                 </label><br />
                 <label>
                 Persian Club
-                <input type="checkbox" name="Persian Club" onClick={handleClick}/>
-                </label>                
+                <input type="checkbox" name="PersianClub" onClick={handleClick}/>
+                </label> <br />
+                <label>
+                Team Vision
+                <input type="checkbox" name="TeamVision" onClick={handleClick}/>
+                </label><br />
+                <label>
+                Team Rocket
+                <input type="checkbox" name="TeamRocket" onClick={handleClick}/>
+                </label><br />
+                <label>
+                Lakers Fan Club
+                <input type="checkbox" name="LakersFanClub" onClick={handleClick}/>
+                </label><br />
+                <label>
+                CS178 Fan Club
+                <input type="checkbox" name="CS178FanClub" onClick={handleClick}/>
+                </label> <br /> <br />                   
             </form>
                 <button onClick={handleSubmit}>Submit</button>
              </div>

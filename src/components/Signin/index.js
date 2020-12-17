@@ -1,7 +1,5 @@
 import React from 'react';
-import LargeButton from '../LargeButton';
 import { BrandContainer, Smalltext, Wrapper } from './styled';
-import { fontColor } from '../Colors.js';
 import Logo from '../Logo';
 import GoogleLogo from '../assets/googlelogo.png';
 import { withAuth0 } from "@auth0/auth0-react";

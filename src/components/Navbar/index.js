@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, SigninButton } from './styled';
 import { buttonColor } from '../Colors.js';
-import authenticationButton from '../authentication-button';
-import AuthNav from '../auth-nav';
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
 // import Logo from '../assets/IMG_3631.svg';
 import Logo from '../Logo';

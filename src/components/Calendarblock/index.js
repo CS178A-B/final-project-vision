@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import DownloadButton from '../DownloadButton';
 import { Wrapper } from './styled';
 import { LeftGroup, RightGroup } from './styled';
@@ -6,18 +6,17 @@ import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syn
 
 
 const Calendarblock = props => {
-    const [value,setValue] = useState('Vision')
+    // const [value,setValue] = useState('Vision')
     const today = new Date()
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  }
-  console.log("in calendar block")
+  // const handleChange = (event) => {
+  //   setValue(event.target.value);
+  // }
 
-  const handleSubmit = (event) => {
-    alert('Select an organization: ' + value);
-    event.preventDefault();
-  }
+  // const handleSubmit = (event) => {
+  //   alert('Select an organization: ' + value);
+  //   event.preventDefault();
+  // }
     return(
       <Wrapper>
         <LeftGroup>

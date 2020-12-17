@@ -9,7 +9,6 @@ const Calendar = props => {
     // eventSettings={{ dataSource: props.calendarEvents }}>
     //   <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
     //   </ScheduleComponent>)
-    console.log("in calendar")
             return (
             <div>
               {/* TODO: Announcements bar */}
