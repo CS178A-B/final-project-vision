@@ -12,13 +12,7 @@ import {
 import About from './components/About';
 import Features from './Features';
 import Contact from './Contact';
-// import GlobalFonts from './fonts/fonts';
 
-/** COMMENT DURING PROD **/
-// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
-
-
-/** UNCOMMENT DURING PROD **/ 
 const API = 'http://team-vision-cs178.herokuapp.com/api/'
 
 class App extends React.Component {

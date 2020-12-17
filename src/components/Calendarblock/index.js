@@ -6,13 +6,6 @@ import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syn
 
 
 class Calendarblock extends React.Component {
-  // schData = DataSource.scheduleData
-  // constructor() {
-  //   super()
-  //   this.scheduleObj = React.createRef();
-  // }
-  //   today = new Date();
-
   constructor(props) {
     super(props);
     this.state = {value: 'Vision'};
@@ -33,7 +26,7 @@ class Calendarblock extends React.Component {
     return(
       <Wrapper>
         <LeftGroup>
-          <div className="Calendar" style={{ width: 1100, height: 670, position: 'fixed', bottom: '0' }}>
+          <div className="Calendar" style={{ width: 1000, height: 670, position: 'fixed', bottom: '0' }}>
               <h1> C A L E N D A R </h1>
               <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={this.today} eventSettings={{ dataSource: this.props.calendarEvents }}>
               <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />

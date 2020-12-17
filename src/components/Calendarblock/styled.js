@@ -10,7 +10,7 @@ export const Wrapper = styled.div`
 `;
 
 export const LeftGroup = styled.div`
-  width: 320px;
+  width: 300px;
   padding: 50px;
   margin: 0px 50px 75px 10px;
 `;
