@@ -41,7 +41,7 @@ export const ButtonContainer = styled.div`
 // align items vertically
 // justify content -- along axis
 export const LeftGroup = styled.div`
-  width: 60%;
+  width: 62%;
   display: flex;
   justify-content: space-around;
   align-items: center;

@@ -1,8 +1,5 @@
 import React from 'react';
-import ReactDOM from "react-dom";
-import DataSource from '../../mock_data/datasource.json';
-import Clubs from '../Clubs.js';
-import LargeButton from '../LargeButton';
+import DownloadButton from '../DownloadButton';
 import { Wrapper } from './styled';
 import { LeftGroup, RightGroup } from './styled';
 import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
@@ -36,7 +33,7 @@ class Calendarblock extends React.Component {
     return(
       <Wrapper>
         <LeftGroup>
-          <div className="Calendar" style={{ width: 1300, height: 700, position: 'fixed', bottom: '0' }}>
+          <div className="Calendar" style={{ width: 1100, height: 670, position: 'fixed', bottom: '0' }}>
               <h1> C A L E N D A R </h1>
               <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={this.today} eventSettings={{ dataSource: this.props.calendarEvents }}>
               <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
@@ -45,9 +42,9 @@ class Calendarblock extends React.Component {
         </LeftGroup>
         <RightGroup>
         <h2 style={{ textDecoration: 'underline' }}>O R G A N I Z A T I O N S</h2>
-        <Clubs />
+        {/* <Organizations /> */}
             <br/><br/><br/><br/><br/><br/>
-            <LargeButton
+            <DownloadButton
               text="Download .ics file"
               bgColor="white"
               />

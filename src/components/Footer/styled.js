@@ -4,7 +4,7 @@ import { bgColor, fontColor } from '../Colors.js';
 export const Wrapper = styled.div`
   width: 100%;
   min-height: 60px;
-  padding: 0;
+  padding: 100;
   background-color: ${bgColor.DarkBlue};
   color: ${fontColor.White};
 `;

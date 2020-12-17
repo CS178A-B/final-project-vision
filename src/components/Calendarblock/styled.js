@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { keyframes } from 'styled-components';
+
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -10,15 +10,13 @@ export const Wrapper = styled.div`
 `;
 
 export const LeftGroup = styled.div`
-  width: 50%;
-  height: 80%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  width: 320px;
+  padding: 50px;
+  margin: 0px 50px 75px 10px;
 `;
 
 export const RightGroup = styled.div`
-  width: 90%;
-  height: 1800%;
-  text-align: right;
+  width: 300px;
+  padding: 50px;
+  margin: -160px 50px 75px 1350px;
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import  Calendar  from './components/Calendar'
 import  Home  from './components/Home'
-import  Clubs from './components/Clubs'
+import  Organizations from './components/Organizations'
 import {
   BrowserRouter as Router,
   Switch,
@@ -93,9 +93,9 @@ class App extends React.Component {
           <li>
             <Link to="/calendar">Calendar</Link>
           </li>
-          {/* <li>
-            <Link to="/clubs">Clubs</Link>
-          </li> */}
+          <li>
+            <Link to="/organizations">Organizations</Link>
+          </li>
         </ul>
 
         <hr />
@@ -123,8 +123,8 @@ class App extends React.Component {
           <Route path="/calendar">
             <Calendar calendarEvents={this.state.calendarEvents} />
           </Route>
-          <Route path="/clubs">
-            <Clubs action={this.fetchEvents} />
+          <Route path="/organizations">
+            <Organizations action={this.fetchEvents} />
           </Route>
           <Route path="/*" component={NoMatch} />
         </Switch>
