@@ -41,7 +41,6 @@ class Navbar extends React.Component {
           </LeftGroup>
 
           <RightGroup>
-            {/* <Authentication style={{ backgroundColor: buttonColor.Gray }}>Login</Authentication> */}
             <SigninButton onClick={this.togglePop} style={{ backgroundColor: buttonColor.Green }} >Sign In</SigninButton>
             {showPopup ? <Signin toggle={this.togglePop} /> : null}
           </RightGroup>
