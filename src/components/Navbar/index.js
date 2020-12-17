@@ -15,16 +15,12 @@ const Navbar = props => {
   const { isAuthenticated } = useAuth0();
 
   const authLinks = () => {
-    console.log("in authLinks")
-    if(isAuthenticated) {
-      console.log("logged in")
-    }
     return !isAuthenticated ? <></> : <>
             <Link to="/calendar">
               <NavButton>Calendar</NavButton>
             </Link>
-            <Link to="/clubs">
-              <NavButton>Clubs</NavButton>
+            <Link to="/organizations">
+              <NavButton>Organizations</NavButton>
             </Link>   
           </>
   }

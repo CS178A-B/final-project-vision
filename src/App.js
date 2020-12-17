@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import  Calendar  from './components/Calendar'
 import  Home  from './components/Home'
-import  Clubs from './components/Clubs'
 import Loading from './components/loading';
 import Profile from './components/profile';
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
+import  Organizations from './components/Organizations'
 import {
   Switch,
   Route,
@@ -15,14 +15,13 @@ import ProtectedRoute from './auth/protected-route'
 import About from './components/About';
 import Features from './Features';
 import Contact from './Contact';
-// import GlobalFonts from './fonts/fonts';
 
 /** COMMENT DURING PROD **/
-const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-// const API = 'http://team-vision-cs178.herokuapp.com/api/'
+const API = 'http://team-vision-cs178.herokuapp.com/api/'
 
 const App = props => {
   // const [state, setState] = useState({
@@ -75,19 +74,6 @@ const App = props => {
     return <Loading />
   }
 
-  // const authLinks = () => {
-  //   return !isAuthenticated ? <div></div> : <div>
-  //           <li>
-  //             <Link to="/calendar">Calendar</Link>
-  //           </li>
-  //           <li>
-  //             <Link to="/profile">Profile</Link>
-  //           </li>
-  //           <li>
-  //             <Link to="/clubs">Clubs</Link>
-  //           </li>
-  //         </div>
-  // }
 
     return (
       <div>
@@ -98,6 +84,7 @@ const App = props => {
           </li>
           {authLinks()}
         </ul> */}
+
         <hr />
         <Switch>
           <Route exact path="/">
@@ -115,8 +102,8 @@ const App = props => {
           <Route path="/calendar">
             <Calendar calendarEvents={calendarEvents} />
           </Route>
-          <Route path="/clubs">
-            <Clubs action={fetchEvents} />
+          <Route path="/organizations">
+            <Organizations action={fetchEvents} />
           </Route>
           <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/*" component={NoMatch} />

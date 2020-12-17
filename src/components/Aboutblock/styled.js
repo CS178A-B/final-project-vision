@@ -5,12 +5,12 @@ import '../../index.css';
 export const Wrapper = styled.div`
   width: 100%;
   height: 500px;
-  border: 2px dashed black;
   overflow-x: hidden;
 `;
+// border: 2px dashed black;
+
 
 export const AboutContainer = styled.div`
-  border: 2px solid pink;
   padding-left: 15%;
   padding-right: 15%;
   display: flex;
@@ -23,6 +23,7 @@ export const AboutContainer = styled.div`
   z-index: 1;
   background: rgba(204, 204, 204, 0);
 `;
+// border: 2px solid pink;
 
 export const AboutP = styled.p`
   display: block;

@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
+import { LeftGroup } from './styled';
 
 /** COMMENT DURING PROD **/
-const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-// const API = 'http://team-vision-cs178.herokuapp.com/api/'
+const API = 'http://team-vision-cs178.herokuapp.com/api/'
 
-const Clubs = props => {
+const OrganizationsBlock = props => {
     
     const { getAccessTokenSilently } = useAuth0();
 
@@ -53,10 +54,11 @@ const Clubs = props => {
         console.log(error)
     }
     }
-
         return (
-            <div className="Clubs">
+            <LeftGroup>
+            <div style={{ width: '110%',  bottom: '10' }}>
             <form>
+                <h1>O R G A N I Z A T I O N S</h1>
                 <label>
                 Chess Club
                 <input type="checkbox" name="Chess Club" onClick={handleClick}/>
@@ -72,7 +74,9 @@ const Clubs = props => {
             </form>
                 <button onClick={handleSubmit}>Submit</button>
              </div>
-        )
+             </LeftGroup>
+        );
+        
 }
 
-export default Clubs;
+export default OrganizationsBlock
