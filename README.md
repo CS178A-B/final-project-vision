@@ -1,4 +1,6 @@
-# CS178A-B-Template
+# Vision - Scheduler
+
+Python and how we are handling the server-side dev [here](backend/README.md).
 
 ## Table of Contents
 - [Overview](#overview)
@@ -61,5 +63,8 @@ The build is minified and the filenames include the hashes.<br />
 Overall System Diagram
 
 ## Dependencies
-Install Node Package Manager (npm). [Helpful Documentation](https://www.npmjs.com/get-npm)
+Install Yarn \
+Install Poetry \
+Install NodeJS for React
+
 
