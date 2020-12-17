@@ -16,9 +16,9 @@ export const LogoContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  border: 2px solid red;
   margin: 0px 50px 0px 50px;
 `;
+// border: 2px solid red;
 
 // logo
 // export const LogoImage = styled.img`
@@ -30,11 +30,11 @@ export const LogoContainer = styled.div`
 export const ButtonContainer = styled.div`
   width: 40%;
   height: 100%;
-  border: 2px solid blue;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
+// border: 2px solid blue;
 
 // buttons
 // align items vertically
@@ -44,14 +44,14 @@ export const LeftGroup = styled.div`
   display: flex;
   justify-content: space-around;
   align-items: center;
-  border: 4px solid yellow;
 `;
+// border: 4px solid yellow;
 
 // authentication
 export const RightGroup = styled.div`
   width: 20%;
-  border: 1px solid;
 `;
+// border: 1px solid;
 
 // menu
 export const NavButton = styled.button`
@@ -68,7 +68,8 @@ export const SigninButton = styled.button`
   width: 80px;
   border: none;
   color: ${fontColor.Blue};
-  background-color: green;  
   border-radius: 3px;
   float: right;
 `;
+// background-color: green;  
+  
