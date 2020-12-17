@@ -1,6 +1,8 @@
 import React from 'react'
 import DataSource from '../mock_data/datasource.json';
-import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
+import Navbar from '../components/Navbar';
+import Calendarblock from './Calendarblock'
+
 class Calendar extends React.Component { 
   schData = DataSource.scheduleData
   constructor() {
@@ -10,10 +12,13 @@ class Calendar extends React.Component {
     today = new Date();
 
     render() {
-            return <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={this.today}
-    eventSettings={{ dataSource: this.props.calendarEvents }}>
-      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-      </ScheduleComponent>
+            return (
+            <div>
+              {/* TODO: Announcements bar */}
+              <Navbar />
+              <Calendarblock />
+          </div>
+            );
     }
 }
 
