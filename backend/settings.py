@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import django_heroku
 from pathlib import Path
+from . import utils
 import os
+from dotenv import load_dotenv, find_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +27,7 @@ SECRET_KEY = os.environ.get('DJANGO_KEY')
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -44,6 +46,44 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    ),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ),
+}
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:8000',
+    'http://team-vision-cs178.herokuapp.com',
+)
+
+ENV_FILE = find_dotenv()
+if ENV_FILE:
+    load_dotenv(ENV_FILE)
+
+AUTH0_DOMAIN = os.environ.get('AUTH0_DOMAIN')
+API_IDENTIFIER = os.environ.get('API_IDENTIFIER')
+PUBLIC_KEY = None
+JWT_ISSUER = None
+
+if AUTH0_DOMAIN:
+    JWT_ISSUER = 'https://' + AUTH0_DOMAIN + '/'
+
+JWT_AUTH = {
+    'JWT_PAYLOAD_GET_USERNAME_HANDLER':
+        utils.jwt_get_username_from_payload_handler,
+    'JWT_DECODE_HANDLER':
+        utils.jwt_decode_token,
+    'JWT_ALGORITHM': 'RS256',
+    'JWT_AUDIENCE': 'https://teamvision/api',
+    'JWT_ISSUER': 'https://dev-a49dxbp1.us.auth0.com/',
+    'JWT_AUTH_HEADER_PREFIX': 'Bearer',
+}
+
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -52,8 +92,14 @@ MIDDLEWARE = [
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.RemoteUserMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'django.contrib.auth.backends.RemoteUserBackend',
 ]
 
 ROOT_URLCONF = 'backend.urls'

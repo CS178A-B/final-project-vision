@@ -1,43 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import  Calendar  from './components/Calendar'
 import  Home  from './components/Home'
 import  Clubs from './components/Clubs'
+import Loading from './components/loading';
+import { withAuth0 } from "@auth0/auth0-react";
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
   Link
 } from "react-router-dom";
+import ProtectedRoute from './auth/protected-route'
+import Profile from './components/profile';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
+// domain: dev-a49dxbp1.us.auth0.com
+// client-id: 7SIW4mZlvPXM2uTUGa1oHiZL6BueAcOv
+// client secret: bvov3TiE_Vi96wHwEaEutxZKcS3vg0ZM6PJ1roPPDZrb2W9AsFyu2-xtz7rF5855
+
+
 /** UNCOMMENT DURING PROD **/ 
 const API = 'http://team-vision-cs178.herokuapp.com/api/'
 
-class App extends React.Component {
-  constructor() {
-    super();
-    if(window.localStorage.getItem("username") === null) { //making a hash(unique username)
-      const crypto = require("crypto");
-      const id = crypto.randomBytes(16).toString("hex");
-      localStorage.setItem("username", id);
-    }
-
-    let cachedEvents = localStorage.getItem("calendarEvents");
-    if(cachedEvents === null) {
-      // cached calendar events does not exist, make empty.
-      localStorage.setItem("calendarEvents", [])
-    }
-    // have username and current known schedule in a cache.
-    this.state = {
-      calendarEvents: []
-    }
+const App = props => {
+  // const [state, setState] = useState({
+  //   calendarEvents: []
+  // });
+  const [calendarEvents, setCalendarEvents] = useState([])
+  const {isLoading} = props.auth0;
+  if (isLoading) {
+    return <Loading />
   }
 
-  fetchEvents = () => {
+
+  const fetchEvents = () => {
     const data = new FormData();
     data.append("username", localStorage.getItem("username"))
     fetch( API + "getCalendarInfo", {
@@ -62,17 +61,12 @@ class App extends React.Component {
             }
           }
           delete newEvents["json"] // post process and delete the unnecessary field
-          this.setState({calendarEvents: newEvents})
+          setCalendarEvents(newEvents)
       })
       .catch(e => console.log(e))
   }
 
-  componentDidMount() {
-    this.fetchEvents();
-  }
-  render() {
     return (
-    <Router>
       <div>
         <ul>
           <li>
@@ -82,37 +76,27 @@ class App extends React.Component {
             <Link to="/calendar">Calendar</Link>
           </li>
           <li>
+            <Link to="/profile">Profile</Link>
+          </li>
+          <li>
             <Link to="/clubs">Clubs</Link>
+          </li><li>
+            <Link to="/about">Clubs</Link>
           </li>
         </ul>
 
         <hr />
-
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
-          <Route path="/calendar">
-            <Calendar calendarEvents={this.state.calendarEvents} />
-          </Route>
+          <Route exact path="/" exact component={Home} />
+          <ProtectedRoute path="/calendar" component={Calendar} />
           <Route path="/clubs">
-            <Clubs action={this.fetchEvents} />
+            <Clubs action={fetchEvents} />
           </Route>
+          <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/*" component={NoMatch} />
         </Switch>
-      </div>
-    </Router>
+    </div>
     )
-    
-  }
-  
 };
 
 function NoMatch({ location }) {
@@ -125,4 +109,4 @@ function NoMatch({ location }) {
   )
 }
 
-export default App;
+export default withAuth0(App);

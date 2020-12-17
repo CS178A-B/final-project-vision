@@ -3,6 +3,9 @@ import LargeButton from './LargeButton/index.js';
 import Navbar from './Navbar';
 import Homeblock from './Homeblock';
 import Footer from './Footer';
+import LoginButton from './login-button';
+import AuthenticationButton from './authentication-button';
+import AuthNav from './auth-nav.js';
 
 class Home extends React.Component {
   render() {
@@ -12,7 +15,9 @@ class Home extends React.Component {
         <Navbar />
         <Homeblock />
         <Footer />
-        {/* TODO: Footer */}
+        <AuthenticationButton />
+
+        TODO: Footer
       </div>
     );
   }
