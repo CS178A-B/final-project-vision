@@ -75,7 +75,7 @@ class App extends React.Component {
     this.fetchEvents();
   }
   render() {
-    return (
+    return ( 
     <Router>
       <div>
         {/* <GlobalFonts /> */}

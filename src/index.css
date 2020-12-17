@@ -3,7 +3,7 @@
 @font-face {
   font-family: "DIN Alternate"; 
   src: url("//db.onlinewebfonts.com/t/490a4d8d3a78b2c0ba5e434c76234790.woff") 
-  format("woff")); }
+  format("woff"); }
 
 body {
   margin: 0;
