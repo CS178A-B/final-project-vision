@@ -143,6 +143,7 @@ def getCalendarInfo(request):
     else: #return empty Json if user logged onto url without authentication
         return JsonResponse({})
 
+@api_view(['POST'])
 @csrf_exempt
 def addOrganization(request):
     if(request.POST):

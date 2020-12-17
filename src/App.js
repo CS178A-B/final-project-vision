@@ -11,7 +11,6 @@ import {
   Link
 } from "react-router-dom";
 import ProtectedRoute from './auth/protected-route'
-import Profile from './components/profile';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -92,7 +91,7 @@ const App = props => {
           <Route path="/clubs">
             <Clubs action={fetchEvents} />
           </Route>
-          <ProtectedRoute path="/profile" component={Profile} />
+          {/* <ProtectedRoute path="/profile" component={Profile} /> */}
           <Route path="/*" component={NoMatch} />
         </Switch>
     </div>
