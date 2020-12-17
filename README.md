@@ -25,6 +25,8 @@ students, to arrange their extracurriculars in one place and arrange tasks in a 
 
 ## Usage
 Live Site: https://team-vision-cs178.herokuapp.com/
+![](./pngs/vision-1.png)
+![](./pngs/vision-2.png)
 
 ## How To Run
 In the project directory, you can run:
@@ -53,11 +55,8 @@ It correctly bundles React in production mode and optimizes the build for the be
 The build is minified and the filenames include the hashes.<br />
 
 ## Diagrams
-
-Sequence Diagram
-
-Frontend Structure
-
+![](./pngs/vision-3.png)
+![](./pngs/vision-4.png)
 
 Overall System Diagram
 
