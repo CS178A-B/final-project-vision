@@ -13,7 +13,7 @@ class Contactblock extends React.Component {
           <ContactSection>
             <ContactPhoto src={Vish} alt="VISH" />
             <AboutSection>
-              <h2>Vishwas Shukla</h2>
+              <h2 style={{ backgroundColor: 'inherit' }}>Vishwas Shukla</h2>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
             </AboutSection>
@@ -21,29 +21,29 @@ class Contactblock extends React.Component {
         {/* VIRAJ */}
           <ContactSection>
             <ContactPhoto src={Viraj} alt="VIRAJ" />
-            <div>
-              <h2>Viraj Dhillon</h2>
+            <AboutSection>
+              <h2 style={{ backgroundColor: 'inherit' }}>Viraj Dhillon</h2>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
-            </div>
+            </AboutSection>
           </ContactSection>
         {/* SHERWIN */}
           <ContactSection>
             <ContactPhoto src={Sherwin} alt="SHERWIN" />
-            <div>
-              <h2>Sherwin Sahebi</h2>
+            <AboutSection>
+              <h2 style={{ backgroundColor: 'inherit' }}>Sherwin Sahebi</h2>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
-            </div>
+            </AboutSection>
           </ContactSection>
         {/* NICOLE */}
           <ContactSection>
             <ContactPhoto src={Nicole} alt="NICOLE" />
-            <div>
-              <h2>Nicole Nguyen</h2>
+            <AboutSection>
+              <h2 style={{ backgroundColor: 'inherit' }}>Nicole Nguyen</h2>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
-            </div>
+            </AboutSection>
           </ContactSection>
       </Wrapper>
     );
