@@ -21,9 +21,9 @@ from . import views
 urlpatterns = [
     path('',views.index,name='index'),
     path('admin/', admin.site.urls),
-    path('calendar',views.index),
-    path('profile',views.index),
-    path('clubs',views.index),
+    path('features',views.index),
+    path('contact',views.index),
+    path('organizations',views.index),
     path('api/getCalendarInfo', views.getCalendarInfo),
     path('api/addOrganization', views.addOrganization),
     path('api/public',views.public),
