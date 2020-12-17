@@ -26,13 +26,14 @@ class Calendarblock extends React.Component {
     return(
       <Wrapper>
         <LeftGroup>
-          <div className="Calendar" style={{ width: 1000, height: 670, position: 'fixed', bottom: '0' }}>
+          <div>
               <h1> C A L E N D A R </h1>
               <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={this.today} eventSettings={{ dataSource: this.props.calendarEvents }}>
               <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
               </ScheduleComponent>
           </div>
         </LeftGroup>
+        <div>
         <RightGroup>
         <h2 style={{ textDecoration: 'underline' }}>O R G A N I Z A T I O N S</h2>
         {/* <Organizations /> */}
@@ -42,6 +43,7 @@ class Calendarblock extends React.Component {
               bgColor="white"
               />
         </RightGroup>
+        </div>
       </Wrapper>
     );
   }
