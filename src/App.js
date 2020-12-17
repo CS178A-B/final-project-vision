@@ -20,7 +20,7 @@ import Contact from './Contact';
 
 
 /** UNCOMMENT DURING PROD **/ 
-const API = 'http://team-vision-cs178.herokuapp.com/api/'
+const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const App = props => {
   // const [state, setState] = useState({

@@ -7,7 +7,7 @@ import { LeftGroup } from './styled';
 
 
 /** UNCOMMENT DURING PROD **/ 
-const API = 'http://team-vision-cs178.herokuapp.com/api/'
+const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const OrganizationsBlock = props => {
     
