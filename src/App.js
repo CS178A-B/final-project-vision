@@ -9,6 +9,10 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import About from './components/About';
+import Features from './Features';
+import Contact from './Contact';
+// import GlobalFonts from './fonts/fonts';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -74,7 +78,8 @@ class App extends React.Component {
     return ( 
     <Router>
       <div>
-        <ul>
+        {/* <GlobalFonts /> */}
+      <ul>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -98,6 +103,15 @@ class App extends React.Component {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/features">
+            <Features />
+          </Route>
+          <Route exact path="/contact">
+            <Contact />
           </Route>
           <Route path="/calendar">
             <Calendar calendarEvents={this.state.calendarEvents} />
