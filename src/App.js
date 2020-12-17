@@ -93,9 +93,9 @@ class App extends React.Component {
           <li>
             <Link to="/calendar">Calendar</Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="/clubs">Clubs</Link>
-          </li>
+          </li> */}
         </ul>
 
         <hr />

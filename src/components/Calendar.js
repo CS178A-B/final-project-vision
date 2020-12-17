@@ -2,7 +2,6 @@ import React from 'react'
 import DataSource from '../mock_data/datasource.json';
 import Navbar from '../components/Navbar';
 import Calendarblock from './Calendarblock'
-import Footer from './Footer';
 
 class Calendar extends React.Component { 
   schData = DataSource.scheduleData

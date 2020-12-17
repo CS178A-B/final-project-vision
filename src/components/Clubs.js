@@ -44,9 +44,7 @@ class Clubs extends React.Component {
     render() {
         return (
             <div className="Clubs">
-            <Navbar />
             <form>
-                <h1> C L U B S </h1>
                 <label>
                 Chess Club
                 <input type="checkbox" name="Chess Club" onClick={this.handleClick}/>
@@ -58,7 +56,23 @@ class Clubs extends React.Component {
                 <label>
                 Persian Club
                 <input type="checkbox" name="Persian Club" onClick={this.handleClick}/>
-                </label>                
+                </label><br />
+                <label>
+                Team Vision
+                <input type="checkbox" name="Team Vision" onClick={this.handleClick}/>
+                </label><br />
+                <label>
+                Team Rocket
+                <input type="checkbox" name="Team Rocket" onClick={this.handleClick}/>
+                </label><br />
+                <label>
+                Lakers Fan Club
+                <input type="checkbox" name="Lakers Fan Club" onClick={this.handleClick}/>
+                </label><br />
+                <label>
+                CS178 Fan Club
+                <input type="checkbox" name="CS178 Fan Club" onClick={this.handleClick}/>
+                </label> <br /> <br />                   
             </form>
                 <button onClick={this.handleSubmit}>Submit</button>
              </div>

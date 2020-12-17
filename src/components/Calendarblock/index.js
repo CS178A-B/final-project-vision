@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from "react-dom";
 import DataSource from '../../mock_data/datasource.json';
+import Clubs from '../Clubs.js';
 import LargeButton from '../LargeButton';
 import { Wrapper } from './styled';
 import { LeftGroup, RightGroup } from './styled';
@@ -35,7 +36,7 @@ class Calendarblock extends React.Component {
     return(
       <Wrapper>
         <LeftGroup>
-          <div className="Calendar" style={{ width: 1300, height: 680, position: 'fixed', bottom: '0' }}>
+          <div className="Calendar" style={{ width: 1300, height: 700, position: 'fixed', bottom: '0' }}>
               <h1> C A L E N D A R </h1>
               <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={this.today} eventSettings={{ dataSource: this.props.calendarEvents }}>
               <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
@@ -43,27 +44,9 @@ class Calendarblock extends React.Component {
           </div>
         </LeftGroup>
         <RightGroup>
-        <h2 style={{ textDecoration: 'underline' }}>ORGANIZATIONS</h2>
-        <label>
-          Select an organization:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="vision">Vision</option>
-            <option value="rocket">Rocket</option>
-            <option value="lakers">Lakers</option>
-            <option value="warrior">Warriors</option>
-          </select>
-              <br/>
-              <br/>
-                  <br/>
-
-    <br/>
-
-    <br/>
-
-    <br/>
-
-
-        </label>
+        <h2 style={{ textDecoration: 'underline' }}>O R G A N I Z A T I O N S</h2>
+        <Clubs />
+            <br/><br/><br/><br/><br/><br/>
             <LargeButton
               text="Download .ics file"
               bgColor="white"
