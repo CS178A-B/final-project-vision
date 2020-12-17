@@ -24,6 +24,7 @@ urlpatterns = [
     path('features',views.index),
     path('contact',views.index),
     path('organizations',views.index),
+    path('calendar',views.index),
     path('api/getCalendarInfo', views.getCalendarInfo),
     path('api/addOrganization', views.addOrganization),
     path('api/public',views.public),
