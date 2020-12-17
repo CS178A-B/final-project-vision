@@ -9,9 +9,10 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 570px;
   border: 2px dashed black;
-  display: flex;
-  align-items: center;
 `;
+// display: flex;
+// flex-direction: right;
+// align-items: center;
 
 export const LeftGroup = styled.div`
   width: 50%;
@@ -23,12 +24,12 @@ export const LeftGroup = styled.div`
   border: 2px dashed red;
 `;
 
-export const RightGroup = styled.div`
-  width: 50%;
-  height: 90%;
-  border: 2px dashed blue;
-  text-align: center;
-`;
+// export const RightGroup = styled.div`
+//   width: 50%;
+//   height: 90%;
+//   border: 2px dashed blue;
+//   text-align: center;
+// `;
 
 // Text-align (L/R) margin (T/B)
 export const Headertext = styled.div`
@@ -49,8 +50,8 @@ export const H1Line1 = styled.span`
 
 // side img
 export const Float = keyframes`
-  0%, 100% { top: 40%; left: 50% }
-  50% { top: 38%; left: 52% }
+  0%, 100% { top: 25%; left: 50% }
+  50% { top: 23%; left: 52% }
 `;
 
 export const Windows = styled.img`

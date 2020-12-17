@@ -12,6 +12,7 @@ import {
 import About from './components/About';
 import Features from './Features';
 import Contact from './Contact';
+// import GlobalFonts from './fonts/fonts';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -77,18 +78,10 @@ class App extends React.Component {
     return (
     <Router>
       <div>
-        <ul>
+        {/* <GlobalFonts /> */}
+      <ul>
           <li>
             <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/features">Features</Link>
-          </li>
-          <li>
-            <Link to="/contact">Contact</Link>
           </li>
           <li>
             <Link to="/calendar">Calendar</Link>

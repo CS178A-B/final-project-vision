@@ -4,6 +4,7 @@ import Homeblock from './Homeblock';
 import Footer from './Footer';
 import Signin from './Signin';
 import Header from './Header';
+// import GlobalFonts from '../fonts/fonts.js';
 
 class Home extends React.Component {
   // set up state here
@@ -22,13 +23,12 @@ class Home extends React.Component {
     const { showPopup } = this.state;
     return (
       <div>
+        {/* <GlobalFonts /> */}
         <Header />
-        <Navbar togglePop={this.togglePop} />
+        <Navbar />
         <Homeblock togglePop={this.togglePop} />
         {showPopup ? <Signin toggle={this.togglePop} /> : null}
-        <div>
-          <Footer />
-        </div>
+        <Footer />
       </div>
     );
   }

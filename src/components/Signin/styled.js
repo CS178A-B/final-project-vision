@@ -14,11 +14,26 @@ export const Wrapper = styled.div`
   top: 50%;
   margin-top: -150px;
   margin-left: -150px;
-  z-index: 1;
+  z-index: 2;
+`;
+
+export const BrandContainer = styled.div`
+  background-color: inherit;
+  display: flex;
+  align-items: center; 
+  padding: 0;
+  margin: 0; 
+`;
+
+export const LogoImage = styled.img`
+  background-color: inherit;
+  width: '55px', height: '50px', paddingRight: '10px' }
+
 `;
 
 export const Smalltext = styled.p`
   // padding-top: 30px;
+  font-size: ${props => props.fontSize || '14px'};
   background-color: inherit;
   text-align: center;
   padding-right: 10px;

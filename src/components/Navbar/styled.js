@@ -21,11 +21,11 @@ export const LogoContainer = styled.div`
 `;
 
 // logo
-export const LogoImage = styled.img`
-  width: 55px;
-  height: 50px;
-  padding-right: 10px;
-`;
+// export const LogoImage = styled.img`
+//   width: 55px;
+//   height: 50px;
+//   padding-right: 10px;
+// `;
 
 export const ButtonContainer = styled.div`
   width: 40%;
@@ -49,7 +49,7 @@ export const LeftGroup = styled.div`
 
 // authentication
 export const RightGroup = styled.div`
-  width: 35%;
+  width: 20%;
   border: 1px solid;
 `;
 
@@ -58,11 +58,12 @@ export const NavButton = styled.button`
   height: 20px;
   width: 80px;
   border: none;
+  padding: 0;
   color: ${fontColor.Blue};
 `;
 
 // login + signup
-export const Authentication = styled.button`
+export const SigninButton = styled.button`
   height: 20px;
   width: 80px;
   border: none;

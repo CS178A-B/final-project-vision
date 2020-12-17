@@ -20,7 +20,8 @@ module.exports = {
     Violet: '#474BFF',
     BlueGray: '#E1E5F0',
     LightGray: '#F2F6FB',
-    Purple: '#D8DEED'
+    Purple: '#D8DEED',
+    White: '#FFFFFF'
   },
 
   authColor: {

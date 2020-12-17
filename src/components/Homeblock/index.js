@@ -1,6 +1,6 @@
 import React from 'react';
 import LargeButton from '../LargeButton';
-import { H1Line1, Headertext, LeftGroup, RightGroup, Windows, Wrapper } from './styled';
+import { H1Line1, Headertext, LeftGroup, Windows, Wrapper } from './styled';
 import { fontColor } from '../Colors.js';
 import Logo from '../assets/homeimg.png';
 
@@ -26,9 +26,9 @@ class Homeblock extends React.Component {
             /> 
           </div>
         </LeftGroup>
-        <RightGroup>
+        {/* <RightGroup> */}
           <Windows src={Logo} />
-        </RightGroup>
+        {/* </RightGroup> */}
       </Wrapper>
     );
   }
