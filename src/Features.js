@@ -9,7 +9,7 @@ class Features extends React.Component {
         {/* TODO: Announcements bar */}
         <Navbar />
         {/* TODO: Features block */}
-        <h1 style = {Styles.container}> F E A T U R E S</h1>
+        <h1> F E A T U R E S</h1>
         <div style={{ width: '100%', position: 'fixed', bottom: '0' }}>
           <Footer />
         </div>
@@ -17,16 +17,5 @@ class Features extends React.Component {
     );
   }
 }
-
-const Styles = {
-    container: {
-        backgroundColor: '#8ecae6',
-        height: '50px'
-    },
-
-    title: {
-        fontSize: '12px'
-    }
-};
 
 export default Features;

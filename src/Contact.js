@@ -9,7 +9,7 @@ class Contact extends React.Component {
         {/* TODO: Announcements bar */}
         <Navbar />
         {/* TODO: Contact Block */}
-        <h1 style = {Styles.container}> C O N T A C T </h1>
+        <h1> C O N T A C T </h1>
         <div style={{ width: '100%', position: 'fixed', bottom: '0' }}>
           <Footer />
         </div>
@@ -17,16 +17,5 @@ class Contact extends React.Component {
     );
   }
 }
-
-const Styles = {
-    container: {
-        backgroundColor: '#8ecae6',
-        height: '50px'
-    },
-
-    title: {
-        fontSize: '12px'
-    }
-};
 
 export default Contact;

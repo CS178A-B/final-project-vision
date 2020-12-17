@@ -46,7 +46,7 @@ class Clubs extends React.Component {
             <div className="Clubs">
             <Navbar />
             <form>
-                <h1 style = {Styles.container}> C L U B S </h1>
+                <h1> C L U B S </h1>
                 <label>
                 Chess Club
                 <input type="checkbox" name="Chess Club" onClick={this.handleClick}/>
@@ -65,16 +65,5 @@ class Clubs extends React.Component {
         )
     }
 }
-
-const Styles = {
-    container: {
-        backgroundColor: '#8ecae6',
-        height: '50px'
-    },
-
-    title: {
-        fontSize: '12px'
-    }
-};
 
 export default Clubs;
