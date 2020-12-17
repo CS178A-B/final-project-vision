@@ -42,7 +42,7 @@ hard_coded_orgs = {
             "CategoryColor": "#357cd2"}
         ]
     },
-    "Persian Club" : {"Persian Club":
+    "PersianClub" : {"Persian Club":
         [
             {"Id": 3,
             "Subject": "Evening Meeting",
@@ -59,7 +59,7 @@ hard_coded_orgs = {
             "CategoryColor": "#357cd2"}
         ]
     },
-    "Chess Club" : {"Chess Club":
+    "ChessClub" : {"Chess Club":
         [
             {"Id": 5,
             "Subject": "General Meeting",
