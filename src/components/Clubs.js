@@ -30,7 +30,6 @@ const Clubs = props => {
     const handleSubmit = async e =>{
         try {
         const token = await getAccessTokenSilently();
-        console.log(token)
         let output = "";
         for (let key in clubs){
             let value = clubs[key]
