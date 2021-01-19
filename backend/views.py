@@ -77,30 +77,70 @@ hard_coded_orgs = {
 def getCalendarInfo(request):
     responseData = {
         "username" : "",
-        "organizations": []
+        "organizations": {}
     }
 
     if(request.POST): #If get response has data / if user used api/getCalendarInfo without token
         if(collection.find({"username": request.POST.get("username")}).count() > 0): #if the document/user exists
             responseData  = collection.find_one({"username": request.POST.get("username")}) #Obtain Json Data of User
+            return JsonResponse(responseData["organizations"])
         else:
             responseData["username"] = request.POST.get("username")
             collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
-        del responseData["_id"]
-        return JsonResponse(responseData)
+            return JsonResponse({})
     else: #return empty Json if user logged onto url without authentication
         return JsonResponse({})
 
 @csrf_exempt
 def addOrganization(request):
     if(request.POST):
+        returnData = collection.find_one({"username": request.POST.get("username")})
+        user_organizations = returnData["organizations"]
         for organization in (list(request.POST.get("organizations").split(", "))):
-            collection.update({"username": request.POST.get("username")},
-            {"$push": {"organizations": hard_coded_orgs[organization]}})
+            if(organization in user_organizations): #if user is already in organization, don't add it
+                pass
+            else: #otherwise add it
+                user_organizations.update(hard_coded_orgs[organization])
+        collection.update({"username": request.POST.get("username")},
+        {"$set": {"organizations": user_organizations}})
         responseData  = collection.find_one({"username": request.POST.get("username")}) #Obtain Json Data of User
         del responseData["_id"]
         return JsonResponse(responseData)
     else:
         return JsonResponse({})
 
-#TODO POST, PUT, DELETE and connect to MongoDB
+
+@csrf_exempt
+def deleteEvent(request):
+    if(request.POST):
+        user_organizations = collection.find_one({"username": request.POST.get("username")})["organizations"]
+        id = int(request.POST.get("id"))
+        organization = request.POST.get("organization")
+        user_organizations_events = user_organizations[organization]
+
+        for index in range(len(user_organizations_events)): #iterate over events to find proper id to delete
+            if((user_organizations_events[index])["Id"] == id):
+                del user_organizations_events[index]
+                break
+
+        user_organizations[organization] = user_organizations_events #set that hash key value to newly modified/deleted events
+        collection.update({"username": request.POST.get("username")}, #update organizations
+        {"$set": {"organizations": user_organizations}})
+        responseData  = collection.find_one({"username": request.POST.get("username")}) #Obtain Json Data of User
+        del responseData["_id"]
+        return JsonResponse(responseData)
+    return JsonResponse({})
+
+
+@csrf_exempt
+def deleteOrganization(request):
+    if(request.POST):
+        user_organizations = collection.find_one({"username": request.POST.get("username")})["organizations"]
+        organization = request.POST.get("organization")
+        del user_organizations[organization] #delete organization user passes in
+        collection.update({"username": request.POST.get("username")}, #update organizations
+        {"$set": {"organizations": user_organizations}})
+        responseData  = collection.find_one({"username": request.POST.get("username")}) #Obtain Json Data of User
+        del responseData["_id"]
+        return JsonResponse(responseData)
+    return JsonResponse({})

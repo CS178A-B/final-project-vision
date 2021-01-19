@@ -24,7 +24,9 @@ urlpatterns = [
     path('calendar',views.index),
     path('clubs',views.index),
     path('api/getCalendarInfo', views.getCalendarInfo),
-    path('api/addOrganization', views.addOrganization)
+    path('api/addOrganization', views.addOrganization),
+    path('api/deleteEvent', views.deleteEvent),
+    path('api/deleteOrganization', views.deleteOrganization)
     #TODO
     # update (PUT)
     # delete (DELETE)
