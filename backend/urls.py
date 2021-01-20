@@ -28,6 +28,8 @@ urlpatterns = [
     path('about', views.index),
     path('api/getCalendarInfo', views.getCalendarInfo),
     path('api/addOrganization', views.addOrganization),
+    path('api/deleteEvent', views.deleteEvent),
+    path('api/deleteOrganization', views.deleteOrganization),
     path('api/public',views.public),
     path('api/private',views.private),
 ]

@@ -10,8 +10,10 @@ import json
 import os
 
 from django.http import JsonResponse
-from rest_framework.decorators import api_view, permission_classes
+from rest_framework.decorators import api_view, permission_classes, authentication_classes
 from rest_framework.permissions import AllowAny
+from django.http import QueryDict
+from rest_framework.authentication import TokenAuthentication
 
 from functools import wraps
 import jwt
@@ -110,7 +112,7 @@ def requires_scope(required_scope):
             return response
         return decorated
     return require_scope
-    
+
 @permission_classes([AllowAny])
 def public(request):
     print('in public')
@@ -125,31 +127,83 @@ def private(request):
 # Here is one example of a get request. Similarly try to get the other methods and update urls.py
 #"organizations" : [{"ACM" : "hello"}]
 
+@api_view(['GET'])
 @csrf_exempt
-@api_view(['POST'])
-def getCalendarInfo(request):
-    userName = request.user.username 
+def getCalendarInfo(request): #no need to pass in anything, just need the oauth token
     responseData = {
-        "username" : userName,
-        "organizations": []
+        "username" : "",
+        "organizations": {}
     }
-    if(collection.find({"username": userName}).count() > 0): #if the document/user exists
-        print('user exists')
-        responseData  = collection.find_one({"username": userName}) #Obtain Json Data of User
-    else:
-        responseData["username"] = userName
-        print("not found")
-        collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
-    del responseData["_id"]
-    return JsonResponse(responseData)
+    username = request.user.username
+    if(request.method == 'GET'): #If get response has data / if user used api/getCalendarInfo without token
+        if(collection.find({"username": username}).count() > 0): #if the document/user exists
+            responseData  = collection.find_one({"username": username}) #Obtain Json Data of User
+            return JsonResponse(responseData["organizations"])
+        else:
+            responseData["username"] = username
+            collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
+            return JsonResponse({})
+    else: #return empty Json if user logged onto url without authentication
+        return JsonResponse({})
 
-@api_view(['POST'])
 @csrf_exempt
-def addOrganization(request):
-    userName = request.user.username 
-    for organization in (list(request.POST.get("organizations").split(", "))):
-        collection.update({"username": userName},
-        {"$push": {"organizations": hard_coded_orgs[organization]}})
-    responseData  = collection.find_one({"username": userName}) #Obtain Json Data of User
-    del responseData["_id"]
-    return JsonResponse(responseData)
+@api_view(['POST'])
+def addOrganization(request): #pass in {organizations: persianclub} #NOTICE: ORGANIZATIONS not ORGANIZATION!!!!!
+    if(request.POST):
+        username = request.user.username
+        returnData = collection.find_one({"username": username})
+        user_organizations = returnData["organizations"]
+        for organization in (list(request.POST.get("organizations").split(", "))):  #add clubs without space "PersianClub"!!!!!!!
+            if(organization in user_organizations): #if user is already in organization, don't add it
+                pass
+            else: #otherwise add it
+                user_organizations.update(hard_coded_orgs[organization])
+        collection.update({"username": username},
+        {"$set": {"organizations": user_organizations}})
+
+        responseData  = collection.find_one({"username": username}) #Obtain Json Data of User
+        del responseData["_id"]
+        return JsonResponse(responseData)
+    else:
+        return JsonResponse({})
+
+
+@csrf_exempt
+@api_view(['POST'])
+def deleteEvent(request):#pass in {organization: persian club, id: 5}
+    if(request.POST):
+        username = request.user.username
+        user_organizations = collection.find_one({"username": username })["organizations"]
+        id = int(request.POST.get("id"))
+        organization = request.POST.get("organization")
+        user_organizations_events = user_organizations[organization]
+
+        for index in range(len(user_organizations_events)): #iterate over events to find proper id to delete
+            if((user_organizations_events[index])["Id"] == id):
+                del user_organizations_events[index]
+                break
+
+        user_organizations[organization] = user_organizations_events #set that hash key value to newly modified/deleted events
+        collection.update({"username": username}, #update organizations
+        {"$set": {"organizations": user_organizations}})
+        responseData  = collection.find_one({"username": username}) #Obtain Json Data of User
+        del responseData["_id"]
+        return JsonResponse(responseData)
+    return JsonResponse({})
+
+
+
+@csrf_exempt
+@api_view(['POST'])
+def deleteOrganization(request): #pass in {organization: persian club}
+    if(request.POST):
+        username = request.user.username
+        user_organizations = collection.find_one({"username": username})["organizations"]
+        organization = request.POST.get("organization")
+        del user_organizations[organization] #delete organization user passes in
+        collection.update({"username": username}, #update organizations
+        {"$set": {"organizations": user_organizations}})
+        responseData  = collection.find_one({"username": username}) #Obtain Json Data of User
+        del responseData["_id"]
+        return JsonResponse(responseData)
+    return JsonResponse({})
