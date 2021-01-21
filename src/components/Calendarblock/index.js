@@ -3,6 +3,7 @@ import DownloadButton from '../DownloadButton';
 import { Wrapper } from './styled';
 import { LeftGroup, RightGroup } from './styled';
 import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
+import OrganizationsBlock from '../Organizationblock';
 
 
 const Calendarblock = props => {
@@ -29,9 +30,7 @@ const Calendarblock = props => {
         </LeftGroup>
         <div>
         <RightGroup>
-        <h2 style={{ textDecoration: 'underline' }}>O R G A N I Z A T I O N S</h2>
-        {/* <Organizations /> */}
-            <br/><br/><br/><br/><br/><br/>
+        <OrganizationsBlock />
             <DownloadButton
               text="Download .ics file"
               bgColor="white"
