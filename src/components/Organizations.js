@@ -14,8 +14,7 @@ class Organizations extends React.Component {
     render() {
         return (
             <div>
-            <Navbar />
-            <Organizationblock />
+            LIST OF ORGANIZATIONS YOU CAN JOIN
              </div>
         )
     }

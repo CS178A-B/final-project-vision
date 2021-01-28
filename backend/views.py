@@ -33,14 +33,14 @@ hard_coded_orgs = {
             {"Id": 1,
             "Subject": "Hackathon",
             "Location": "UCR",
-            "StartTime": "2021-01-22T04:00:00.000Z",
-            "EndTime": "2021-01-23T05:30:00.000Z",
+            "StartTime": "2021-01-28T04:00:00.000Z",
+            "EndTime": "2021-01-30T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
             {"Id": 2,
             "Subject": "Professional Development",
             "Location": "UCR",
-            "StartTime": "2021-01-23T06:30:00.000Z",
-            "EndTime": "2021-01-23T08:30:00.000Z",
+            "StartTime": "2021-01-25T06:30:00.000Z",
+            "EndTime": "2021-01-25T08:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     },
@@ -49,15 +49,15 @@ hard_coded_orgs = {
             {"Id": 3,
             "Subject": "Evening Meeting",
             "Location": "UCR",
-            "StartTime": "2021-01-16T04:00:00.000Z",
-            "EndTime": "2021-01-16T05:30:00.000Z",
+            "StartTime": "2021-01-20T04:00:00.000Z",
+            "EndTime": "2021-01-20T05:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
             {"Id": 4,
             "Subject": "Culture Night",
             "Location": "UCR",
-            "StartTime": "2021-01-23T06:30:00.000Z",
-            "EndTime": "2021-01-23T08:30:00.000Z",
+            "StartTime": "2021-01-30T06:30:00.000Z",
+            "EndTime": "2021-01-30T08:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     },
@@ -66,15 +66,15 @@ hard_coded_orgs = {
             {"Id": 5,
             "Subject": "General Meeting",
             "Location": "UCR",
-            "StartTime": "2021-01-07T02:00:00.000Z",
-            "EndTime": "2021-01-07T03:30:00.000Z",
+            "StartTime": "2021-01-08T02:00:00.000Z",
+            "EndTime": "2021-01-08T03:30:00.000Z",
             "CategoryColor": "#1aaa55"},
 
             {"Id": 6,
             "Subject": "Tournament",
             "Location": "UCR",
-            "StartTime": "2021-01-18T05:30:00.000Z",
-            "EndTime": "2021-01-18T09:30:00.000Z",
+            "StartTime": "2021-01-24T05:30:00.000Z",
+            "EndTime": "2021-01-24T09:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     }
