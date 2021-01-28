@@ -51,14 +51,14 @@ hard_coded_orgs = {
             "Location": "UCR",
             "StartTime": "2021-01-20T04:00:00.000Z",
             "EndTime": "2021-01-20T05:30:00.000Z",
-            "CategoryColor": "#1aaa55"},
+            "Color": "#1aaa55"},
 
             {"Id": 4,
             "Subject": "Culture Night",
             "Location": "UCR",
             "StartTime": "2021-01-30T06:30:00.000Z",
             "EndTime": "2021-01-30T08:30:00.000Z",
-            "CategoryColor": "#357cd2"}
+            "Color": "#357cd2"}
         ]
     },
     "ChessClub" : {"Chess Club":
@@ -68,13 +68,47 @@ hard_coded_orgs = {
             "Location": "UCR",
             "StartTime": "2021-01-08T02:00:00.000Z",
             "EndTime": "2021-01-08T03:30:00.000Z",
-            "CategoryColor": "#1aaa55"},
+            "Color": "#1aaa55"},
 
             {"Id": 6,
             "Subject": "Tournament",
             "Location": "UCR",
             "StartTime": "2021-01-24T05:30:00.000Z",
             "EndTime": "2021-01-24T09:30:00.000Z",
+            "Color": "#357cd2"}
+        ]
+    },
+    "TeamRocket" : {"Team Rocket":
+        [
+            {"Id": 7,
+            "Subject": "Blasting Off",
+            "Location": "Pokemon",
+            "StartTime": "2021-01-08T02:00:00.000Z",
+            "EndTime": "2021-01-08T03:30:00.000Z",
+            "CategoryColor": "#1aaa55"},
+
+            {"Id": 8,
+            "Subject": "Causing Mayhem",
+            "Location": "Rocket Island",
+            "StartTime": "2021-01-19T05:30:00.000Z",
+            "EndTime": "2021-01-19T09:30:00.000Z",
+            "CategoryColor": "#357cd2"}
+        ]
+    },
+    "BowlingClub" : {"Bowling Club":
+        [
+            {"Id": 9,
+            "Subject": "Strike Saturday's",
+            "Location": "Bowling Alley",
+            "StartTime": "2021-01-30T12:00:00.000Z",
+            "EndTime": "2021-01-30T03:30:00.000Z",
+            "CategoryColor": "#1aaa55"},
+
+            {"Id": 10,
+            "Subject": "Learning the Basics II",
+            "Location": "UCR Campus",
+            "StartTime": "2021-02-01T05:30:00.000Z",
+            "EndTime": "2021-02-01T09:30:00.000Z",
             "CategoryColor": "#357cd2"}
         ]
     }
