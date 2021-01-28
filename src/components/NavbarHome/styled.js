@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontColor } from '../Colors';
+import { fontColor } from '../colors';
 
 export const Wrapper = styled.div`
   width: 100%;
@@ -47,7 +47,7 @@ export const LeftGroup = styled.div`
 `;
 // border: 4px solid yellow;
 
-// authentication
+// login
 export const RightGroup = styled.div`
   width: 20%;
 `;
@@ -55,8 +55,8 @@ export const RightGroup = styled.div`
 
 // menu
 export const NavButton = styled.button`
-  height: 20px;
-  width: 80px;
+  height: 40px;
+  width: 100px;
   border: none;
   padding: 0;
   color: ${fontColor.Blue};
@@ -64,8 +64,8 @@ export const NavButton = styled.button`
 
 // login + signup
 export const SigninButton = styled.button`
-  height: 20px;
-  width: 80px;
+  height: 40px;
+  width: 100px;
   border: none;
   color: ${fontColor.Blue};
   border-radius: 3px;

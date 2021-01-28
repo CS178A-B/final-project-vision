@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontColor } from '../Colors';
+import { fontColor } from '../colors';
 
 export const Button = styled.button`
     color: ${props => props.fontColor || "blue"};

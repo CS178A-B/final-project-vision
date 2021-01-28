@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Loading from './loading.js';
+import Loading from './components/loading.js';
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
-import Navbar from '../components/Navbar';
+import NavbarUser from './components/NavbarUser';
 
 /** COMMENT DURING PROD **/
  const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -85,7 +85,7 @@ const Organizations = props => {
     }, [props]);
     return (
     <div>
-    <Navbar />  
+    <NavbarUser />  
         Here are organizations you can join:
         {props.myOrgs ? (newOrganizations.map((item,i) => {
             return <div key={i}>{item} <input type="checkbox" name={item} onClick={handleClick}></input></div>
