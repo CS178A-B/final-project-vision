@@ -55,6 +55,15 @@ const Organizations = props => {
         try {
             console.log(orgs)
             const token = await getAccessTokenSilently();
+            let output = ""; // what we will end up sending as body
+            for (let org in orgs) {
+                let value = orgs[org]
+                if(value == true) {//selected 
+                    output += org + ", ";
+                }
+            }
+            // we want to remove last comma and space
+            output = output.substring(0, output.length -2);
             const myHeaders = new Headers();
             myHeaders.append('Authorization', `Bearer ${token}`)
             const data = new FormData()
@@ -63,10 +72,13 @@ const Organizations = props => {
                 method: 'POST',
                 headers:myHeaders
             }).then(res => res.json())
+            .then(window.location.reload(false))
         } catch (e) {
             console.log(e)
         }
     }
+
+
 
     useEffect(() => {
         fetchClubList()
@@ -75,10 +87,10 @@ const Organizations = props => {
     <div>
     <Navbar />  
         Here are organizations you can join:
-        {props.myOrgs ? newOrganizations.map((item,i) => {
+        {props.myOrgs ? (newOrganizations.map((item,i) => {
             return <div key={i}>{item} <input type="checkbox" name={item} onClick={handleClick}></input></div>
-        }) : <Loading />}
-        <button onClick={handleSubmit}> Add Selected Organization(s)</button>
+        })) : <Loading />}
+        {props.myOrgs ? <button onClick={handleSubmit}> Add Selected Organization(s)</button> : null}
     </div>
     )
 }
