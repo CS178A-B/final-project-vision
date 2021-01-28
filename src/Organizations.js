@@ -64,15 +64,17 @@ const Organizations = props => {
             }
             // we want to remove last comma and space
             output = output.substring(0, output.length -2);
+            console.log(output)
             const myHeaders = new Headers();
             myHeaders.append('Authorization', `Bearer ${token}`)
             const data = new FormData()
-            data.append("organizations", orgs)
+            data.append("organizations", output)
             fetch(API + "addOrganization", {
                 method: 'POST',
-                headers:myHeaders
+                headers:myHeaders,
+                body: data,
             }).then(res => res.json())
-            .then(window.location.reload(false))
+            .then(() => {window.location.reload(false)})
         } catch (e) {
             console.log(e)
         }
