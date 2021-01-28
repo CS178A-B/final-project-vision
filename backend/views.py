@@ -207,3 +207,10 @@ def deleteOrganization(request): #pass in {organization: persian club}
         del responseData["_id"]
         return JsonResponse(responseData)
     return JsonResponse({})
+
+
+
+@csrf_exempt
+@api_view(['GET'])
+def getListOfOrganizations(request):
+    return JsonResponse({'publicClubList': ["ACM", "Persian Club", "Chess Club", "Team Rocket", "Bowling Club"]})

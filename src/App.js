@@ -26,8 +26,8 @@ const App = props => {
   // const [state, setState] = useState({
   //   calendarEvents: []
   // });
-  const [calendarEvents, setCalendarEvents] = useState([])
-  const [orgNames, setOrgNames] = useState([])
+  const [calendarEvents, setCalendarEvents] = useState(null)
+  const [orgNames, setOrgNames] = useState(null)
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const {isLoading} = props.auth0;
 
@@ -87,10 +87,10 @@ const App = props => {
             <Contact />
           </Route>
           <Route path="/calendar">
-            <Calendar calendarEvents={calendarEvents} orgNames={orgNames} />
+            {calendarEvents!== null ? <Calendar calendarEvents={calendarEvents} orgNames={orgNames} /> : <Loading />}
           </Route>
           <Route path="/organizations">
-            <Organizations action={fetchEvents} />
+    {orgNames!==null ? <Organizations action={fetchEvents} myOrgs={orgNames} /> : <Loading/> }
           </Route>
           <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/*" component={NoMatch} />
