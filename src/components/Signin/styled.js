@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { fontColor } from '../Colors.js'; 
+import { fontColor } from '../colors.js'; 
 
 export const Wrapper = styled.div`
   width: 300px;

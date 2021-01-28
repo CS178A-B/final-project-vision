@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, SigninButton } from './styled';
-import { buttonColor } from '../Colors.js';
+import { buttonColor } from '../colors.js';
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
 // import Logo from '../assets/IMG_3631.svg';
 import Logo from '../Logo';
@@ -37,13 +37,13 @@ const Navbar = props => {
         <ButtonContainer>
           <LeftGroup>
             <Link to="/about">
-              <NavButton>About</NavButton>
+              <NavButton>Calendar</NavButton>
             </Link>
             <Link to="/features">
-              <NavButton>Features</NavButton>
+              <NavButton>Organizations</NavButton>
             </Link>
             <Link to="/contact">
-              <NavButton>Contact Us</NavButton>
+              <NavButton>Task Manager</NavButton>
             </Link>  
             {authLinks()}  
           </LeftGroup>
