@@ -1,38 +1,35 @@
-import React from 'react';
+import React, { useState } from 'react';
+//import LargeButton from './LargeButton/index.js';
 import Navbar from './Navbar';
 import Homeblock from './Homeblock';
 import Footer from './Footer';
+// import LoginButton from './login-button';
+// import AuthenticationButton from './authentication-button';
+// import AuthNav from './auth-nav.js';
 import Signin from './Signin';
 import Header from './Header';
 // import GlobalFonts from '../fonts/fonts.js';
 
-class Home extends React.Component {
-  // set up state here
-  state = {
-    showPopup: false
-  };
+const Home = props => {
+   // set up state here
+   const [showPopup, togglePopup] = useState(false);
 
-  togglePop = () => {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
-  };
+   const handleToggle = () => {
+     togglePopup(!showPopup)
+   } 
 
-  // write your updateState wrapper function
-  render() {
-    const { showPopup } = this.state;
+
     return (
       <div>
         {/* <GlobalFonts /> */}
         <Header />
         test text
         <Navbar />
-        <Homeblock togglePop={this.togglePop} />
-        {showPopup ? <Signin toggle={this.togglePop} /> : null}
+        <Homeblock togglePop={handleToggle} />
+        {showPopup ? <Signin toggle={togglePopup} /> : null}
         <Footer />
       </div>
     );
-  }
 }
 
 export default Home;

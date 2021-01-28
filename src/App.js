@@ -1,52 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import  Calendar  from './components/Calendar'
 import  Home  from './components/Home'
-import  Clubs from './components/Clubs'
+import Loading from './components/loading';
+import Profile from './components/profile';
+import { withAuth0, useAuth0 } from "@auth0/auth0-react";
+import  Organizations from './components/Organizations'
 import {
-  BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from "react-router-dom";
+import ProtectedRoute from './auth/protected-route'
 import About from './components/About';
 import Features from './Features';
 import Contact from './Contact';
-// import GlobalFonts from './fonts/fonts';
 
 /** COMMENT DURING PROD **/
-// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-const API = 'http://team-vision-cs178.herokuapp.com/api/'
+// const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
-class App extends React.Component {
-  constructor() {
-    super();
-    if(window.localStorage.getItem("username") === null) { //making a hash(unique username)
-      const crypto = require("crypto");
-      const id = crypto.randomBytes(16).toString("hex");
-      localStorage.setItem("username", id);
-    }
+const App = props => {
+  // const [state, setState] = useState({
+  //   calendarEvents: []
+  // });
+  const [calendarEvents, setCalendarEvents] = useState([])
+  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const {isLoading} = props.auth0;
 
-    let cachedEvents = localStorage.getItem("calendarEvents");
-    if(cachedEvents === null) {
-      // cached calendar events does not exist, make empty.
-      localStorage.setItem("calendarEvents", [])
-    }
-    // have username and current known schedule in a cache.
-    this.state = {
-      calendarEvents: []
-    }
-  }
 
-  fetchEvents = () => {
-    const data = new FormData();
-    data.append("username", localStorage.getItem("username"))
+  const fetchEvents = async () => {
+    try {
+    const token = await getAccessTokenSilently();
+    const myHeaders = new Headers();
+    myHeaders.append('Authorization', `Bearer ${token}`)
     fetch( API + "getCalendarInfo", {
-      method: 'POST',
-      body: data
+      method: 'GET',
+      headers: myHeaders,
     }).then(res => res.json())
       .then(data => {
         let newEvents = []
@@ -66,40 +58,27 @@ class App extends React.Component {
             }
           }
           delete newEvents["json"] // post process and delete the unnecessary field
-          this.setState({calendarEvents: newEvents})
+          setCalendarEvents(newEvents)
       })
-      .catch(e => console.log(e))
+    } catch (error) {
+      console.log(error)
+    }
   }
 
-  componentDidMount() {
-    this.fetchEvents();
+  useEffect(() => {
+    fetchEvents()
+  }, [isAuthenticated])
+
+  if (isLoading) {
+    return <Loading />
   }
-  render() {
+
+
     return (
-    <Router>
       <div>
         {/* <GlobalFonts /> */}
-      <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/calendar">Calendar</Link>
-          </li>
-          <li>
-            <Link to="/clubs">Clubs</Link>
-          </li>
-        </ul>
 
         <hr />
-
-        {/*
-          A <Switch> looks through all its children <Route>
-          elements and renders the first one whose path
-          matches the current URL. Use a <Switch> any time
-          you have multiple routes, but you want only one
-          of them to render at a time
-        */}
         <Switch>
           <Route exact path="/">
             <Home />
@@ -114,19 +93,16 @@ class App extends React.Component {
             <Contact />
           </Route>
           <Route path="/calendar">
-            <Calendar calendarEvents={this.state.calendarEvents} />
+            <Calendar calendarEvents={calendarEvents} />
           </Route>
-          <Route path="/clubs">
-            <Clubs action={this.fetchEvents} />
+          <Route path="/organizations">
+            <Organizations action={fetchEvents} />
           </Route>
+          <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/*" component={NoMatch} />
         </Switch>
-      </div>
-    </Router>
+    </div>
     )
-    
-  }
-  
 };
 
 function NoMatch({ location }) {
@@ -139,4 +115,4 @@ function NoMatch({ location }) {
   )
 }
 
-export default App;
+export default withAuth0(App);

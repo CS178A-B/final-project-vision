@@ -1,20 +1,23 @@
 import React from 'react'
-import DataSource from '../mock_data/datasource.json';
-import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
-class Calendar extends React.Component { 
-  schData = DataSource.scheduleData
-  constructor() {
-    super()
-    this.scheduleObj = React.createRef();
-  }
-    today = new Date();
+import Loading from './loading.js';
+import { withAuthenticationRequired } from "@auth0/auth0-react";
+import Navbar from '../components/Navbar';
+import Calendarblock from './Calendarblock'
 
-    render() {
-            return <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={this.today}
-    eventSettings={{ dataSource: this.props.calendarEvents }}>
-      <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-      </ScheduleComponent>
-    }
+const Calendar = props => { 
+    // return (<ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={today}
+    // eventSettings={{ dataSource: props.calendarEvents }}>
+    //   <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
+    //   </ScheduleComponent>)
+            return (
+            <div>
+              {/* TODO: Announcements bar */}
+              <Navbar />
+              <Calendarblock calendarEvents={props.calendarEvents}/>
+            </div>
+          )
 }
 
-export default Calendar;
+export default withAuthenticationRequired(Calendar, {
+  onRedirecting: () => <Loading />,
+});

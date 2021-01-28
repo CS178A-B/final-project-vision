@@ -1,9 +1,9 @@
 import React from 'react';
-import LargeButton from '../LargeButton';
 import { BrandContainer, Smalltext, Wrapper } from './styled';
-import { fontColor } from '../Colors.js';
 import Logo from '../Logo';
 import GoogleLogo from '../assets/googlelogo.png';
+import { withAuth0 } from "@auth0/auth0-react";
+import AuthNav from '../auth-nav';
 // import Logo from '../assets/logo.png';
 
 // document.addEventListener("DOMContentLoaded",() => {
@@ -20,32 +20,23 @@ import GoogleLogo from '../assets/googlelogo.png';
 //   })
 // }
 
-class Signin extends React.Component {
-  render() {
+const Signin = props =>  {
     return (
       <Wrapper>
-        <Smalltext style={{ paddingTop: '20px', marginBottom: '0'}} fontSize='16px'>Sign in to </Smalltext>
+        {/* <Smalltext style={{ paddingTop: '20px', marginBottom: '0'}} fontSize='16px'>Sign in to </Smalltext> */}
         <BrandContainer>
           {/* <img src={Logo} alt="Logo"/>  */}
           <Logo />
           <h1 style={{ backgroundColor: 'inherit', margin:'10px' }}>VISION</h1>
         </BrandContainer>
-        <Smalltext style={{ paddingTop: '20px', paddingBottom: '20px' }}>Log in to access your account and save your progress. We don't post anything anywhere.</Smalltext>
+        <Smalltext style={{ paddingTop: '20px', paddingBottom: '20px' }}>Allow access to your account and save your progress. We don't post anything anywhere.</Smalltext>
         {/* <button style={{ backgroundColor: 'blue', color: fontColor.White }}>Google</button> */}
         <BrandContainer>
         <Logo img={ GoogleLogo } height='40px' width='40px'/>
-        <LargeButton
-              text="Google"
-              fontColor={fontColor.White}
-              bgColor="blue"
-              padding='10px'
-              borderRadius= "5px"
-            // LargeButton end
-          />
+        <AuthNav />
         </BrandContainer>
       </Wrapper>
     );
-  }
 }
 
-export default Signin;
+export default withAuth0(Signin);

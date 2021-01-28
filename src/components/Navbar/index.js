@@ -1,25 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Wrapper, LogoContainer, ButtonContainer, NavButton, LeftGroup, RightGroup, SigninButton } from './styled';
 import { buttonColor } from '../Colors.js';
+import { withAuth0, useAuth0 } from "@auth0/auth0-react";
+// import Logo from '../assets/IMG_3631.svg';
 import Logo from '../Logo';
 import Signin from '../Signin';
 // import Logo from '../assets/logo.png';
 import { Link } from 'react-router-dom';
 
-class Navbar extends React.Component {
-  state = {
-    showPopup: false
-  };
+const Navbar = props => {
+  const [showPopup,togglePopup] = useState(false)
+  const { isAuthenticated } = useAuth0();
 
-  togglePop = () => {
-    this.setState({
-      showPopup: !this.state.showPopup
-    });
+  const authLinks = () => {
+    return !isAuthenticated ? <></> : <>
+            <Link to="/calendar">
+              <NavButton>Calendar</NavButton>
+            </Link>
+            <Link to="/organizations">
+              <NavButton>Organizations</NavButton>
+            </Link>   
+          </>
+  }
+  const togglePop = () => {
+    togglePopup(!showPopup)
   };
 
   
-  render() {
-    const { showPopup } = this.state;
     return(
       <Wrapper>
         <LogoContainer>
@@ -38,17 +45,18 @@ class Navbar extends React.Component {
             <Link to="/contact">
               <NavButton>Contact Us</NavButton>
             </Link>  
+            {authLinks()}  
           </LeftGroup>
 
           <RightGroup>
-            <SigninButton onClick={this.togglePop} style={{ backgroundColor: buttonColor.Green }} >Sign In</SigninButton>
-            {showPopup ? <Signin toggle={this.togglePop} /> : null}
+            {/* <AuthNav /> */}
+            <SigninButton onClick={togglePop} style={{ backgroundColor: buttonColor.Green }} >Account</SigninButton>
+            {showPopup ? <Signin toggle={togglePop} /> : null}
           </RightGroup>
         </ButtonContainer>
       </Wrapper>
 
     );
-  }
 }
 
-export default Navbar;
+export default withAuth0(Navbar);
