@@ -4,11 +4,11 @@ import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
 import NavbarUser from './components/NavbarUser';
 
 /** COMMENT DURING PROD **/
- const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+ //const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-//const API = 'https://team-vision-cs178.herokuapp.com/api/'
+const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const Organizations = props => { 
     const [newOrganizations, setNewOrganizations] = useState([]);
