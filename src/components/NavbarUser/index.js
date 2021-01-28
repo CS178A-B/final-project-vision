@@ -12,7 +12,7 @@ const Navbar = props => {
   const [showPopup,togglePopup] = useState(false)
   const { isAuthenticated } = useAuth0();
 
-  const authLinks = () => {
+  const authLinks = () => { 
     return !isAuthenticated ? <></> : <>
             <Link to="/calendar">
               <NavButton>Calendar</NavButton>
