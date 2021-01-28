@@ -25,6 +25,7 @@ class Home extends React.Component {
       <div>
         {/* <GlobalFonts /> */}
         <Header />
+        test text
         <Navbar />
         <Homeblock togglePop={this.togglePop} />
         {showPopup ? <Signin toggle={this.togglePop} /> : null}
