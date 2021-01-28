@@ -13,7 +13,7 @@ const Calendar = props => {
             <div>
               {/* TODO: Announcements bar */}
               <NavbarUser />
-              <Calendarblock calendarEvents={props.calendarEvents}/>
+              <Calendarblock calendarEvents={props.calendarEvents} orgNames={props.orgNames}/>
             </div>
           )
 }

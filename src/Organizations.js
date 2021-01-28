@@ -15,7 +15,6 @@ class Organizations extends React.Component {
         return (
             <div>
             <NavbarUser />
-            <Organizationblock />
              </div>
         )
     }
