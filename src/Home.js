@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 //import LargeButton from './LargeButton/index.js';
-import Navbar from './Navbar';
-import Homeblock from './Homeblock';
-import Footer from './Footer';
+import NavbarHome from './components/NavbarHome';
+import Homeblock from './components/Homeblock';
+import Footer from './components/Footer';
 // import LoginButton from './login-button';
 // import AuthenticationButton from './authentication-button';
 // import AuthNav from './auth-nav.js';
-import Signin from './Signin';
-import Header from './Header';
+import Signin from './components/Signin';
+import Header from './components/Header';
 // import GlobalFonts from '../fonts/fonts.js';
 
 const Home = props => {
@@ -23,7 +23,7 @@ const Home = props => {
       <div>
         {/* <GlobalFonts /> */}
         <Header />
-        <Navbar />
+        <NavbarHome />
         <Homeblock togglePop={handleToggle} />
         {showPopup ? <Signin toggle={togglePopup} /> : null}
         <Footer />

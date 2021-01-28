@@ -1,8 +1,8 @@
 import React from 'react'
-import Loading from './loading.js';
+import Loading from './components/loading.js';
 import { withAuthenticationRequired } from "@auth0/auth0-react";
-import Navbar from '../components/Navbar';
-import Calendarblock from './Calendarblock'
+import NavbarUser from './components/NavbarUser';
+import Calendarblock from './components/Calendarblock'
 
 const Calendar = props => { 
     // return (<ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={today}
@@ -12,7 +12,7 @@ const Calendar = props => {
             return (
             <div>
               {/* TODO: Announcements bar */}
-              <Navbar />
+              <NavbarUser />
               <Calendarblock calendarEvents={props.calendarEvents} orgNames={props.orgNames}/>
             </div>
           )

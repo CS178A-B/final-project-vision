@@ -1,15 +1,16 @@
 import React from 'react';
-import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import NavbarHome from './components/NavbarHome';
+import Featureblock from './components/Featureblock';
+import Header from './components/Header';
 
 class Features extends React.Component {
   render() {
     return (
       <div>
-        {/* TODO: Announcements bar */}
-        <Navbar />
-        {/* TODO: Features block */}
-        <h1> F E A T U R E S</h1>
+        <Header />
+        <NavbarHome />
+        <Featureblock  />
         <div style={{ width: '100%', position: 'fixed', bottom: '0' }}>
           <Footer />
         </div>

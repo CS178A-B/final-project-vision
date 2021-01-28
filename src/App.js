@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import  Calendar  from './components/Calendar'
-import  Home  from './components/Home'
+import  Calendar  from './Calendar'
+import  Home  from './Home'
 import Loading from './components/loading';
 import Profile from './components/profile';
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
-import  Organizations from './components/Organizations'
+import  Organizations from './Organizations'
 import {
   Switch,
   Route,
 } from "react-router-dom";
 import ProtectedRoute from './auth/protected-route'
-import About from './components/About';
+import About from './About';
 import Features from './Features';
 import Contact from './Contact';
 

@@ -1,6 +1,6 @@
-import React from 'react'
-import Navbar from '../components/Navbar';
-import Organizationblock from './Organizationblock'
+import React from 'react';
+import NavbarUser from './components/NavbarUser';
+import Organizationblock from './components/Organizationblock'
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
@@ -14,7 +14,7 @@ class Organizations extends React.Component {
     render() {
         return (
             <div>
-            LIST OF ORGANIZATIONS YOU CAN JOIN
+            <NavbarUser />
              </div>
         )
     }
