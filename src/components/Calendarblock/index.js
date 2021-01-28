@@ -30,7 +30,7 @@ const Calendarblock = props => {
         </LeftGroup>
         <div>
         <RightGroup>
-        <OrganizationsBlock />
+        <OrganizationsBlock orgNames={props.orgNames}/>
             <DownloadButton
               text="Download .ics file"
               bgColor="white"
