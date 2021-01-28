@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import { LeftGroup } from './styled';
+import styled from 'styled-components';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
-
+const Button = styled.button`
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+`
 /** UNCOMMENT DURING PROD **/ 
 const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const OrganizationsBlock = props => {
     
     const { getAccessTokenSilently } = useAuth0();
-
-
 
     const handleClick = async e =>{
         try {
@@ -35,17 +38,16 @@ const OrganizationsBlock = props => {
         }
     }
 
-    const generateOrgsList = e =>{
-        let ret = ""
-    }
         return (
             <LeftGroup>
-            <div style={{ width: '110%',  bottom: '10' }}>
+            <div style={{ width: '140%',  bottom: '10' }}>
             <form>
-                <h1>O R G A N I Z A T I O N S</h1>
+                <h1>MY ORGANIZATIONS</h1>
                     {props.orgNames.map((name, i)=>{
-            return <div key={i}><label>{name}
-            <input onClick={handleClick} name={name} type="checkbox"></input>
+            return <div key={i}><label>{name} {''}
+            <Button onClick={handleClick} name={name} type="checkbox">
+            Delete
+            </Button>
             </label><br /></div>
         })}         
             </form>

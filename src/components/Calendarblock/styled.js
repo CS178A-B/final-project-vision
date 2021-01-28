@@ -19,3 +19,4 @@ export const RightGroup = styled.div`
   padding: 50px;
   margin: -600px 50px 75px 1350px;
 `;
+
