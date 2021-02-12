@@ -87,7 +87,7 @@ export const MiniButtons = styled.h6`
 
 export const ImageS = styled.img`
   width: 90%;
-  margin-top: 5%;
+  margin-top: 20px;
   margin-bottom: 5%;
 
   @media (max-width: 768px) {

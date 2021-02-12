@@ -4,7 +4,7 @@ import { LeftGroup } from './styled';
 import styled from 'styled-components';
 
 /** COMMENT DURING PROD **/
-// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 const Button = styled.button`
   background-color: red;
@@ -12,7 +12,7 @@ const Button = styled.button`
   border-radius: 5px;
 `
 /** UNCOMMENT DURING PROD **/ 
-const API = 'https://team-vision-cs178.herokuapp.com/api/'
+// const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const OrganizationsBlock = props => {
     

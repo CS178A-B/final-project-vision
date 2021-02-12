@@ -16,11 +16,11 @@ import Features from './Features';
 import Contact from './Contact';
 
 /** COMMENT DURING PROD **/
-// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-const API = 'https://team-vision-cs178.herokuapp.com/api/'
+// const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const App = props => {
   // const [state, setState] = useState({

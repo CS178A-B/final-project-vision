@@ -18,8 +18,8 @@ class Featureblock extends React.Component {
                 <h5>Calendar</h5>
               </Title>
               <ImageS src={Calendar} alt="CALENDAR" />
-              <p>See all the groups you are apart of together and add their events into one calendar with multiple views</p>
-              <p>Download your calendar into an .ics file in order to import to other platforms</p>
+              <p>Search and subscribe to multiple organizations to see their events</p>
+              <p>Export calendar as an .ics file</p>
             </BlockContent>
           </Block1>
           <Block2>
@@ -27,7 +27,7 @@ class Featureblock extends React.Component {
               <Title>
                 <h5>Group Functionality</h5>
               </Title>
-              <ImageL src={Group} alt="GROUP" />
+              <ImageL style={{ margin: '10px', width: '93%'}} src={Group} alt="GROUP" />
               <div style={{display: 'flex'}}>
                 <div style={{textAlign: 'left'}}>
                   <p>Find information such as:</p>
