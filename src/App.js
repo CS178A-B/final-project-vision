@@ -32,8 +32,22 @@ const App = props => {
   const { isAuthenticated, getAccessTokenSilently } = useAuth0();
   const {isLoading} = props.auth0;
 
+  const fetchOrgNames = async () => {
+    try {
+      const token = await getAccessTokenSilently();
+      const myHeaders = new Headers();
+      myHeaders.append('Authorization', `Bearer ${token}`)
+      fetch( API + "getListOfOrganizations", {
+      method: 'GET',
+      headers: myHeaders,
+    }).then(res => res.json())
+      .then( res => fetchEvents(res))
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
-  const fetchEvents = async () => {
+  const fetchEvents = async (orgDict) => {
     try {
     const token = await getAccessTokenSilently();
     const myHeaders = new Headers();
@@ -44,9 +58,10 @@ const App = props => {
     }).then(res => res.json())
       .then(data => {
         let newEvents = []
-        let tempOrgs = []
+        let tempOrgs =  []
         for(let orgName in data){
-          tempOrgs.push(orgName)
+          console.log(orgName + ": " + orgDict[orgName]);
+          tempOrgs[orgName] = orgDict[orgName]
           for(let temp in data[orgName]) {
               data[orgName][temp]["Subject"] = orgName + " - " + data[orgName][temp]["Subject"];
               newEvents.push(data[orgName][temp])
@@ -61,7 +76,7 @@ const App = props => {
   }
 
   useEffect(() => {
-    fetchEvents()
+    fetchOrgNames();
   }, [isAuthenticated])
 
   if (isLoading) {
