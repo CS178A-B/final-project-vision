@@ -14,13 +14,14 @@ import ProtectedRoute from './auth/protected-route'
 import About from './About';
 import Features from './Features';
 import Contact from './Contact';
+import OrgForm from './OrgForm';
 
 /** COMMENT DURING PROD **/
-const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-// const API = 'https://team-vision-cs178.herokuapp.com/api/'
+const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const App = props => {
   // const [state, setState] = useState({
@@ -70,8 +71,6 @@ const App = props => {
 
     return (
       <div>
-        {/* <GlobalFonts /> */}
-
         <hr />
         <Switch>
           <Route exact path="/">
@@ -85,6 +84,9 @@ const App = props => {
           </Route>
           <Route exact path="/contact">
             <Contact />
+          </Route>
+          <Route exact path = "/createorg">
+            <OrgForm />
           </Route>
           <Route path="/calendar">
             {calendarEvents!== null ? <Calendar calendarEvents={calendarEvents} orgNames={orgNames} /> : <Loading />}
