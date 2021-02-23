@@ -26,6 +26,7 @@ cluster = MongoClient(os.environ.get("MONGODB_URL"))
 db = cluster["Information"]
 organization_info_collection = db["organization_info"]
 user_info_collection = db["user_info"]
+user_hash_collection = db["user_hash"]
 id = 0
 
 # for demos
@@ -176,40 +177,56 @@ def private(request):
 
 @csrf_exempt
 @api_view(['GET'])
-def getCalendarInfo(request): #no need to pass in anything, just need the oauth token
+def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-123dasf, name: Viraj Dhllon}
     responseData = {
+        "name" : "",
         "username" : "",
         "organizations": {}
     }
-    username = request.user.username
-    #username = request.POST.get("username")
+
     if(request.method == 'GET'): #If get response has data / if user used api/getCalendarInfo without token
+        username = request.user.username
+        #username = request.GET.get("username")
+        name = request.GET.get("name")
+
         if(user_info_collection.find({"username": username}).count() > 0): #if the document/user exists
             responseData  = user_info_collection.find_one({"username": username}) #Obtain Json Data of User
             return JsonResponse(responseData["organizations"])
         else:
+            responseData["name"] = name
             responseData["username"] = username
             user_info_collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
             return JsonResponse({})
     else: #return empty Json if user logged onto url without authentication
-        return JsonResponse({})
+        return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
 @api_view(['POST'])
-def addOrganization(request): #pass in {organizations_ids: ["60199071ecaace8314a7c1fd"]}
+def addOrganization(request): #pass in {organization_id: "60199071ecaace8314a7c1fd", password : "adfaew"} can only add one club at a time due to password
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
+        organization_id = request.POST.get("organization_id")
+        password = request.POST.get("password")
         returnData = user_info_collection.find_one({"username": username})
         user_organizations = returnData["organizations"]
-        for organization_id in (list(request.POST.get("organizations_ids").split(", "))):  #add clubs without space "PersianClub"!!!!!!!
-            if(organization_id in user_organizations): #if user is already in organization, don't add it
-                pass
-            else: #otherwise add it
-                org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
+        org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
+        blocked_member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Blocked Members"]
+
+
+        if(username in blocked_member_list):
+            return JsonResponse({"Error" : "User is blocked from joining organization"})
+
+        if(organization_id in user_organizations): #if user is already in organization, don't add it
+            return JsonResponse({"Error" : "Organization is already added to user"})
+        else: #otherwise add it
+            if(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Public"] or organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Password"] == password):
+
                 user_organizations.update({organization_id : organization_info_collection.find_one({'_id': ObjectId(str(organization_id))}) [org_name]["org_events"]})
                 organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
                 {"$push": {org_name + ".Members": username}})
+            else:
+                return JsonResponse({"Error" : "Organization is not public or password is incorrect"})
 
         user_info_collection.update({"username": username},
         {"$set": {"organizations": user_organizations}})
@@ -219,7 +236,7 @@ def addOrganization(request): #pass in {organizations_ids: ["60199071ecaace8314a
         del responseData["_id"]
         return JsonResponse(responseData)
     else:
-        return JsonResponse({})
+        return JsonResponse({"NULL" : "NULL"})
 
 
 @csrf_exempt
@@ -228,22 +245,35 @@ def deleteEvent(request):#pass in {organization_id: 1288fadf213, id: 5}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
-        user_organizations = user_info_collection.find_one({"username": username })["organizations"]
         id = int(request.POST.get("id"))
         organization_id = request.POST.get("organization_id")
-        user_organizations_events = user_organizations[organization_id]
-        for index in range(len(user_organizations_events)): #iterate over events to find proper id to delete
-            if((user_organizations_events[index])["Id"] == id):
-                del user_organizations_events[index]
-                break
 
-        user_organizations[organization_id] = user_organizations_events #set that hash key value to newly modified/deleted events
-        user_info_collection.update({"username": username}, #update organizations
-        {"$set": {"organizations": user_organizations}})
-        responseData  = user_info_collection.find_one({"username": username}) #Obtain Json Data of User
-        del responseData["_id"]
-        return JsonResponse(responseData)
-    return JsonResponse({})
+        org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1] #get name of Club, ACM etc
+        delegator_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]
+        member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]
+        org_event_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["org_events"]
+        if(username in delegator_list): #check if user id is in delegators and can create events
+            for index in range(len(org_event_list)):
+                if(org_event_list[index] == org_name):
+                    pass
+                elif (org_event_list[index]["Id"] == id):
+                    del org_event_list[index]
+                    break
+
+
+        organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+        {"$set": {org_name + ".org_events": org_event_list}})
+
+        for delegator in delegator_list:
+            user_info_collection.update({"username": delegator},
+            {"$set": {"organizations." + str(organization_id) : org_event_list}})
+
+        for member in member_list:
+            user_info_collection.update({"username": member},
+            {"$set": {"organizations." + str(organization_id) : org_event_list}})
+
+        return JsonResponse({"Successful" : "Event is deleted from all calendars in organization"})
+    return JsonResponse({"NULL" : "NULL"})
 
 
 
@@ -268,33 +298,41 @@ def deleteOrganization(request): #pass in {organization_id: 1adf320jfo1ebc9}
 
         responseData  = user_info_collection.find_one({"username": username}) #Obtain Json Data of User
         del responseData["_id"]
-        return JsonResponse(responseData)
-    return JsonResponse({})
+        return JsonResponse({"Successful" : "Deleted organization for the user"})
+    return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
 @api_view(['POST'])
-def createOrganization(request): #pass in {organization : Vish's CS Club}
+def createOrganization(request): #pass in {organization : Vish's CS Club, org_description : "This club is about etc...", public_true_false : True/False, password: 23423acd/""}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
+        organization = request.POST.get("organization")
+        org_description = request.POST.get("org_description")
+        public_true_false = request.POST.get("public_true_false")
+        password = request.POST.get("password")
+
         input_data = {
+            "Organization Description" : org_description,
+            "Public" : (public_true_false == 'True'),
+            "Password" : password,
             "Delegators" : [username],
             "Members" : [],
-            "org_events" : []
+            "Blocked Members" : [],
+            "org_events" : [organization]
         }
-        #username = request.user.username
-        organization = request.POST.get("organization")
+
         id = organization_info_collection.insert({organization : input_data})
 
         user_organizations  = user_info_collection.find_one({"username": username})["organizations"]
-        user_organizations.update({str(id) : []})
+        user_organizations.update({str(id) : [organization]})
         user_info_collection.update({"username": username},
         {"$set": {"organizations": user_organizations}})
 
         responseData = user_info_collection.find_one({"username": username})
         del responseData["_id"]
         return JsonResponse(responseData)
-    return JsonResponse({"NULL"})
+    return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
 @api_view(['POST'])
@@ -346,6 +384,34 @@ def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject 
     return JsonResponse({"RETURN" : "NULL"})
 
 
+@csrf_exempt
+@api_view(['POST'])
+def blockUsers(request): #pass in {organization_id : 123adf, usernames: google-auth-api-1, google-auth-api-2, etc...}
+    if(request.POST):
+        username = request.user.username
+        #username = request.POST.get("username")
+        organization_id = request.POST.get("organization_id")
+        org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1] #get name of Club, ACM etc
+        delegator_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]
+        member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]
+        if(username in delegator_list):
+            for blocked_member in (list(request.POST.get("usernames").split(", "))):
+                organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+                {"$pull": {org_name + ".Members": blocked_member}})
+
+                organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+                {"$push": {org_name + ".Blocked Members": blocked_member}})
+
+                user_organizations = user_info_collection.find_one({"username": blocked_member})["organizations"]
+                del user_organizations[organization_id] #delete organization user passes in
+                user_info_collection.update({"username": blocked_member}, #update organizations
+                {"$set": {"organizations": user_organizations}})
+
+            return JsonResponse({"Successful" : "Blocked Users"})
+        else:
+            return JsonResponse({"Error" : "User is not authorized to block other users"})
+
+    return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
 @api_view(['GET'])
@@ -355,4 +421,16 @@ def getListOfOrganizations(request): #don't need to pass anything
         org_name = list(org)[1]
         return_dict[str(org["_id"])] = org_name
 
+    return JsonResponse(return_dict)
+
+
+@csrf_exempt
+@api_view(['GET'])
+def getDictionaryOfMembers(request): #pass in (organization_id : 13daflkj32)
+    organization_id = request.GET.get("organization_id")
+    org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
+    member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]
+    return_dict = {}
+    for username in member_list:
+        return_dict[ user_info_collection.find_one({"username": username})["name"]] = username
     return JsonResponse(return_dict)

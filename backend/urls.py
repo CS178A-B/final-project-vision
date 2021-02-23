@@ -32,7 +32,9 @@ urlpatterns = [
     path('api/deleteOrganization', views.deleteOrganization),
     path('api/createOrganization', views.createOrganization),
     path('api/createEvent', views.createEvent),
+    path('api/blockUsers', views.blockUsers),
     path('api/getListOfOrganizations',views.getListOfOrganizations),
+    path('api/getDictionaryOfMembers', views.getDictionaryOfMembers),
     path('api/public',views.public),
     path('api/private',views.private),
 ]
