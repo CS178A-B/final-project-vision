@@ -11,9 +11,6 @@ class Features extends React.Component {
         <Header />
         <NavbarHome />
         <Featureblock  />
-        <div style={{ width: '100%', position: 'fixed', bottom: '0' }}>
-          <Footer />
-        </div>
       </div>
     );
   }

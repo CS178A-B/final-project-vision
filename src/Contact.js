@@ -12,9 +12,6 @@ class Contact extends React.Component {
         <Header />
         <NavbarHome />
         <Contactblock />
-        <div style={{ width: '100%', position: 'fixed', bottom: '0' }}>
-          <Footer />
-        </div>
       </div>
     );
   }

@@ -11,13 +11,13 @@ class Homeblock extends React.Component {
       <Wrapper>
         <LeftGroup>
           <Headertext>
-            <h1>
+            <h1 className="animate__fadeIn">
             <H1Line1 color={fontColor.Red}>Schedule Events.<br/></H1Line1>
               <H1Line1 color={fontColor.Yellow}>Manage your groups.<br/></H1Line1>
               <H1Line1 color={fontColor.Green}>Assign tasks.</H1Line1>
            </h1>
           </Headertext>
-          <div>
+          <div className="animate__fadeIn">
             <LargeButton onClick={togglePop}
               text="TRY VISION FOR FREE"
               fontColor={fontColor.Blue}

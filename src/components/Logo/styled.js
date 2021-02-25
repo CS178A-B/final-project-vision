@@ -2,8 +2,8 @@ import styled from 'styled-components';
 
 export const LogoImage = styled.img`
     background-Color: ${props => props.bgColor || 'inherit' };
-    width: ${props => props.width || '55px' };
-    height: ${props => props.height || '50px' };
+    width: ${props => props.width || '75px' };
+    height: ${props => props.height || '60px' };
     padding: 0 ${props => props.paddingRight || '10px'} 0 0;
 `;
 

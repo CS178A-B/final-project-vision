@@ -2,21 +2,18 @@ import styled from 'styled-components';
 import { fontColor } from '../colors';
 
 export const Wrapper = styled.div`
-  width: 100%;
-  min-height: 40px;
+  line-height: 75px;
   display: flex;
-  align-items: center;
+  justify-content: space-between;
   color: ${fontColor.Blue};
 `;
 // border: 2px solid black;
 
 // h/w relative to parent container
 export const LogoContainer = styled.div`
-  width: 40%;
-  height: 100%;
+
   display: flex;
   align-items: center;
-  margin: 0px 50px 0px 50px;
 `;
 // border: 2px solid red;
 
@@ -28,11 +25,8 @@ export const LogoContainer = styled.div`
 // `;
 
 export const ButtonContainer = styled.div`
-  width: 40%;
-  height: 100%;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: row;
 `;
 // border: 2px solid blue;
 
@@ -40,22 +34,20 @@ export const ButtonContainer = styled.div`
 // align items vertically
 // justify content -- along axis
 export const LeftGroup = styled.div`
-  width: 60%;
   display: flex;
-  justify-content: space-around;
   align-items: center;
+  margin-left: auto;
 `;
 // border: 4px solid yellow;
 
 // login
 export const RightGroup = styled.div`
-  width: 20%;
+  margin-right: auto;
 `;
 // border: 1px solid;
 
 // menu
 export const NavButton = styled.button`
-  height: 40px;
   width: 100px;
   border: none;
   padding: 0;

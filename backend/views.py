@@ -202,11 +202,11 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
 
 @csrf_exempt
 @api_view(['POST'])
-def addOrganization(request): #pass in {organization_id: "60199071ecaace8314a7c1fd", password : "adfaew"} can only add one club at a time due to password
+def addOrganization(request,orgID): #pass in {organization_id: "60199071ecaace8314a7c1fd", password : "adfaew"} can only add one club at a time due to password
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
-        organization_id = request.POST.get("organization_id")
+        organization_id = orgID
         password = request.POST.get("password")
         returnData = user_info_collection.find_one({"username": username})
         user_organizations = returnData["organizations"]

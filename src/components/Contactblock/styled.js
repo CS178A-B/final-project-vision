@@ -2,25 +2,13 @@ import styled from 'styled-components';
 import { bgColor } from '../colors';
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 500px;
-  margin: auto;
-  padding: 0;
+  padding-top: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
-  overflow: scroll;
-
-  // @media (max-width: 480px) {
-  //   .col {  margin: 1% 0 1% 0%; }
-  //   .span_1_of_4, .span_2_of_4, .span_3_of_4, .span_4_of_4 { width: 100%; }
-  // }
-
-  @media (max-width: 768px) {
-    flex-direction: column;
-    // width: 80%;
-  }
+  flex-wrap: wrap;
+  align-self: flex-start;
 `;
 // border: 2px dashed black;
 // display: grid;
@@ -28,14 +16,13 @@ export const Wrapper = styled.div`
 
 export const ContactSection = styled.div`
   text-align: center;
-  height: 370px;
   background-color: ${bgColor.LightBlue};
   border-radius: 25px;
-  margin: 1% 0 1% 1.6%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 250px;
 
   @media (max-width: 480px) {
     // margin: 1% 0 1% 0%;
@@ -50,14 +37,15 @@ export const ContactSection = styled.div`
 
 export const AboutSection = styled.div`
   background-color: inherit;
-  display: block;
+  display: flex;
+  flex-direction: column;
   height: 70%;
 `;
 // border-radius: 5px;
 // margin-inline-start: 20px;
 // margin-inline-end: 20px;
 
-export const AboutText = styled.h4`
+export const AboutText = styled.div`
   margin: 10px;
   font-size: 1em;
   background-color: inherit;
@@ -77,6 +65,7 @@ export const Link = styled.a`
   padding: 5%;
   color: ${bgColor.White};
   border-radius: 10px;
+  margin: 10px;
   
   .changeColor:hover & {
     color: ${bgColor.LightBlue};

@@ -26,7 +26,6 @@ const Home = props => {
         <NavbarHome />
         <Homeblock togglePop={handleToggle} />
         {showPopup ? <Signin toggle={togglePopup} /> : null}
-        <Footer />
       </div>
     );
 }
