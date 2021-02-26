@@ -1,5 +1,5 @@
 import React from 'react';
-import { Block1, Block2, Block3, BlockContent, Content, ImageL, ImageS, MiniButtons, Title, Wrapper } from './styled';
+import { Block, BlockContent, BlockHeader, Content, Image, MiniButtons, Text, Title, Wrapper } from './styled';
 import Calendar from '../assets/calendar.png';
 import Group from '../assets/group.png';
 import Task from '../assets/task.png';
@@ -9,55 +9,47 @@ class Featureblock extends React.Component {
     return(
       <Wrapper style={{textAlign: 'center'}}>
         <div>
-          <h3 style={{ textDecoration: 'underline', background: 'inherit'}}>Application Features</h3>
+          <h3 style={{ textDecoration: 'underline', background: 'inherit', paddingBottom: '30px'}}>Application Features</h3>
         </div>
         <Content>
-          <Block1>
+          <Block>
             <BlockContent>
               <Title>
-                <h5>Calendar</h5>
+                <BlockHeader>Calendar</BlockHeader>
               </Title>
-              <ImageS src={Calendar} alt="CALENDAR" />
-              <p>Search and subscribe to multiple organizations to see their events</p>
-              <p>Export calendar as an .ics file</p>
+              <Image src={Calendar} alt="CALENDAR" />
+              <Text>Search and subscribe to multiple organizations to see their events</Text>
+              <Text>Export calendar as an .ics file</Text>
             </BlockContent>
-          </Block1>
-          <Block2>
+          </Block>
+          <Block>
             <BlockContent>
               <Title>
-                <h5>Group Functionality</h5>
+                <BlockHeader>Group Functionality</BlockHeader>
               </Title>
-              <ImageL style={{ margin: '10px', width: '93%'}} src={Group} alt="GROUP" />
+              <Image src={Group} alt="GROUP" />
               <div style={{display: 'flex'}}>
-                <div style={{textAlign: 'left'}}>
-                  <p>Find information such as:</p>
-                  <li>General information</li>
-                  <li>Meeting times</li>
-                  <li>Dues, if any</li>
-                  <li>Roles/Positions</li>
-                  <p>for each group/organization</p>
-                </div>
-                <div>
-                  <p>Create and manage groups or organizations and edit the information of each group with ease</p>
-                  <p>Find and add organizations to your desire to your list</p>
+                <div style={{ paddingLeft: "20px", paddingRight: "20px" }}>
+                  <Text>Create and manage groups and edit the information of each group with ease</Text>
+                  <Text>Join organizations already created</Text>
                 </div>
               </div>
             </BlockContent>
-          </Block2>
-          <Block3>
+          </Block>
+          <Block>
             <BlockContent>
               <Title>
-                <h5>Task Manager</h5>
+                <BlockHeader>Task Manager</BlockHeader>
               </Title>
-              <ImageS src={Task} alt="TASK" />
-              <p>Create and assign tasks to those in your personalized groups and give them priorities based on a stoplight color system</p>
+              <Image src={Task} alt="TASK" />
+              <Text>Create and assign tasks with priorities to those in your personalized groups</Text>
               <div style={{display: 'flex', justifyContent:'space-evenly'}}>
                 <MiniButtons>Assign</MiniButtons>
                 <MiniButtons>Create</MiniButtons>
               </div>
-              <p>Sync tasks to your calendar as reminders</p>
+              {/* <Text>Sync tasks to your calendar as reminders</Text> */}
               </BlockContent>
-          </Block3>
+          </Block>
         </Content>
       </Wrapper>
     );

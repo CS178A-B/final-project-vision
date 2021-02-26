@@ -14,7 +14,7 @@ import ProtectedRoute from './auth/protected-route'
 import About from './About';
 import Features from './Features';
 import Contact from './Contact';
-import OrgForm from './OrgForm';
+import OrgForm from './components/Orgform';
 
 /** COMMENT DURING PROD **/
 // const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD

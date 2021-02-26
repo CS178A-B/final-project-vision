@@ -4,9 +4,8 @@ import { Wrapper } from './styled';
 import { LeftGroup, RightGroup } from './styled';
 import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
 import OrganizationsBlock from '../Organizationblock';
-import OrgForm from '../../OrgForm';
+import OrgForm from '../Orgform';
 import { buttonColor } from '../colors';
-
 
 const Calendarblock = props => {
   // const [value,setValue] = useState('Vision')
@@ -43,7 +42,8 @@ const Calendarblock = props => {
         <div>
         <button onClick={togglePop} style={{ backgroundColor: buttonColor.Green }} >Add Organization</button>
 
-        {showPopup ? <OrgForm toggle={togglePop} /> : null}
+        {/* {showPopup ? <OrgForm toggle={togglePop} /> : null} */}
+        {true ? <OrgForm toggle={togglePop} /> : null}
         </div>
         <DownloadButton
             text="Download .ics file"
