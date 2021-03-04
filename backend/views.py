@@ -222,7 +222,9 @@ def addOrganization(request): #pass in {organization_id: "60199071ecaace8314a7c1
         else: #otherwise add it
             if(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Public"] or organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Password"] == password):
 
-                user_organizations.update({organization_id : organization_info_collection.find_one({'_id': ObjectId(str(organization_id))}) [org_name]["org_events"]})
+                user_organizations.update({organization_id : {"org_name" : org_name, "org_description" :  organization_info_collection.find_one({'_id': ObjectId(str(organization_id))}) [org_name]["Organization Description"],
+                "org_events" : organization_info_collection.find_one({'_id': ObjectId(str(organization_id))}) [org_name]["org_events"]}})
+
                 organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
                 {"$push": {org_name + ".Members": username}})
             else:
@@ -259,6 +261,8 @@ def deleteEvent(request):#pass in {organization_id: 1288fadf213, id: 5}
                 elif (org_event_list[index]["Id"] == id):
                     del org_event_list[index]
                     break
+        else:
+            return JsonResponse({"Error": "User is not allowed to delete events"})
 
 
         organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
@@ -266,11 +270,11 @@ def deleteEvent(request):#pass in {organization_id: 1288fadf213, id: 5}
 
         for delegator in delegator_list:
             user_info_collection.update({"username": delegator},
-            {"$set": {"organizations." + str(organization_id) : org_event_list}})
+            {"$set": {"organizations." + str(organization_id) + ".org_events": org_event_list}})
 
         for member in member_list:
             user_info_collection.update({"username": member},
-            {"$set": {"organizations." + str(organization_id) : org_event_list}})
+            {"$set": {"organizations." + str(organization_id) + ".org_events" : org_event_list}})
 
         return JsonResponse({"Successful" : "Event is deleted from all calendars in organization"})
     return JsonResponse({"NULL" : "NULL"})
@@ -283,7 +287,6 @@ def deleteOrganization(request): #pass in {organization_id: 1adf320jfo1ebc9}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
-        username = request.POST.get("username")
         user_organizations = user_info_collection.find_one({"username": username})["organizations"]
         organization_id = request.POST.get("organization_id")
 
@@ -319,19 +322,18 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
             "Delegators" : [username],
             "Members" : [],
             "Blocked Members" : [],
-            "org_events" : [organization]
+            "Organization Name" : organization,
+            "org_events" : []
         }
 
         id = organization_info_collection.insert({organization : input_data})
-
         user_organizations  = user_info_collection.find_one({"username": username})["organizations"]
-        user_organizations.update({str(id) : [organization]})
+        user_organizations.update({str(id) : {"org_name" : organization, "org_description" : org_description, "org_events" : []}})
+
         user_info_collection.update({"username": username},
         {"$set": {"organizations": user_organizations}})
 
-        responseData = user_info_collection.find_one({"username": username})
-        del responseData["_id"]
-        return JsonResponse(responseData)
+        return JsonResponse({"newOrgHash" : str(id)})
     return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
@@ -368,12 +370,12 @@ def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject 
             for delegator in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]:
 
                 user_info_collection.update({"username": delegator},
-                {"$push": {"organizations." + str(organization_id) : input_data}})
+                {"$push": {"organizations." + str(organization_id) + ".org_events" : input_data}})
 
             for member in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]:
 
                 user_info_collection.update({"username": member},
-                {"$push": {"organizations." + str(organization_id) : input_data}})
+                {"$push": {"organizations." + str(organization_id)  + ".org_events": input_data}})
 
 
             responseData = user_info_collection.find_one({"username": username})
@@ -403,7 +405,9 @@ def blockUsers(request): #pass in {organization_id : 123adf, usernames: google-a
                 {"$push": {org_name + ".Blocked Members": blocked_member}})
 
                 user_organizations = user_info_collection.find_one({"username": blocked_member})["organizations"]
-                del user_organizations[organization_id] #delete organization user passes in
+                if(organization_id in user_organizations):
+                    del user_organizations[organization_id] #delete organization user passes in
+
                 user_info_collection.update({"username": blocked_member}, #update organizations
                 {"$set": {"organizations": user_organizations}})
 
