@@ -57,17 +57,18 @@ const App = props => {
       headers: myHeaders,
     }).then(res => res.json())
       .then(data => {
-        let newEvents = []
+        // let newEvents = []
         let tempOrgs =  []
         for(let orgName in data){
-          console.log(orgName + ": " + orgDict[orgName]);
-          tempOrgs[orgName] = orgDict[orgName]
-          for(let temp in data[orgName]) {
-              data[orgName][temp]["Subject"] = orgName + " - " + data[orgName][temp]["Subject"];
-              newEvents.push(data[orgName][temp])
-          }
+          // console.log(orgName + ": " + orgDict[orgName]);
+          // tempOrgs[orgName] = orgDict[orgName]
+          // for(let temp in data[orgName]) {
+          //     data[orgName][temp]["Subject"] = orgName + " - " + data[orgName][temp]["Subject"];
+          //     newEvents.push(data[orgName][temp])
+          // }
         }
-          setCalendarEvents(newEvents)
+          // setCalendarEvents(newEvents)
+          setCalendarEvents([])
           setOrgNames(tempOrgs)
       })
     } catch (error) {

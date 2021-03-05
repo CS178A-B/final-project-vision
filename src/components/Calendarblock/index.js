@@ -42,8 +42,8 @@ const Calendarblock = props => {
         <div>
         <button onClick={togglePop} style={{ backgroundColor: buttonColor.Green }} >Add Organization</button>
 
-        {/* {showPopup ? <OrgForm toggle={togglePop} /> : null} */}
-        {true ? <OrgForm toggle={togglePop} /> : null}
+        {showPopup ? <OrgForm toggle={togglePop} /> : null}
+        {/* {true ? <OrgForm toggle={togglePop} /> : null} */}
         </div>
         <DownloadButton
             text="Download .ics file"

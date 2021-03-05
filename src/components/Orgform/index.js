@@ -30,7 +30,7 @@ const OrgForm = ({ toggle }) => {
         uploadImg: '',
       }}
 
-      validate={values => {
+      validate = { values => {
         const errors = {};
         if (!values.name) {
           errors.name = 'Required';
@@ -39,7 +39,7 @@ const OrgForm = ({ toggle }) => {
         return errors;
       }}
 
-      onSubmit ={ async values =>{
+      onSubmit = { async values => {
         try {
         const token = await getAccessTokenSilently();
         const myHeaders = new Headers();
@@ -47,12 +47,16 @@ const OrgForm = ({ toggle }) => {
         const orgName = values.name;
         const data = new FormData();
         data.append("organization", orgName);
+        // data.append("public_true_or_false", )
         // call api to add calendar events
         fetch(API + "createOrganization", {
             method: 'POST',
             headers: myHeaders,
             body: data,
-        }).then(console.log("New organization added:" + orgName))
+        }).then( res => res.json())
+        .then(res => console.log(res))
+        .then(console.log("New organization added:" + orgName))
+        .then(res => console.log("team-vision.heroku.com/join/newOrgHash")) // + res.newOrgHash))
         }
         catch (error) {
             console.log(error)
