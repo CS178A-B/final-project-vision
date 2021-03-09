@@ -7,7 +7,6 @@ class Contact extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
         <Contactblock />
       </div>
     );

@@ -5,15 +5,9 @@ import Calendarblock from './components/Calendarblock'
 import NavBar from './components/NavBar.js';
 
 const Calendar = props => { 
-    // return (<ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={today}
-    // eventSettings={{ dataSource: props.calendarEvents }}>
-    //   <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-    //   </ScheduleComponent>)
             return (
             <div>
-              {/* TODO: Announcements bar */}
-              <NavBar />
-              {props.orgNames ? <Calendarblock calendarEvents={props.calendarEvents} orgNames={props.orgNames}/> : <Loading />}
+              In calendar page
             </div>
           )
 }

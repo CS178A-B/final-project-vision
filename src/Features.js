@@ -6,7 +6,6 @@ class Features extends React.Component {
   render() {
     return (
       <div>
-        <NavBar />
         <Featureblock  />
       </div>
     );

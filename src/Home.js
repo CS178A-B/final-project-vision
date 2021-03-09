@@ -24,7 +24,6 @@ const Home = props => {
 
     return (
       <div>
-        <NavBar/>
         {/* <Homeblock togglePop={handleToggle} /> */}
         
         <Container fluid style={{ padding: "0" }}>

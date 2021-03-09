@@ -15,6 +15,7 @@ import About from './About';
 import Features from './Features';
 import Contact from './Contact';
 import Header from './components/Header';
+import NavBar from './components/NavBar';
 
 
 /** UNCOMMENT DURING PROD **/ 
@@ -25,70 +26,50 @@ const App = props => {
   //   calendarEvents: []
   // });
   const [calendarEvents, setCalendarEvents] = useState(null)
-  const [orgNames, setOrgNames] = useState(null)
+  const [myOrgs, setmyOrgs] = useState(null)
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
-  const fetchOrgNames = async () => {
-    try {
-      const token = await getAccessTokenSilently();
-      localStorage.setItem('token', token);
-      const myHeaders = new Headers();
-      myHeaders.append('Authorization', `Bearer ${token}`)
-      fetch( API + "getListOfOrganizations", {
-      method: 'GET',
-      headers: myHeaders,
-    }).then(res => res.json())
-      .then( res => fetchEvents(res))
-    } catch (error) {
-      console.log(error)
-    }
-  }
-
-  const fetchEvents = async (orgDict) => {
-    try {
-    const token = await getAccessTokenSilently();
-    const myHeaders = new Headers();
-    myHeaders.append('Authorization', `Bearer ${token}`)
-    fetch( API + "getCalendarInfo", {
-      method: 'GET',
-      headers: myHeaders,
-    }).then(res => res.json())
-      .then(data => {
-        // let newEvents = []
-        let tempOrgs =  []
-        for(let orgName in data){
-          // console.log(orgName + ": " + orgDict[orgName]);
-          // tempOrgs[orgName] = orgDict[orgName]
-          // for(let temp in data[orgName]) {
-          //     data[orgName][temp]["Subject"] = orgName + " - " + data[orgName][temp]["Subject"];
-          //     newEvents.push(data[orgName][temp])
-          // }
-        }
-          // setCalendarEvents(newEvents)
-          setCalendarEvents([])
-          setOrgNames(tempOrgs)
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }
 
   useEffect(() => {
-    fetchOrgNames();
-  }, [isAuthenticated])
-
-  if (isLoading) {
-    return <Loading />
-  }
-
+    const fetchEvents = async (orgDict) => {
+      try {
+      const token = await getAccessTokenSilently();
+      const myHeaders = new Headers();
+      myHeaders.append('Authorization', `Bearer ${token}`)
+      fetch( API + "getCalendarInfo", {
+        method: 'GET',
+        headers: myHeaders,
+      }).then(res => res.json())
+        .then(data => {
+          let newEvents = []
+          let orgList = []
+          for(let i in data.organizations){
+            let currentOrgObject = data.organizations[i]
+            orgList.push(currentOrgObject);
+            for(let j in currentOrgObject.org_events) {
+                currentOrgObject.org_events[j]["Subject"] = currentOrgObject.org_name + " - " + currentOrgObject.org_events[j]["Subject"];
+                newEvents.push(currentOrgObject.org_events[j])
+            }
+          }
+            setCalendarEvents(newEvents)
+            setmyOrgs(orgList)
+        })
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchEvents();
+  }, [isAuthenticated, getAccessTokenSilently])
 
     return (
       <div>
+        {isLoading ? <Loading /> : <>
         <Header />
+        <NavBar />
         {/* <GlobalFonts /> */}
         <Switch>
           <Route exact path="/">
-            {(isLoading) ? <Loading /> : <Home />}
+            {(isAuthenticated) ? <Calendar /> : <Home />}
           </Route>
           <Route exact path="/about">
             <About />
@@ -100,19 +81,22 @@ const App = props => {
             <Contact />
           </Route>
           <Route exact path="/calendar">
-            {(!isLoading) ? <Calendar calendarEvents={calendarEvents} orgNames={orgNames} /> : <Loading />}
+            <Calendar calendarEvents={calendarEvents} orgNames={myOrgs} />
           </Route>
           <Route exact path="/organizations">
-            {orgNames!==null ? <div> In organizations page</div>  : <Loading/> }
+            <div> In organizations page</div>
           </Route>
           <Route exact path="/join/:id" render={(props) => <JoinOrganization {...props} /> } />
           <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/*" component={NoMatch} />
         </Switch>
+        </>
+        }
       </div>
     )
 };
-function NoMatch({ location }) {
+
+const NoMatch = ({ location }) => {
   return (
     <div>
       <h3>
