@@ -5,6 +5,7 @@ import { Button, Container, Modal, Row, Col } from 'react-bootstrap';
 import SignIn from "./components/SIGNIN.js";
 import { fontColor } from "./components/colors";
 import logo from "./components/assets/homeimg.png";
+import { Animated } from "react-animated-css";
 
 const Home = props => {
    // set up state here
@@ -32,17 +33,23 @@ const Home = props => {
               <Row className="text-center">
                 <Row>
                   <Col>
+                  <Animated animationIn="fadeInDownBig">
                     <h1 color={fontColor.Red}>Schedule Events.</h1>
+                  </Animated>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
+                  <Animated animationIn="jello">
                     <h1 color={fontColor.Yellow}>Manage groups.</h1>
+                  </Animated>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
+                  <Animated animationIn="flipInY">
                     <h1 color={fontColor.Green}>Assign tasks.</h1>
+                  </Animated>
                   </Col>
                 </Row>            
               </Row>
