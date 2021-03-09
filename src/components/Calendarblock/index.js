@@ -2,10 +2,15 @@ import React, { useState } from 'react';
 import DownloadButton from '../DownloadButton';
 import { Wrapper } from './styled';
 import { LeftGroup, RightGroup } from './styled';
-import { Inject,ScheduleComponent,Day, Week, WorkWeek, Month, Agenda} from '@syncfusion/ej2-react-schedule';
+import { Calendar, momentLocalizer  } from 'react-big-calendar' 
+import 'react-big-calendar/lib/css/react-big-calendar.css';
+import moment from 'moment'
 import OrganizationsBlock from '../Organizationblock';
 import OrgForm from '../Orgform';
 import { buttonColor } from '../colors';
+
+
+const localizer = momentLocalizer(moment)
 
 const Calendarblock = props => {
   // const [value,setValue] = useState('Vision')
@@ -25,12 +30,13 @@ const Calendarblock = props => {
       togglePopup(!showPopup)
     };
 
-  return(
-    <Wrapper>
+    return(
+      <Wrapper>
       <LeftGroup>
         <div>
           <h3> Calendar </h3>
         </div>
+        </LeftGroup>
         <div>
           <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={today} eventSettings={{ dataSource: props.calendarEvents }}>
           <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
