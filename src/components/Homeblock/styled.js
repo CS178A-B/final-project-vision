@@ -55,11 +55,10 @@ export const Float = keyframes`
 `;
 
 export const Windows = styled.img`
-  animation: ${Float} 19s linear infinite;
-  position: absolute;
-  z-index: 0;
-  left: 50%;
-  top: 50%;
-  width: 50%;
-  margin-top: -285;
+  // animation: ${Float} 19s linear infinite;
+  position: left;
+  // // z-index: 0;
+  // left: 50%;
+  // top: 25%;
+  width: 500px;
 `;

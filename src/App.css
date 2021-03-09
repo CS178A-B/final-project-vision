@@ -1,6 +1,5 @@
 * {
   font-family: 'DIN Alternate', sans-serif;
-  letter-spacing: 0.1em;
 }
 
 .App {
@@ -17,7 +16,7 @@
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
+/* 
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -31,7 +30,7 @@
 
 .App-link {
   color: #61dafb;
-}
+} */
 
 @keyframes App-logo-spin {
   from {

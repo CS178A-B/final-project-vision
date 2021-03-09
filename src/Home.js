@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 //import LargeButton from './LargeButton/index.js';
 import NavbarHome from './components/NavbarHome';
 import Homeblock from './components/Homeblock';
-import Footer from './components/Footer';
 // import LoginButton from './login-button';
 // import AuthenticationButton from './authentication-button';
 // import AuthNav from './auth-nav.js';
@@ -26,7 +25,6 @@ const Home = props => {
         <NavbarHome />
         <Homeblock togglePop={handleToggle} />
         {showPopup ? <Signin toggle={togglePopup} /> : null}
-        <Footer />
       </div>
     );
 }

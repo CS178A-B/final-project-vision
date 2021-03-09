@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 import { LeftGroup } from './styled';
 import styled from 'styled-components';
 
 /** COMMENT DURING PROD **/
-// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 const Button = styled.button`
   background-color: red;
@@ -12,7 +12,7 @@ const Button = styled.button`
   border-radius: 5px;
 `
 /** UNCOMMENT DURING PROD **/ 
-const API = 'https://team-vision-cs178.herokuapp.com/api/'
+// const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const OrganizationsBlock = props => {
     
@@ -40,7 +40,7 @@ const OrganizationsBlock = props => {
 
         return (
             <LeftGroup>
-            <div style={{ width: '100%',  bottom: '10' }}>
+            <div style={{ width: '140%',  bottom: '10' }}>
             <form>
                 <h3>My Organizations</h3>
                     {(Object.keys(props.orgNames)).map((name, i)=>{
