@@ -14,7 +14,7 @@ class Contactblock extends React.Component {
           <ContactSection>
             <ContactPhoto src={Vish} alt="VISH" />
             <AboutSection className="changeColor">
-              <h4 style={{ backgroundColor: 'inherit' }}>Vishwas Shukla</h4>
+              <div style={{ backgroundColor: 'inherit' }}>Vishwas Shukla</div>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
             </AboutSection>
@@ -24,7 +24,7 @@ class Contactblock extends React.Component {
           <ContactSection>
             <ContactPhoto src={Viraj} alt="VIRAJ" />
             <AboutSection className="changeColor">
-              <h4 style={{ backgroundColor: 'inherit' }}>Viraj Dhillon</h4>
+              <div style={{ margin:'10px', backgroundColor: 'inherit' }}>Viraj Dhillon</div>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
             </AboutSection>
@@ -34,7 +34,7 @@ class Contactblock extends React.Component {
           <ContactSection>
             <ContactPhoto src={Sherwin} alt="SHERWIN" />
             <AboutSection className="changeColor">
-              <h4 style={{ backgroundColor: 'inherit' }}>Sherwin Sahebi</h4>
+              <div style={{ margin: '10px', backgroundColor: 'inherit' }}>Sherwin Sahebi</div>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
             </AboutSection>
@@ -44,7 +44,7 @@ class Contactblock extends React.Component {
           <ContactSection>
             <ContactPhoto src={Nicole} alt="NICOLE" />
             <AboutSection className="changeColor">
-              <h4 style={{ backgroundColor: 'inherit' }}>Nicole Nguyen</h4>
+              <div style={{ margin:'10px', backgroundColor: 'inherit' }}>Nicole Nguyen</div>
               <AboutText>4th Year</AboutText>
               <AboutText>Computer Science</AboutText>
             </AboutSection>

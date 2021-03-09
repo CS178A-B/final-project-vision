@@ -2,15 +2,15 @@ import styled from 'styled-components';
 import { bgColor, fontColor } from '../colors';
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 500px;
-  margin: auto;
-  padding: 0;
-  display: block;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  color: ${fontColor.Blue};
+  // width: 100%;
+  // height: 500px;
+  // margin: auto;
+  // padding: 0;
+  // display: block;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
+  // color: ${fontColor.Blue};
 `;
 
 export const Content = styled.div`
@@ -34,9 +34,13 @@ export const Block = styled.div`
   // background-color: red;
   background-color: ${bgColor.LightBlue};
   border-radius: 25px;
+  display: column;
+  justify-content: center;
+  align-items: center;
   
   @media (max-width: 768px) {
     width: 100%;
+    margin-bottom: 50px;
   }
 `;
 
@@ -108,13 +112,16 @@ export const MiniButtons = styled.h6`
   opacity: 50%;
   padding: 10px;
   border-radius: 10px;
-`;
+
+// export const Image = styled.img`
+//   width: 70%;
+//   margin-top: 20px;
+//   margin-bottom: 5%;
+// `;
 
 export const Image = styled.img`
-  width: 70%;
-  margin-top: 20px;
-  margin-bottom: 5%;
-
+  width: 40%;
+  margin-top: 10px;
   @media (max-width: 768px) {
     width: 60%;
   }
@@ -130,10 +137,18 @@ export const Image = styled.img`
 //   }
 // `;
 
+// export const Text = styled.p`
+//   font-size: 0.9em;
+//   margin: 30px;
+
+//   @media (max-width: 768px) {
+//     width: 100%;
+//   }
+// `;
+
 export const Text = styled.p`
   font-size: 0.9em;
   margin: 30px;
-
   @media (max-width: 768px) {
     font-size: 1em;
   }

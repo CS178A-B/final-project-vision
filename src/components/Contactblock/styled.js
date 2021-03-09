@@ -3,26 +3,27 @@ import { bgColor } from '../colors';
 import { device } from '../device';
 
 export const Wrapper = styled.div`
-  width: 100%;
-  height: 100%;
+  // width: 100%;
+  // height: 100%;
   /* height: 500px; // make height a percentage  -- check out "vh" css */
   margin: auto;
   padding: 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: row;
   overflow: scroll;
 
-  // @media (max-width: 480px) {
-  //   .col {  margin: 1% 0 1% 0%; }
-  //   .span_1_of_4, .span_2_of_4, .span_3_of_4, .span_4_of_4 { width: 100%; }
-  // }
+  @media (max-width: 768px) {
+    flex-wrap: wrap;
+  }
+
 
   @media ${device.mobileM} {
-    flex-direction: column;
+    // flex-direction: column;
     align-items: center;
     overflow: scroll;
+    flex-wrap: wrap;
   }
 `;
 // border: 2px dashed black;
@@ -31,6 +32,8 @@ export const Wrapper = styled.div`
 
 export const ContactSection = styled.div`
   text-align: center;
+  background-color: ${bgColor.LightBlue};
+  border-radius: 25px;
   min-height: 60vh;
   // height: 370px;
   background-color: ${bgColor.LightBlue};
@@ -42,6 +45,7 @@ export const ContactSection = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  width: 250px;
 
   @media ${device.mobileM} {
     margin: 20px;
@@ -55,17 +59,16 @@ export const ContactSection = styled.div`
 
 export const AboutSection = styled.div`
   background-color: inherit;
-  display: block;
-  height: 80%;
-  border: 2px dashed green;
+  display: flex;
+  flex-direction: column;
+  height: 70%;
 `;
 // border-radius: 5px;
 // margin-inline-start: 20px;
 // margin-inline-end: 20px;
 
-export const AboutText = styled.h4`
-  margin: 6px 0px 0px 0px;
-  padding: 0px;
+export const AboutText = styled.div`
+  margin: 10px;
   font-size: 1em;
   background-color: inherit;
 `;
@@ -84,6 +87,7 @@ export const Link = styled.a`
   padding: 5%;
   color: ${bgColor.White};
   border-radius: 10px;
+  margin: 10px;
   
   .changeColor:hover & {
     color: ${bgColor.LightBlue};

@@ -17,9 +17,6 @@ const Navbar = props => {
             <Link to="/calendar">
               <NavButton>Calendar</NavButton>
             </Link>
-            <Link to="/organizations">
-              <NavButton>Organizations</NavButton>
-            </Link>   
           </>
   }
   const togglePop = () => {
@@ -29,11 +26,13 @@ const Navbar = props => {
   
     return(
       <Wrapper>
+        <Link style={{textDecoration : "none", color: "currentcolor"}} to="/">
         <LogoContainer>
           {/* <LogoImage src={Logo} /> */}
           <Logo />
-          <h2 style={{ fontFamily: 'Barlow, sans-serif', fontWeight: 'bold', letterSpacing: '0.1em' }}>VISION</h2> 
+          <div style={{ textDecoration: 'none', fontSize: '70px',fontFamily: 'Barlow, sans-serif', fontWeight: 'bold', letterSpacing: '0.1em' }}>VISION</div> 
         </LogoContainer>
+        </Link>
         <ButtonContainer>
           <LeftGroup>
             <Link to="/about">
@@ -49,8 +48,7 @@ const Navbar = props => {
           </LeftGroup>
 
           <RightGroup>
-            {/* <AuthNav /> */}
-            <SigninButton onClick={togglePop} style={{ backgroundColor: buttonColor.Green }} >Account</SigninButton>
+            <SigninButton onClick={togglePop} style={{ height: "100%",backgroundColor: buttonColor.Green }} >Account</SigninButton>
             {showPopup ? <Signin toggle={togglePop} /> : null}
           </RightGroup>
         </ButtonContainer>

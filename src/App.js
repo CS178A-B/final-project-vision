@@ -4,8 +4,8 @@ import  Calendar  from './Calendar'
 import  Home  from './Home'
 import Loading from './components/loading';
 import Profile from './components/profile';
+import JoinOrganization from './components/JoinOrganization';
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
-import  Organizations from './Organizations'
 import {
   Switch,
   Route,
@@ -14,14 +14,13 @@ import ProtectedRoute from './auth/protected-route'
 import About from './About';
 import Features from './Features';
 import Contact from './Contact';
-import OrgForm from './components/Orgform';
 
 /** COMMENT DURING PROD **/
-// const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
 
 
 /** UNCOMMENT DURING PROD **/ 
-const API = 'https://team-vision-cs178.herokuapp.com/api/'
+// const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const App = props => {
   // const [state, setState] = useState({
@@ -87,7 +86,7 @@ const App = props => {
 
     return (
       <div>
-        <hr />
+        {/* <GlobalFonts /> */}
         <Switch>
           <Route exact path="/">
             <Home />
@@ -101,22 +100,19 @@ const App = props => {
           <Route exact path="/contact">
             <Contact />
           </Route>
-          <Route exact path = "/createorg">
-            <OrgForm />
-          </Route>
-          <Route path="/calendar">
+          <Route exact path="/calendar">
             {calendarEvents!== null ? <Calendar calendarEvents={calendarEvents} orgNames={orgNames} /> : <Loading />}
           </Route>
-          <Route path="/organizations">
-    {orgNames!==null ? <Organizations action={fetchEvents} myOrgs={orgNames} /> : <Loading/> }
+          <Route exact path="/organizations">
+            {orgNames!==null ? <div> In organizations page</div>  : <Loading/> }
           </Route>
+          <Route exact path="/join/:id" render={(props) => <JoinOrganization {...props} /> } />
           <ProtectedRoute path="/profile" component={Profile} />
           <Route path="/*" component={NoMatch} />
         </Switch>
-    </div>
+      </div>
     )
 };
-
 function NoMatch({ location }) {
   return (
     <div>
