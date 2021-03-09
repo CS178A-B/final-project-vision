@@ -40,12 +40,12 @@ const OrganizationsBlock = props => {
 
         return (
             <LeftGroup>
-            <div style={{ width: '140%',  bottom: '10' }}>
+            <div style={{ width: '100%',  bottom: '10' }}>
             <form>
-                <h1>MY ORGANIZATIONS</h1>
-                    {props.orgNames.map((name, i)=>{
-            return <div key={i}><label>{name} {''}
-            <Button onClick={handleClick} name={name} type="checkbox">
+                <h3>My Organizations</h3>
+                    {(Object.keys(props.orgNames)).map((name, i)=>{
+            return <div key={i}><label>{props.orgNames[name]} {''}
+            <Button onClick={handleClick} name={name} >
             Delete
             </Button>
             </label><br /></div>
