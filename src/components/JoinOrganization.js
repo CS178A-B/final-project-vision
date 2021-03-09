@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
+import { URL, URLSearchParams } from 'url';
 import Loading from "./loading";
 
 const API = 'https://team-vision-cs178.herokuapp.com/api/'
@@ -33,26 +34,37 @@ const JoinOrganization = props => {
   useEffect(() => {
     const loadOrgInfo = async () => {
       try {
-
+        const token = await getAccessTokenSilently();
+        const myHeaders = new Headers();
+        myHeaders.append('Authorization', `Bearer ${token}`)
+        fetch(API + new URLSearchParams({
+          organization_id: props.match.params.id
+        }), {
+          method: 'GET',
+          headers: myHeaders
+        }).then(res => res.json())
+          .then()
+        error = false;
       } catch (error) {
         
       }
     }
-  })
+    loadOrgInfo()
+  },null)
 
   const showOrgInfo = () => 
   <>
   
   </>
 
-  const showErrorMsg = () => 
+  const showErrorMsg = () => (
   <div className="text-center">
     Sorry... erm, an error occured. The code {props.match.params.id} does not exist... 
   </div>
-    console.log(props.match.params.id)
+  )
     return (
       <>
-      {(error === false) ? showOrgInfo() : showErrorMsg()}
+      {/* {(error === false) ? showOrgInfo() : showErrorMsg()} */}
       </>
     );
 }

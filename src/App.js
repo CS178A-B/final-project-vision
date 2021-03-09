@@ -16,6 +16,7 @@ import Features from './Features';
 import Contact from './Contact';
 import Header from './components/Header';
 import NavBar from './components/NavBar';
+import OrganizationProfile from './components/OrganizationProfile'
 
 
 /** UNCOMMENT DURING PROD **/ 
@@ -26,8 +27,11 @@ const App = props => {
   //   calendarEvents: []
   // });
   const [calendarEvents, setCalendarEvents] = useState(null)
-  const [myOrgs, setMyOrgs] = useState([])
+  const [myOrgs, setMyOrgs] = useState({})
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+
+  //for createEvent
+  const [delegatedOrgs, setDelegatedOrgs] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async (orgDict) => {
@@ -50,6 +54,7 @@ const App = props => {
                 newEvents.push(currentOrgObject.org_events[j])
             }
           }
+            setDelegatedOrgs(data.delegator_list); //this will end up being a hashmap of <orgHash> : <orgName>
             setCalendarEvents(newEvents)
         })
       } catch (error) {
@@ -82,7 +87,8 @@ const App = props => {
             <Calendar calendarEvents={calendarEvents} orgNames={myOrgs} />
           </Route>
           <Route exact path="/organizations">
-            <div> In organizations page</div>
+          {/* pass delegatedOrgs as props to this component */}
+            <OrganizationProfile delegatedOrgs={delegatedOrgs} ></OrganizationProfile>
           </Route>
           <Route exact path="/join/:id" render={(props) => <JoinOrganization {...props} /> } />
           <ProtectedRoute path="/profile" component={Profile} />

@@ -342,7 +342,7 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
 
 @csrf_exempt
 @api_view(['POST'])
-def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject : Meeting, Locaiton : UCR, StartTime: Morning, EndTime: Night, CategoryColor: "342"}
+def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject : Meeting, Location : UCR, StartTime: Morning, EndTime: Night, CategoryColor: "342"}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
