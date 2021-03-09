@@ -26,9 +26,8 @@ const App = props => {
   //   calendarEvents: []
   // });
   const [calendarEvents, setCalendarEvents] = useState(null)
-  const [myOrgs, setmyOrgs] = useState(null)
+  const [myOrgs, setMyOrgs] = useState([])
   const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
-
 
   useEffect(() => {
     const fetchEvents = async (orgDict) => {
@@ -43,16 +42,15 @@ const App = props => {
         .then(data => {
           let newEvents = []
           let orgList = []
+          setMyOrgs(data.organizations)
           for(let i in data.organizations){
             let currentOrgObject = data.organizations[i]
-            orgList.push(currentOrgObject);
             for(let j in currentOrgObject.org_events) {
                 currentOrgObject.org_events[j]["Subject"] = currentOrgObject.org_name + " - " + currentOrgObject.org_events[j]["Subject"];
                 newEvents.push(currentOrgObject.org_events[j])
             }
           }
             setCalendarEvents(newEvents)
-            setmyOrgs(orgList)
         })
       } catch (error) {
         console.log(error)
@@ -69,7 +67,7 @@ const App = props => {
         {/* <GlobalFonts /> */}
         <Switch>
           <Route exact path="/">
-            {(isAuthenticated) ? <Calendar /> : <Home />}
+            {(isAuthenticated) ? <Calendar calendarEvents={calendarEvents} orgNames={myOrgs} /> : <Home />}
           </Route>
           <Route exact path="/about">
             <About />

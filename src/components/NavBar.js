@@ -31,18 +31,10 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="text-center">
           <Nav className="mr-auto">
-            <Nav.Link style={{color: "white"}}>
-              <Link to="/">Home</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/about">About</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/features">Features</Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/contact">Contact</Link>
-            </Nav.Link>
+            <Nav.Link as={Link} to="/" style={{color: "white"}}> Home </Nav.Link>
+            <Nav.Link as={Link} to="/about"> About</Nav.Link>
+            <Nav.Link as={Link} to="/features"> Features </Nav.Link>
+            <Nav.Link as={Link} to="/contact">  Contact  </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end text-center">
@@ -75,16 +67,8 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="text-center">
           <Nav className="mr-auto">
-            <Nav.Link>
-              <Link to="/calendar">
-                Calendar
-              </Link>
-            </Nav.Link>
-            <Nav.Link>
-              <Link to="/organizations">
-                Organizations
-              </Link>
-            </Nav.Link>
+            <Nav.Link as={Link} to="/calendar"> Calendar </Nav.Link>
+            <Nav.Link as={Link} to="/organizations"> Organizations </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end text-center">

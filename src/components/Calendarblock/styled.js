@@ -3,11 +3,11 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
   width: 100%;
-  height: 550px;
+  height: 100vh;
   // align-items: right;
-  // display: flex;
+  display: flex;
   // justify-content: center;
-  border: 2px solid red;
+  // border: 2px solid red;
 `;
 
 export const LeftGroup = styled.div`

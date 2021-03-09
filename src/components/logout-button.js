@@ -2,14 +2,15 @@
 
 import React from "react";
 import { withAuth0 } from "@auth0/auth0-react";
+import { Button } from "react-bootstrap";
 
 class LogoutButton extends React.Component {
   render() {
     const { logout } = this.props.auth0;
 
     return (
-      <button
-        className="btn btn-danger btn-block"
+      <Button
+      variant="outline-danger"
         onClick={() =>
           logout({
             returnTo: window.location.origin,
@@ -17,7 +18,7 @@ class LogoutButton extends React.Component {
         }
       >
         Log Out
-      </button>
+      </Button>
     );
   }
 }

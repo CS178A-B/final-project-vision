@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import Homeblock from './components/Homeblock';
-import NavBar from './components/NavBar';
 import { Button, Container, Modal, Row, Col } from 'react-bootstrap';
 import SignIn from "./components/SIGNIN.js";
 import { fontColor } from "./components/colors";
@@ -9,17 +7,11 @@ import { Animated } from "react-animated-css";
 
 const Home = props => {
    // set up state here
-  const [showPopup, togglePopup] = useState(false);
 
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-
-  const handleToggle = () => {
-    togglePopup(!showPopup)
-  } 
 
 
     return (
