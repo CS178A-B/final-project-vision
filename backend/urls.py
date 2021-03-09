@@ -35,6 +35,8 @@ urlpatterns = [
     path('api/blockUsers', views.blockUsers),
     path('api/getListOfOrganizations',views.getListOfOrganizations),
     path('api/getDictionaryOfMembers', views.getDictionaryOfMembers),
+    path('api/getOrgInfo', views.getOrgInfo),
+    path('api/addDelegator', views.addDelegator),
     path('api/public',views.public),
     path('api/private',views.private),
 ]
