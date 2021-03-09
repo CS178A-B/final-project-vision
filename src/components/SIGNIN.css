@@ -4,8 +4,20 @@
   left: 50%;
   transform: translate(-50%, -50%) !important;
 } */
+* {
+  color: #3A566E;
+}
+
+.color.nav {
+  color: #3A566E;
+}
+
+.navbar-light .navbar-brand {
+  color: #3A566E;
+}
+
 a {
-  color: white;
+  color: #3A566E!important;
 }
 
 .modal {

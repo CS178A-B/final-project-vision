@@ -8,6 +8,7 @@ import LogoutButton from "./logout-button";
 import AuthenticationButton from "./authentication-button";
 import loginButton from "./login-button";
 import AuthNav from "./auth-nav";
+import { fontColor } from "./colors";
 
 
 const NavBar = () => {
@@ -19,7 +20,7 @@ const NavBar = () => {
 
   const showNavNotLogged = () => {
     return (
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" style={{color: fontColor.Blue}}>
         <Navbar.Brand href="#home">
           <img
             src={logo}
@@ -63,7 +64,7 @@ const NavBar = () => {
 
   const showNavLogged = () => {
     return(
-      <Navbar bg="light" expand="lg">
+      <Navbar bg="light" expand="lg" className="color-nav">
         <Navbar.Brand>
           <img
             src={logo}
