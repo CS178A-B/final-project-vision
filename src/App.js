@@ -26,12 +26,12 @@ const App = props => {
   // });
   const [calendarEvents, setCalendarEvents] = useState(null)
   const [orgNames, setOrgNames] = useState(null)
-  const { isAuthenticated, getAccessTokenSilently } = useAuth0();
-  const {isLoading} = props.auth0;
+  const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
 
   const fetchOrgNames = async () => {
     try {
       const token = await getAccessTokenSilently();
+      localStorage.setItem('token', token);
       const myHeaders = new Headers();
       myHeaders.append('Authorization', `Bearer ${token}`)
       fetch( API + "getListOfOrganizations", {
@@ -88,7 +88,7 @@ const App = props => {
         {/* <GlobalFonts /> */}
         <Switch>
           <Route exact path="/">
-            <Home />
+            {(isLoading) ? <Loading /> : <Home />}
           </Route>
           <Route exact path="/about">
             <About />
@@ -100,7 +100,7 @@ const App = props => {
             <Contact />
           </Route>
           <Route exact path="/calendar">
-            {calendarEvents!== null ? <Calendar calendarEvents={calendarEvents} orgNames={orgNames} /> : <Loading />}
+            {(!isLoading) ? <Calendar calendarEvents={calendarEvents} orgNames={orgNames} /> : <Loading />}
           </Route>
           <Route exact path="/organizations">
             {orgNames!==null ? <div> In organizations page</div>  : <Loading/> }

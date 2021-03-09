@@ -21,8 +21,6 @@ const Home = props => {
     return (
       <div>
         <NavBar/>
-        
-        
         <Homeblock togglePop={handleToggle} />
         
         <Modal show={show} onHide={handleClose}>

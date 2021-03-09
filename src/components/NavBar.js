@@ -4,16 +4,18 @@ import logo from "./assets/logo.png";
 import { withAuth0, useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import SignIn from "./SIGNIN.js";
-import LogoutButton from "./logout-button"
+import LogoutButton from "./logout-button";
+import AuthenticationButton from "./authentication-button";
+import loginButton from "./login-button";
+import AuthNav from "./auth-nav";
 
 
 const NavBar = () => {
   const [show, setShow] = useState(false);
-
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const { isAuthenticated, logout, loginWithRedirect } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
 
   const showNavNotLogged = () => {
     return (
@@ -28,18 +30,25 @@ const NavBar = () => {
           />{' '}
           VISION
         </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="text-center">
           <Nav className="mr-auto">
-            <Nav.Link>
-              <Link>Home</Link>
+            <Nav.Link style={{color: "white"}}>
+              <Link to="/">Home</Link>
             </Nav.Link>
-            <Nav.Link>About</Nav.Link>
-            <Nav.Link>Features</Nav.Link>
-            <Nav.Link>Contact</Nav.Link>
+            <Nav.Link>
+              <Link to="/about">About</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/features">Features</Link>
+            </Nav.Link>
+            <Nav.Link>
+              <Link to="/contact">Contact</Link>
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
         <Navbar.Collapse className="justify-content-end text-center">
-          <Button variant="outline-success" 
+        <Button variant="outline-success" 
             onClick= {handleShow}
           >Sign In</Button>
         </Navbar.Collapse>
@@ -65,6 +74,7 @@ const NavBar = () => {
           />{' '}
           VISION
         </Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav" className="text-center">
           <Nav className="mr-auto">
             <Nav.Link>Calendar</Nav.Link>
@@ -80,7 +90,7 @@ const NavBar = () => {
 
   return (
     <>
-    { isAuthenticated ? showNavLogged() : showNavNotLogged() }
+    { (isAuthenticated && !isLoading) ? showNavLogged() : showNavNotLogged() }
     </>
   )
 }
