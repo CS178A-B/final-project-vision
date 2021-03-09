@@ -36,12 +36,6 @@ const Calendarblock = props => {
         <div>
           <h3> Calendar </h3>
         </div>
-        </LeftGroup>
-        <div>
-          <ScheduleComponent enablePersistence={true} currentView='Month' selectedDate={today} eventSettings={{ dataSource: props.calendarEvents }}>
-          <Inject services={[Day, Week, WorkWeek, Month, Agenda]} />
-          </ScheduleComponent>
-        </div>
       </LeftGroup>
       <RightGroup>
         <OrganizationsBlock orgNames={props.orgNames}/>
