@@ -181,6 +181,7 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
     responseData = {
         "name" : "",
         "username" : "",
+        "delegator_list" : [],
         "organizations": {}
     }
 
@@ -191,12 +192,13 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
 
         if(user_info_collection.find({"username": username}).count() > 0): #if the document/user exists
             responseData  = user_info_collection.find_one({"username": username}) #Obtain Json Data of User
-            return JsonResponse(responseData["organizations"])
+            del responseData["_id"]
+            return JsonResponse(responseData)
         else:
             responseData["name"] = name
             responseData["username"] = username
             user_info_collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
-            return JsonResponse({})
+            return JsonResponse({"Successful" : "Created User"})
     else: #return empty Json if user logged onto url without authentication
         return JsonResponse({"NULL" : "NULL"})
 
@@ -317,7 +319,7 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
 
         input_data = {
             "Organization Description" : org_description,
-            "Public" : (public_true_false == 'True'),
+            "Public" : True,
             "Password" : password,
             "Delegators" : [username],
             "Members" : [],
@@ -329,9 +331,11 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
         id = organization_info_collection.insert({organization : input_data})
         user_organizations  = user_info_collection.find_one({"username": username})["organizations"]
         user_organizations.update({str(id) : {"org_name" : organization, "org_description" : org_description, "org_events" : []}})
-
         user_info_collection.update({"username": username},
         {"$set": {"organizations": user_organizations}})
+
+        user_info_collection.update({"username": username},
+        {"$push": {"delegator_list": str(id)}})
 
         return JsonResponse({"newOrgHash" : str(id)})
     return JsonResponse({"NULL" : "NULL"})
@@ -416,6 +420,42 @@ def blockUsers(request): #pass in {organization_id : 123adf, usernames: google-a
             return JsonResponse({"Error" : "User is not authorized to block other users"})
 
     return JsonResponse({"NULL" : "NULL"})
+
+
+@csrf_exempt
+@api_view(['GET'])
+def getOrgInfo(request): #pass in organization_id
+    organization_id = request.GET.get("organization_id")
+    org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1] #get name of Club, ACM etc
+
+    return JsonResponse(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name])
+
+@csrf_exempt
+@api_view(['POST'])
+def addDelegator(request): #pass in {organization_id : 123adf, member_to_add: google-auth-api-1}
+    if(request.POST):
+        username = request.user.username
+        #username = request.POST.get("username")
+        member_to_add = request.POST.get("member_to_add")
+        organization_id = request.POST.get("organization_id")
+        org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1] #get name of Club, ACM etc
+        delegator_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]
+        member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]
+
+        if(username in delegator_list and member_to_add not in delegator_list):
+            organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+            {"$pull": {org_name + ".Members": member_to_add}})
+
+            organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+            {"$push": {org_name + ".Delegators": member_to_add}})
+
+            user_info_collection.update({"username": member_to_add},
+            {"$push": {"delegator_list": str(organization_id)}})
+
+            return JsonResponse({"Successful" : "Able to add member as Delegator"})
+        return JsonResponse({"Error" : "User is not allowed to add delegator or member_to_add is already a delegator"})
+    return JsonResponse({"NULL" : "NULL"})
+
 
 @csrf_exempt
 @api_view(['GET'])
