@@ -1,30 +1,35 @@
 import React, { useState } from 'react';
-//import LargeButton from './LargeButton/index.js';
-import NavbarHome from './components/NavbarHome';
 import Homeblock from './components/Homeblock';
-// import LoginButton from './login-button';
-// import AuthenticationButton from './authentication-button';
-// import AuthNav from './auth-nav.js';
-import Signin from './components/Signin';
-import Header from './components/Header';
-// import GlobalFonts from '../fonts/fonts.js';
+import NavBar from './components/NavBar';
+import { Modal } from 'react-bootstrap';
 
 const Home = props => {
    // set up state here
-   const [showPopup, togglePopup] = useState(false);
+  const [showPopup, togglePopup] = useState(false);
 
-   const handleToggle = () => {
-     togglePopup(!showPopup)
-   } 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+  const handleToggle = () => {
+    togglePopup(!showPopup)
+  } 
 
 
     return (
       <div>
-        {/* <GlobalFonts /> */}
-        <Header />
-        <NavbarHome />
+        <NavBar/>
+        
+        
         <Homeblock togglePop={handleToggle} />
-        {showPopup ? <Signin toggle={togglePopup} /> : null}
+        
+        <Modal show={show} onHide={handleClose}>
+        <Modal.Body>
+          {/* <Sign /> */} hey
+        </Modal.Body>
+      </Modal>
       </div>
     );
 }

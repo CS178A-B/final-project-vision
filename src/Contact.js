@@ -1,15 +1,13 @@
 import React from 'react';
 import Contactblock from './components/Contactblock';
-import NavbarHome from './components/NavbarHome';
-import Header from './components/Header';
+import NavBar from './components/NavBar';
 // import Header from './components/Header';
 
 class Contact extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <NavbarHome />
+        <NavBar />
         <Contactblock />
       </div>
     );

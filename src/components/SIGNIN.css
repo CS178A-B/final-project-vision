@@ -1,0 +1,45 @@
+/* .modal-dialog {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) !important;
+} */
+.modal {
+  text-align: center;
+  padding: 0!important;
+  }
+  
+  .modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+  }
+  
+  .modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+  padding: 40px;
+  }
+
+  .modal.show {
+    transform: none;
+    padding: 51px;
+}
+
+  #signin-navbar-brand {
+    font-size: 2em;
+  }
+
+  .model-body {
+    padding: 3rem;
+  }
+
+  .row {
+    margin-top: 20px;
+    font-size: 1.2em;
+    padding: 5px;
+  }
+  

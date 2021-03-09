@@ -1,14 +1,12 @@
 import React from 'react';
-import NavbarHome from './components/NavbarHome';
 import Featureblock from './components/Featureblock';
-import Header from './components/Header';
+import NavBar from './components/NavBar';
 
 class Features extends React.Component {
   render() {
     return (
       <div>
-        <Header />
-        <NavbarHome />
+        <NavBar />
         <Featureblock  />
       </div>
     );

@@ -14,13 +14,11 @@ import ProtectedRoute from './auth/protected-route'
 import About from './About';
 import Features from './Features';
 import Contact from './Contact';
-
-/** COMMENT DURING PROD **/
-const API = 'http://127.0.0.1:8000/api/' //COMMENT DURING PROD
+import Header from './components/Header';
 
 
 /** UNCOMMENT DURING PROD **/ 
-// const API = 'https://team-vision-cs178.herokuapp.com/api/'
+const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const App = props => {
   // const [state, setState] = useState({
@@ -86,6 +84,7 @@ const App = props => {
 
     return (
       <div>
+        <Header />
         {/* <GlobalFonts /> */}
         <Switch>
           <Route exact path="/">
