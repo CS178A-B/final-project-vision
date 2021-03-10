@@ -48,7 +48,7 @@ const Calendar = props => {
 
   return (
     <>
-    <Calendarblock calendarEvents={props.calendarEvents} orgNames={props.orgNames}/>
+    <Calendarblock delegatedOrgs={props.delegatedOrgs} calendarEvents={props.calendarEvents} orgNames={props.orgNames}/>
 
     <Button variant="outline-warning" onClick={handleShow} style={{ borderRadius: "10px" }}>
         Create New

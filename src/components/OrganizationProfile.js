@@ -12,17 +12,17 @@ const RenderOrganizationInfo = (props) => {
     let delegator = props.delegatedOrgs[org_id]; //check if you are a delegator for the current org
     return (
         <>
-            {org_id === "" ? <></> : 
+            {org_id === "" ? <></> :  //only render things when we have an organization info to display
             <>
                 <div>Role: {delegator ? <>Delegator <CreateEvent organization_id={org_id}/></> : "Member"}</div>
                 <div>Org Name: {org_name}</div>
                 <div>Org Description: {org_description}</div>
                 <div>Join Link: {joinLink}</div>
-                <div>{Object.keys(org_events).map((item,i) => {
-                    <>
-                        Event Name <div></div>
-                    </>
-                })}</div> 
+                <div>{Object.keys(org_events).map((item,i) => 
+                    <div key={i}>
+                        Event Name: <span>{(org_events[item].title)}</span>
+                    </div>
+                )}</div> 
             </>
         }
         </>

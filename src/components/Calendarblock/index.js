@@ -52,7 +52,7 @@ const Calendarblock = props => {
           defaultDate={today}
           />
         </div>
-        <div><OrganizationsBlock orgNames={props.orgNames}/> </div>
+        <div><OrganizationsBlock delegatedOrgs={props.delegatedOrgs} orgNames={props.orgNames}/> </div>
         {/* <div>
         <button onClick={togglePop} style={{ backgroundColor: buttonColor.Green }} >Add Organization</button>
 

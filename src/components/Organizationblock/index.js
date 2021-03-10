@@ -42,9 +42,10 @@ const OrganizationsBlock = props => {
                 <h3>My Organizations</h3>
                     {(Object.keys(props.orgNames)).map((name, i)=>{
             return <div key={i}><label>{props.orgNames[name].org_name} {''}
+            {props.delegatedOrgs[name] ?  <></> /*dont display the delete button if you own the organization*/ :
             <Button name={name} onClick={handleClick}>
-            Delete
-            </Button>
+                Delete
+            </Button>} 
             </label><br /></div>
         })}         
             </form>

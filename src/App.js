@@ -76,7 +76,7 @@ const App = props => {
         {/* <GlobalFonts /> */}
         <Switch>
           <Route exact path="/">
-            {(isAuthenticated) ? <Calendar calendarEvents={calendarEvents} orgNames={myOrgs} /> : <Home />}
+            {(isAuthenticated) ? <Calendar delegatedOrgs={delegatedOrgs} calendarEvents={calendarEvents} orgNames={myOrgs} /> : <Home />}
           </Route>
           <Route exact path="/about">
             <About />
@@ -88,7 +88,7 @@ const App = props => {
             <Contact />
           </Route>
           <Route exact path="/calendar">
-            <Calendar calendarEvents={calendarEvents} orgNames={myOrgs} />
+            <Calendar delegatedOrgs={delegatedOrgs} calendarEvents={calendarEvents} orgNames={myOrgs} />
           </Route>
           <Route exact path="/organizations">
           {/* pass delegatedOrgs as props to this component */}

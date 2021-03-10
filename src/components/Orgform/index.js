@@ -25,12 +25,6 @@ const OrgForm = ({ handleClose }) => {
         name: '',
         description: '',
         hash: '',
-        // day: [],
-        // start: '',
-        // end: '',
-        // dues: '',
-        // pageLink: '',
-        // uploadImg: '',
       }}
 
       validate = { values => {
@@ -63,8 +57,11 @@ const OrgForm = ({ handleClose }) => {
           console.log("https://team-vision.heroku.com/join/" + res.newOrgHash)
           values.hash = res.newOrgHash
         })
-        .then(console.log("New organization added:" + orgName))
-        .then(window.location.reload(false))
+        .then(() => {
+          console.log("New organization added:" + orgName)
+          console.log("New organization desciption:" + orgDescription)
+        })
+        // .then(window.location.reload(false))
         // .then(res => {
           // console.log("team-vision.heroku.com/join/" + res["newOrgHash"]);
         // console.log("RES ONLY:" + res)
@@ -87,7 +84,7 @@ const OrgForm = ({ handleClose }) => {
         </ReactForm.Group>
         <ReactForm.Group controlId="exampleForm.ControlTextarea1">
           <ReactForm.Label>Description</ReactForm.Label>
-          <ReactForm.Control name="description" as="textarea" rows={3} style={{ resize: "none"}}/>
+          <ReactForm.Control onChange={handleChange} name="description" as="textarea" rows={3} style={{ resize: "none"}}/>
         </ReactForm.Group>
 
         <ButtonGroup style={{ float: "right", borderRadius: "20px"}}>
