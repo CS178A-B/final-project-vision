@@ -30,7 +30,7 @@ urlpatterns = [
     path('api/getCalendarInfo', views.getCalendarInfo),
     path('api/addOrganization', views.addOrganization),
     path('api/deleteEvent', views.deleteEvent),
-    path('api/deleteOrganization', views.deleteOrganization),
+    path('api/deleteOrganization', views.deleteOrganization), 
     path('api/createOrganization', views.createOrganization),
     path('api/createEvent', views.createEvent),
     path('api/blockUsers', views.blockUsers),
