@@ -198,7 +198,8 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
             responseData["name"] = name
             responseData["username"] = username
             user_info_collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
-            return JsonResponse({"Successful" : "Created User"})
+            del responseData["_id"]
+            return JsonResponse(responseData)
     else: #return empty Json if user logged onto url without authentication
         return JsonResponse({"NULL" : "NULL"})
 
