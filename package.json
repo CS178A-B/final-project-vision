@@ -1,13 +1,11 @@
 {
   "name": "scheduler_task_distributor",
   "version": "0.1.0",
-  "workspaces" : [
+  "workspaces": [
     "client"
   ],
   "private": true,
-  "engines":{
-
-  },
+  "engines": {},
   "dependencies": {
     "@auth0/auth0-react": "^1.2.0",
     "@babel/helper-builder-react-jsx-experimental": "^7.12.11",
@@ -15,10 +13,14 @@
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^11.2.3",
     "@testing-library/user-event": "^12.1.10",
-    "bootstrap": "^4.5.3",
+    "bootstrap": "^4.6.0",
     "enzyme": "^3.11.0",
+    "formik": "^2.2.6",
+    "moment": "^2.29.1",
     "react": "^17.0.1",
-    "react-bootstrap": "^1.4.0",
+    "react-animated-css": "^1.2.1",
+    "react-big-calendar": "^0.32.0",
+    "react-bootstrap": "^1.5.1",
     "react-calendar": "^3.2.0",
     "react-dom": "^17.0.1",
     "react-google-login": "^5.1.25",

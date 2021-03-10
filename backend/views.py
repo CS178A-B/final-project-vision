@@ -184,7 +184,6 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
         "delegator_list" : {},
         "organizations": {}
     }
-
     if(request.method == 'GET'): #If get response has data / if user used api/getCalendarInfo without token
         username = request.user.username
         #username = request.GET.get("username")
