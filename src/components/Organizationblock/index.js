@@ -28,7 +28,8 @@ const OrganizationsBlock = props => {
             method: 'POST',
             headers: myHeaders,
             body: data,
-        }).then(window.location.reload(false))
+        }).then(res => res.json())
+        .then(res => window.location.reload(false))
         }
         catch (error) {
             console.log(error)

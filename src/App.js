@@ -34,7 +34,7 @@ const App = props => {
   const [delegatedOrgs, setDelegatedOrgs] = useState({});
 
   useEffect(() => {
-    const fetchEvents = async (orgDict) => {
+    const fetchEvents = async () => {
       try {
       const token = await getAccessTokenSilently();
       const myHeaders = new Headers();

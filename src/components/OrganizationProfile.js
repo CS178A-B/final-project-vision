@@ -21,6 +21,7 @@ const RenderOrganizationInfo = (props) => {
 const OrganizationProfile = (props) => {
     const {currentProfile, changeCurrentProfile} = useState([]);
 
+    
     // changeCurrentProfile([...currentProfile,"0"])
     return(
         <>
