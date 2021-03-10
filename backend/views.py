@@ -491,7 +491,18 @@ def getDictionaryOfMembers(request): #pass in (organization_id : 13daflkj32)
     organization_id = request.GET.get("organization_id")
     org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
     member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]
+    delegator_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]
+
     return_dict = {}
+    member_dict = {}
+    delegator_dict = {}
+
     for username in member_list:
-        return_dict[ user_info_collection.find_one({"username": username})["name"]] = username
+        member_dict[username] =  user_info_collection.find_one({"username": username})["name"]
+
+    for username in delegator_list:
+        delegator_dict[username] =  user_info_collection.find_one({"username": username})["name"]
+
+    return_dict["delegators"] = delegator_dict
+    return_dict["members"] = member_dict
     return JsonResponse(return_dict)
