@@ -40,7 +40,7 @@ export const ContactSection = styled.div`
   border-radius: 25px;
   margin: 1% 1% 1% 1%;
   padding: 20px 4px 20px 4px;
-  border: 3px solid black;
+  // border: 3px solid black;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;

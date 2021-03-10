@@ -7,11 +7,7 @@ export const Wrapper = styled.div`
   width: 100%;
   height: 400px;
   overflow-x: hidden;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  margin-top: -200px;
-  margin-left: -50%;
+  margin: 0
 `;
 // border: 2px dashed black;
 
@@ -23,10 +19,10 @@ export const AboutContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  position: absolute;
-  top: 25%;
-  // padding-top: -250px;
-  z-index: 1;
+  top: 5%;
+  padding-top: 50px;
+  // z-index: -1;
+  margin: 0;
   background: rgba(204, 204, 204, 0);
 `;
 // border: 2px solid pink;

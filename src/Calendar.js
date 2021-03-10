@@ -57,7 +57,7 @@ const Calendar = props => {
 
     <Modal className="createOrgModal" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>New Organization</Modal.Title>
+          <Modal.Title>Form A New Organization</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Orgform handleClose={handleClose}/>

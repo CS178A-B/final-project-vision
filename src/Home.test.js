@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { shallow } from 'enzyme';
-import Home from './components/Home';
+import Home from './Home';
 import LargeButton from './components/LargeButton';
 
 // TOFIX
@@ -17,7 +17,7 @@ test('Home test test', () => {
     expect(Home).toHaveTextContent();
 });
 
-// TOFIX
+// PASS
 describe('Button', () => {
     it('should be defined', () => {
       expect(LargeButton).toBeDefined();

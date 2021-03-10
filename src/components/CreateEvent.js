@@ -15,12 +15,15 @@ const CreateEvent = (props) => {
     return(
         <div>
         {/* You can loop through props.delegatedOrgs with the map function (kinda like organizationsBlock) */}
-          <Button variant="outline-success" 
+        <Button variant="outline-success" 
             onClick= {handleShow}
-          >Create Event</Button>
-            <Modal show={show} onHide={handleClose}>
+        >New Event</Button>
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Create A New Event</Modal.Title>
+          </Modal.Header>
           <Modal.Body>
-            <EventsForm closeHandle={handleClose} organization_id="60486d2ebd0c5fa06733bcb2"/>
+            <EventsForm handleClose={handleClose} organization_id="60486d2ebd0c5fa06733bcb2"/>
           </Modal.Body>
         </Modal>
         </div>

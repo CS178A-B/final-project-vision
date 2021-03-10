@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import Home from './Home';
 
 // run "yarn test -- --coverage App.test.js" for more details
 
@@ -17,10 +18,10 @@ it('app renders title', () => {
   expect(screen.getByText('VISION')).toBeInTheDocument();
 });
 
-it('renders home text', () => {
-  render(<App />);
+it('renders schedule events text', () => {
+  render(<Home />);
   // const linkElement = screen.getByText(/learn react/i);
-  expect(screen.getByText('Home')).toBeInTheDocument();
+  expect(screen.getByText('Schedule', "Events")).toBeInTheDocument();
 });
 
 it('renders navbar text', () => {

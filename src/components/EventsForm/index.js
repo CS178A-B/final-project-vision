@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, Formik, Form, ErrorMessage } from 'formik';
 import { useAuth0, withAuthenticationRequired } from "@auth0/auth0-react";
 import Loading from '../loading';
 import { Wrapper, HeadingText, NameInput, DescriptionInput, Section, FormTitle, StartInput, EndInput } from './styled';
+import ReactForm from 'react-bootstrap/Form';
+import { Button, ButtonGroup, Col, Container, Row } from 'react-bootstrap';
+import TimePicker from 'react-bootstrap-time-picker';
+import DateTimePicker from 'react-datetime-picker';
+import '../../styles.css';
 
 const daysOfWk = [
   'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday' 
@@ -10,15 +15,18 @@ const daysOfWk = [
 const API = "https://team-vision-cs178.herokuapp.com/api/";
 
 const EventsForm = (props) => {
-    console.log(props)
-    console.log(new Date(2021, 2, 1))
+  console.log(props)
+  console.log(new Date(2021, 2, 1))
   const { getAccessTokenSilently } = useAuth0();
+  const handleClose = props.handleClose;
+  const [valueS, onChangeS] = useState(new Date());
+  const [valueE, onChangeE] = useState(new Date());
 
   return (
-  <Wrapper>
-    <div>
+  <>
+    {/* <div>
       <FormTitle>Add events</FormTitle>
-    </div>
+    </div> */}
 
     <Formik
       initialValues={{
@@ -83,15 +91,85 @@ const EventsForm = (props) => {
 >
       {({ handleChange, isSubmitting}) => (
       <Form>
-        <Section>
+        <ReactForm.Group>
+          <ReactForm.Label>Event Title</ReactForm.Label>
+          <ReactForm.Control type="text" name="title" onChange={handleChange}/>
+          <ErrorMessage name="title" component="span" style={{color: "red"}} />
+        </ReactForm.Group>
+        <ReactForm.Group controlId="exampleForm.ControlTextarea1">
+          <ReactForm.Label>Description</ReactForm.Label>
+          <ReactForm.Control name="desc" as="textarea" rows={3} style={{ resize: "none"}}/>
+        </ReactForm.Group>
+        <ReactForm.Group>
+          {/* <Row>
+            <Col>
+              <TimePicker start="00:00" end="24:00" step={30} placeholder="Start"/>
+            </Col>
+            <Col>
+              <TimePicker start="00:00" end="24:00" step={30} placeholder="End"/>
+            </Col>
+          </Row> */}
+          <Container>
+          <ReactForm.Row>
+            <ReactForm.Row>
+              <Col md={{ span: 3, offset: 1}}>
+                <ReactForm.Label style={{ width: "50px" }}>Start</ReactForm.Label>
+              </Col>
+              <Col md={{ span: 4 }}>
+              <DateTimePicker onChange={onChangeS}
+        value={valueS} style={{ borderRadius: "5px" }}/>
+              </Col>
+            </ReactForm.Row>
+            <ReactForm.Row>
+              <Col md={{ span: 3, offset: 1}}>
+                <ReactForm.Label style={{ width: "50px" }}>End</ReactForm.Label>
+              </Col>
+              <Col md={{ span: 4 }}>
+              <DateTimePicker onChange={onChangeE}
+        value={valueE}/>
+              </Col>
+            </ReactForm.Row>  
+          </ReactForm.Row>
+          </Container>
+        </ReactForm.Group>
+        {/* <ReactForm.Row>
+          <ReactForm.Group as={Col} controlId="formGridStart">
+            <ReactForm.Label style={{ width: "40px" }}>Start</ReactForm.Label>
+            <div>
+            <ReactForm.Label>End</ReactForm.Label>
+            </div>
+            // <DateTimePicker disableClock="false" onChange={onChangeS} value={valueS}/>
+          </ReactForm.Group>
+
+          <ReactForm.Group as={Col} controlId="formGridEnd">
+            // <ReactForm.Label>End</ReactForm.Label>
+            <DateTimePicker disableClock="false" onChange={onChangeS} value={valueS}/>
+            <DateTimePicker disableClock="false" onChange={onChangeE} value={valueE}/>
+          </ReactForm.Group>
+        </ReactForm.Row> */}
+        
+        {console.log(valueS)}
+        {console.log(valueE)}
+
+
+        <ButtonGroup style={{ float: "right", borderRadius: "20px"}}>
+        <Button variant="outline-secondary" onClick={handleClose} style={{ borderRadius: "5px", marginRight: "10px"}}>
+            Cancel
+          </Button>{' '}
+          <Button variant="success" type="submit" disabled={isSubmitting} style={{ borderRadius: "5px" }}>
+            Create
+        </Button>
+        </ButtonGroup>
+
+        {/* <Section>
           <HeadingText>Event Title</HeadingText>
           <NameInput type="text" name="title" onChange={handleChange}/>
-          {/* {errors.name} */}
+          // {errors.name} 
           <ErrorMessage name="title" component="span" style={{color: "red"}} />
         </Section>
         <Section>
           <HeadingText>Event Description</HeadingText>
-          {/* <DescriptionInput type="text" name="description" onChange={handleChange} /> */}
+          // <DescriptionInput type="text" name="description" onChange={handleChange} /> 
           <DescriptionInput type="text" name="desc" onChange={handleChange}></DescriptionInput>
            <ErrorMessage name="desc" component="span" style={{color: "red"}} />
         </Section>
@@ -108,11 +186,11 @@ const EventsForm = (props) => {
         <Section>
           <button type="reset" onClick={props.closeHandle}>Cancel</button>
           <button type="submit" disabled={isSubmitting}>Submit</button>
-        </Section>
+        </Section> */}
       </Form>
       )}
     </Formik>
-  </Wrapper>
+  </>
   )
 }
 
