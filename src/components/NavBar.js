@@ -49,7 +49,7 @@ const NavBar = () => {
         </Modal>
       </Navbar>
     )
-  }
+  } 
 
   const showNavLogged = () => {
     return(

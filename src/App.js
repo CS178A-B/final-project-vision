@@ -28,10 +28,10 @@ const App = props => {
   // });
   const [calendarEvents, setCalendarEvents] = useState(null)
   const [myOrgs, setMyOrgs] = useState({})
-  const { isAuthenticated, isLoading, getAccessTokenSilently } = useAuth0();
+  const { isAuthenticated, isLoading, getAccessTokenSilently, user  } = useAuth0();
 
   //for createEvent
-  const [delegatedOrgs, setDelegatedOrgs] = useState([]);
+  const [delegatedOrgs, setDelegatedOrgs] = useState({});
 
   useEffect(() => {
     const fetchEvents = async (orgDict) => {
@@ -39,11 +39,12 @@ const App = props => {
       const token = await getAccessTokenSilently();
       const myHeaders = new Headers();
       myHeaders.append('Authorization', `Bearer ${token}`)
-      fetch( API + "getCalendarInfo", {
+      fetch( API + "getCalendarInfo?" + new URLSearchParams({name: user.name}), {
         method: 'GET',
         headers: myHeaders,
       }).then(res => res.json())
         .then(data => {
+          console.log(data)
           let newEvents = []
           let orgList = []
           setMyOrgs(data.organizations)

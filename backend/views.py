@@ -181,10 +181,9 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
     responseData = {
         "name" : "",
         "username" : "",
-        "delegator_list" : [],
+        "delegator_list" : {},
         "organizations": {}
     }
-
     if(request.method == 'GET'): #If get response has data / if user used api/getCalendarInfo without token
         username = request.user.username
         #username = request.GET.get("username")
@@ -198,7 +197,8 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
             responseData["name"] = name
             responseData["username"] = username
             user_info_collection.insert_one(responseData) #Otherwise insert the template (empty) data into database
-            return JsonResponse({"Successful" : "Created User"})
+            del responseData["_id"]
+            return JsonResponse(responseData)
     else: #return empty Json if user logged onto url without authentication
         return JsonResponse({"NULL" : "NULL"})
 
@@ -260,7 +260,7 @@ def deleteEvent(request):#pass in {organization_id: 1288fadf213, id: 5}
             for index in range(len(org_event_list)):
                 if(org_event_list[index] == org_name):
                     pass
-                elif (org_event_list[index]["Id"] == id):
+                elif (org_event_list[index]["id"] == id):
                     del org_event_list[index]
                     break
         else:
@@ -298,12 +298,22 @@ def deleteOrganization(request): #pass in {organization_id: 1adf320jfo1ebc9}
 
         org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
 
-        organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
-        {"$pull": {org_name + ".Members": username}})
+        if(username in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]):
+            organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+            {"$pull": {org_name + ".Members": username}})
 
-        responseData  = user_info_collection.find_one({"username": username}) #Obtain Json Data of User
-        del responseData["_id"]
-        return JsonResponse({"Successful" : "Deleted organization for the user"})
+            return JsonResponse({"Successful" : "Deleted organization for the member"})
+        elif(username in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]):
+            organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+            {"$pull": {org_name + ".Delegators": username}})
+            user_delegator_list = user_info_collection.find_one({"username": username})["delegator_list"]
+            del user_delegator_list[organization_id]
+            user_info_collection.update({"username": username}, #update organizations
+            {"$set": {"delegator_list": user_delegator_list}})
+
+            return JsonResponse({"Successful" : "Deleted organization for the delegator"})
+
+        return JsonResponse({"Error" : "Could not find user as member or delegator"})
     return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
@@ -334,37 +344,40 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
         user_info_collection.update({"username": username},
         {"$set": {"organizations": user_organizations}})
 
+        user_delegator_list  = user_info_collection.find_one({"username": username})["delegator_list"]
+        user_delegator_list.update({str(id) : organization})
+
         user_info_collection.update({"username": username},
-        {"$push": {"delegator_list": str(id)}})
+        {"$set": {"delegator_list": user_delegator_list}})
 
         return JsonResponse({"newOrgHash" : str(id)})
     return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
 @api_view(['POST'])
-def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject : Meeting, Location : UCR, StartTime: Morning, EndTime: Night, CategoryColor: "342"}
+def createEvent(request): #pass in {organization_id : 132423adf, title : title, allDay : true/false, start: Morning, end: Night, dec: "342"}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
         organization_id = request.POST.get("organization_id")
-        Id = int(request.POST.get("Id"))
-        Subject = request.POST.get("Subject")
-        Location = request.POST.get("Location")
-        StartTime = request.POST.get("StartTime")
-        EndTime = request.POST.get("EndTime")
-        CategoryColor = request.POST.get("CategoryColor")
-
-        input_data = {
-        "Id": Id,
-        "Subject": Subject,
-        "Location": Location,
-        "StartTime": StartTime,
-        "EndTime": EndTime,
-        "CategoryColor": CategoryColor}
-
-
+        title = request.POST.get("title")
+        allDay = request.POST.get("allDay")
+        start = request.POST.get("start")
+        end = request.POST.get("end")
+        desc = request.POST.get("desc")
 
         org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1] #get name of Club, ACM etc
+
+
+        input_data = {
+        "id": 0 if(len(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["org_events"]) == 0) else organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["org_events"][-1]["id"] + 1,
+        "title": title,
+        "allDay": (allDay == 'true'),
+        "start": start,
+        "end": end,
+        "desc": desc
+        }
+
 
         if(username in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]): #check if user id is in delegators and can create events
             organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
@@ -449,8 +462,11 @@ def addDelegator(request): #pass in {organization_id : 123adf, member_to_add: go
             organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
             {"$push": {org_name + ".Delegators": member_to_add}})
 
+            user_delegator_list  = user_info_collection.find_one({"username": member_to_add})["delegator_list"]
+            user_delegator_list.update({str(organization_id) : org_name})
+
             user_info_collection.update({"username": member_to_add},
-            {"$push": {"delegator_list": str(organization_id)}})
+            {"$set": {"delegator_list": user_delegator_list}})
 
             return JsonResponse({"Successful" : "Able to add member as Delegator"})
         return JsonResponse({"Error" : "User is not allowed to add delegator or member_to_add is already a delegator"})
@@ -474,7 +490,18 @@ def getDictionaryOfMembers(request): #pass in (organization_id : 13daflkj32)
     organization_id = request.GET.get("organization_id")
     org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
     member_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]
+    delegator_list = organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]
+
     return_dict = {}
+    member_dict = {}
+    delegator_dict = {}
+
     for username in member_list:
-        return_dict[ user_info_collection.find_one({"username": username})["name"]] = username
+        member_dict[username] =  user_info_collection.find_one({"username": username})["name"]
+
+    for username in delegator_list:
+        delegator_dict[username] =  user_info_collection.find_one({"username": username})["name"]
+
+    return_dict["delegators"] = delegator_dict
+    return_dict["members"] = member_dict
     return JsonResponse(return_dict)

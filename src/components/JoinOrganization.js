@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import { withAuthenticationRequired, useAuth0 } from "@auth0/auth0-react";
-import { URL, URLSearchParams } from 'url';
 import Loading from "./loading";
 
 const API = 'https://team-vision-cs178.herokuapp.com/api/'
@@ -37,20 +36,19 @@ const JoinOrganization = props => {
         const token = await getAccessTokenSilently();
         const myHeaders = new Headers();
         myHeaders.append('Authorization', `Bearer ${token}`)
-        fetch(API + new URLSearchParams({
-          organization_id: props.match.params.id
-        }), {
+        console.log(props.match.params.id)
+        fetch(API + "getOrgInfo?" + new URLSearchParams({organization_id: props.match.params.id}),{
           method: 'GET',
           headers: myHeaders
         }).then(res => res.json())
-          .then()
+          .then(res => console.log(res))
         error = false;
       } catch (error) {
-        
+        console.log(error)
       }
     }
     loadOrgInfo()
-  },null)
+  },[getAccessTokenSilently])
 
   const showOrgInfo = () => 
   <>
