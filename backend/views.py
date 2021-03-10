@@ -184,7 +184,6 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
         "delegator_list" : {},
         "organizations": {}
     }
-
     if(request.method == 'GET'): #If get response has data / if user used api/getCalendarInfo without token
         username = request.user.username
         #username = request.GET.get("username")
@@ -356,7 +355,7 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
 
 @csrf_exempt
 @api_view(['POST'])
-def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject : Meeting, Locaiton : UCR, StartTime: Morning, EndTime: Night, CategoryColor: "342"}
+def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject : Meeting, Location : UCR, StartTime: Morning, EndTime: Night, CategoryColor: "342"}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
@@ -506,3 +505,4 @@ def getDictionaryOfMembers(request): #pass in (organization_id : 13daflkj32)
     return_dict["delegators"] = delegator_dict
     return_dict["members"] = member_dict
     return JsonResponse(return_dict)
+

@@ -7,10 +7,9 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0;
   background-color: ${bgColor.Gray};
   color: ${fontColor.White};
-  position: fixed;
+  position: sticky;
   top: 0;
 `;
 
