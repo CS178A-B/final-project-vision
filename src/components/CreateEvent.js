@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import {withAuthenticationRequired} from '@auth0/auth0-react'
 import { Button, Modal} from 'react-bootstrap';
-import { useAuth0 } from "@auth0/auth0-react";
 import Loading from './loading'
 import EventsForm from "./EventsForm";
 
@@ -14,7 +13,6 @@ const CreateEvent = (props) => {
     
     return(
         <div>
-        {/* You can loop through props.delegatedOrgs with the map function (kinda like organizationsBlock) */}
         <Button variant="outline-success" 
             onClick= {handleShow}
         >New Event</Button>
