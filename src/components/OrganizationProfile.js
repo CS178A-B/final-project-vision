@@ -5,7 +5,11 @@ const OrganizationProfile = (props) => {
     return(
         <>
         {/* You can loop through props.delegatedOrgs with the map function (kinda like organizationsBlock) */}
-            Club Hash(s): {props.delegatedOrgs}
+            Club Hash(s): {Object.keys(props.delegatedOrgs).map((item,i) => {
+                return (<>
+                name: { props.delegatedOrgs[item]} - id: {item}
+                </>)
+            })}
         </>
     )
 }

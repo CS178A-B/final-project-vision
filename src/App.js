@@ -31,7 +31,7 @@ const App = props => {
   const { isAuthenticated, isLoading, getAccessTokenSilently, user  } = useAuth0();
 
   //for createEvent
-  const [delegatedOrgs, setDelegatedOrgs] = useState([]);
+  const [delegatedOrgs, setDelegatedOrgs] = useState({});
 
   useEffect(() => {
     const fetchEvents = async (orgDict) => {
