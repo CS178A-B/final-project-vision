@@ -26,7 +26,7 @@ urlpatterns = [
     path('organizations',views.index),
     path('calendar',views.index),
     path('about', views.index),
-    path('join/', views.index),
+    path('join/<id>', views.index),
     path('api/getCalendarInfo', views.getCalendarInfo),
     path('api/addOrganization', views.addOrganization),
     path('api/deleteEvent', views.deleteEvent),
