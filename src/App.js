@@ -26,7 +26,7 @@ const App = props => {
   // const [state, setState] = useState({
   //   calendarEvents: []
   // });
-  const [calendarEvents, setCalendarEvents] = useState(null)
+  const [calendarEvents, setCalendarEvents] = useState([])
   const [myOrgs, setMyOrgs] = useState({})
   const { isAuthenticated, isLoading, getAccessTokenSilently, user  } = useAuth0();
 
@@ -50,7 +50,10 @@ const App = props => {
             newOrgs[i] = data.organizations[i];
             let currentOrgObject = data.organizations[i]
             for(let j in currentOrgObject.org_events) {
-                currentOrgObject.org_events[j]["Subject"] = currentOrgObject.org_name + " - " + currentOrgObject.org_events[j]["Subject"];
+                currentOrgObject.org_events[j]["title"] = currentOrgObject.org_name + " - " + currentOrgObject.org_events[j]["title"];
+
+                currentOrgObject.org_events[j]["start"] = eval("new Date(currentOrgObject.org_events[j]['start'])");
+                currentOrgObject.org_events[j]["end"] = eval("new Date(currentOrgObject.org_events[j]['end'])");
                 newEvents.push(currentOrgObject.org_events[j])
             }
           }

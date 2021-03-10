@@ -26,31 +26,33 @@ const Calendarblock = props => {
   //   event.preventDefault();
   // }
 
-  const ColoredDateCellWrapper = ({ children }) =>
-  React.cloneElement(React.Children.only(children), {
-    style: {
-      backgroundColor: 'lightblue',
-    },
-  })
+  // const ColoredDateCellWrapper = ({ children }) =>
+  // React.cloneElement(React.Children.only(children), {
+  //   style: {
+  //     backgroundColor: 'lightblue',
+  //   },
+  // })
 
     const togglePop = () => {
       togglePopup(!showPopup)
     };
-
+    console.log(props.calendarEvents)
     return(
-      <Wrapper>
-        <Calendar
-        views={allViews}
-        events={props.calendarEvents}
-        localizer={localizer}
-        step={60}
-        showMultiDayTimes
-        components={{
-          timeSlotWrapper: ColoredDateCellWrapper,
-        }}
-        defaultDate={today}
-        />
-        <OrganizationsBlock orgNames={props.orgNames}/>
+      <div style={{display: 'flex', flexWrap: 'wrap'}}>
+        <div style={{height: '500px'}}>
+          <Calendar
+          views={allViews}
+          events={props.calendarEvents}
+          localizer={localizer}
+          step={60}
+          showMultiDayTimes
+          // components={{
+          //   timeSlotWrapper: ColoredDateCellWrapper,
+          // }}
+          defaultDate={today}
+          />
+        </div>
+        <div><OrganizationsBlock orgNames={props.orgNames}/> </div>
         {/* <div>
         <button onClick={togglePop} style={{ backgroundColor: buttonColor.Green }} >Add Organization</button>
 
@@ -61,7 +63,7 @@ const Calendarblock = props => {
             text="Download .ics file"
             bgColor="white"
             /> */}
-    </Wrapper>
+      </div>
   );
 }
 
