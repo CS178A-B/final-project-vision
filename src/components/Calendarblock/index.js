@@ -41,7 +41,7 @@ const Calendarblock = props => {
       <Wrapper>
         <Calendar
         views={allViews}
-        events={events}
+        events={props.calendarEvents}
         localizer={localizer}
         step={60}
         showMultiDayTimes

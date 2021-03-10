@@ -23,7 +23,7 @@ const CreateEvent = (props) => {
             <Modal.Title>Create A New Event</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <EventsForm handleClose={handleClose} organization_id="60486d2ebd0c5fa06733bcb2"/>
+            <EventsForm handleClose={handleClose} organization_id={props.organization_id}/>
           </Modal.Body>
         </Modal>
         </div>
