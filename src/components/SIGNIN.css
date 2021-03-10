@@ -55,4 +55,8 @@ a {
     font-size: 1.2em;
     padding: 5px;
   }
+
+  #createOrgModal .modal-dialog {
+    max-width: 70vw;
+  }
   
