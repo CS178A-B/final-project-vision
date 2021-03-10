@@ -181,7 +181,7 @@ def getCalendarInfo(request): #pass in {request.user.username: google-auth-api-1
     responseData = {
         "name" : "",
         "username" : "",
-        "delegator_list" : [],
+        "delegator_list" : {},
         "organizations": {}
     }
 
@@ -298,12 +298,22 @@ def deleteOrganization(request): #pass in {organization_id: 1adf320jfo1ebc9}
 
         org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1]
 
-        organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
-        {"$pull": {org_name + ".Members": username}})
+        if(username in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Members"]):
+            organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+            {"$pull": {org_name + ".Members": username}})
 
-        responseData  = user_info_collection.find_one({"username": username}) #Obtain Json Data of User
-        del responseData["_id"]
-        return JsonResponse({"Successful" : "Deleted organization for the user"})
+            return JsonResponse({"Successful" : "Deleted organization for the member"})
+        elif(username in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]):
+            organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
+            {"$pull": {org_name + ".Delegators": username}})
+            user_delegator_list = user_info_collection.find_one({"username": username})["delegator_list"]
+            del user_delegator_list[organization_id]
+            user_info_collection.update({"username": username}, #update organizations
+            {"$set": {"delegator_list": user_delegator_list}})
+
+            return JsonResponse({"Successful" : "Deleted organization for the delegator"})
+
+        return JsonResponse({"Error" : "Could not find user as member or delegator"})
     return JsonResponse({"NULL" : "NULL"})
 
 @csrf_exempt
@@ -334,8 +344,11 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
         user_info_collection.update({"username": username},
         {"$set": {"organizations": user_organizations}})
 
+        user_delegator_list  = user_info_collection.find_one({"username": username})["delegator_list"]
+        user_delegator_list.update({str(id) : organization})
+
         user_info_collection.update({"username": username},
-        {"$push": {"delegator_list": str(id)}})
+        {"$set": {"delegator_list": user_delegator_list}})
 
         return JsonResponse({"newOrgHash" : str(id)})
     return JsonResponse({"NULL" : "NULL"})
@@ -449,8 +462,11 @@ def addDelegator(request): #pass in {organization_id : 123adf, member_to_add: go
             organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
             {"$push": {org_name + ".Delegators": member_to_add}})
 
+            user_delegator_list  = user_info_collection.find_one({"username": member_to_add})["delegator_list"]
+            user_delegator_list.update({str(organization_id) : org_name})
+
             user_info_collection.update({"username": member_to_add},
-            {"$push": {"delegator_list": str(organization_id)}})
+            {"$set": {"delegator_list": user_delegator_list}})
 
             return JsonResponse({"Successful" : "Able to add member as Delegator"})
         return JsonResponse({"Error" : "User is not allowed to add delegator or member_to_add is already a delegator"})
