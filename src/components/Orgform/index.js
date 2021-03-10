@@ -53,14 +53,11 @@ const OrgForm = ({ handleClose }) => {
             headers: myHeaders,
             body: data,
         }).then( res => res.json())
-        .then(res => {
-          console.log("https://team-vision.heroku.com/join/" + res.newOrgHash)
-          values.hash = res.newOrgHash
-        })
-        .then(() => {
-          console.log("New organization added:" + orgName)
-          console.log("New organization desciption:" + orgDescription)
-        })
+        .then( () => (window.location.reload(false)))
+        // .then(() => {
+        //   console.log("New organization added:" + orgName)
+        //   console.log("New organization desciption:" + orgDescription)
+        // })
         // .then(window.location.reload(false))
         // .then(res => {
           // console.log("team-vision.heroku.com/join/" + res["newOrgHash"]);
