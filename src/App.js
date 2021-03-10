@@ -44,11 +44,10 @@ const App = props => {
         headers: myHeaders,
       }).then(res => res.json())
         .then(data => {
-          console.log(data)
           let newEvents = []
-          let orgList = []
-          setMyOrgs(data.organizations)
+          let newOrgs = []
           for(let i in data.organizations){
+            newOrgs[i] = data.organizations[i];
             let currentOrgObject = data.organizations[i]
             for(let j in currentOrgObject.org_events) {
                 currentOrgObject.org_events[j]["Subject"] = currentOrgObject.org_name + " - " + currentOrgObject.org_events[j]["Subject"];
@@ -57,6 +56,7 @@ const App = props => {
           }
             setDelegatedOrgs(data.delegator_list); //this will end up being a hashmap of <orgHash> : <orgName>
             setCalendarEvents(newEvents)
+            setMyOrgs(newOrgs)
         })
       } catch (error) {
         console.log(error)
@@ -89,7 +89,7 @@ const App = props => {
           </Route>
           <Route exact path="/organizations">
           {/* pass delegatedOrgs as props to this component */}
-            <OrganizationProfile delegatedOrgs={delegatedOrgs} ></OrganizationProfile>
+            <OrganizationProfile delegatedOrgs={delegatedOrgs} orgNames={myOrgs} />
           </Route>
           <Route exact path="/join/:id" render={(props) => <JoinOrganization {...props} /> } />
           <ProtectedRoute path="/profile" component={Profile} />
