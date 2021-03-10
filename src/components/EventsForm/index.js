@@ -11,37 +11,8 @@ const API = "https://team-vision-cs178.herokuapp.com/api/";
 
 const EventsForm = (props) => {
     console.log(props)
-    console.log(new Date(2021, 3, 0))
+    console.log(new Date(2021, 2, 1))
   const { getAccessTokenSilently } = useAuth0();
-
-  const handleSubmit = async values =>{
-        try {
-        const token = await getAccessTokenSilently();
-        const myHeaders = new Headers();
-        myHeaders.append('Authorization', `Bearer ${token}`)
-        const orgID = props.organization_id;
-        const data = new FormData()
-        data.append("organization_id", orgID)
-        data.append("title", values.title)
-        data.append("desc", values.desc)
-        // data.append("start", values.start)
-        // data.append("end", values.end)
-        data.append("allDay", values.allDay)
-        data.append("start", new Date(2021, 3, 3))
-        data.append("end", new Date(2021, 3, 4))
-
-        // call api to add calendar events
-        fetch(API + "createEvent", {
-            method: 'POST',
-            headers: myHeaders,
-            body: data,
-        }).then((res) => res.json())
-        .then((res) => console.log(res))
-        }
-        catch (error) {
-            console.log(error)
-        }
-    }
 
   return (
   <Wrapper>
@@ -85,16 +56,22 @@ const EventsForm = (props) => {
         data.append("organization_id", orgID)
         data.append("title", values.title)
         data.append("desc", values.desc)
-        data.append("start", values.start)
-        data.append("end", values.end)
+        // data.append("start", values.start)
+        // data.append("end", values.end)
         data.append("allDay", values.allDay)
+
+                console.log(values.allDay)
+
+        data.append("start", (new Date(2021, 2, 3).toString()))
+        data.append("end", (new Date(2021, 2, 4).toString()))
 
         // call api to add calendar events
         fetch(API + "createEvent", {
             method: 'POST',
             headers: myHeaders,
             body: data,
-        }).then((res)=>console.log(res))
+        }).then((res) => res.json())
+        .then((res) => console.log(res))
         }
         catch (error) {
             console.log(error)

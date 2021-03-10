@@ -20,7 +20,7 @@ const CreateEvent = (props) => {
           >Create Event</Button>
             <Modal show={show} onHide={handleClose}>
           <Modal.Body>
-            <EventsForm closeHandle={handleClose} organization_id="60485de4474d57537b816ba9"/>
+            <EventsForm closeHandle={handleClose} organization_id="60486d2ebd0c5fa06733bcb2"/>
           </Modal.Body>
         </Modal>
         </div>

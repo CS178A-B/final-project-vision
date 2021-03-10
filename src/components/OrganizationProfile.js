@@ -6,7 +6,7 @@ const OrganizationProfile = (props) => {
     return(
         <>
         {/* You can loop through props.delegatedOrgs with the map function (kinda like organizationsBlock) */}
-        <CreateEvent organization_id={"604856ba474d57537b816ba8"} Subject={"persians"} Location={"Iran"} StartTime={"7:00 PM"} EndTime={"10:00 PM"}/>
+        <CreateEvent organization_id={"60486d2ebd0c5fa06733bcb2"} Subject={"persians"} Location={"Iran"} StartTime={"7:00 PM"} EndTime={"10:00 PM"}/>
         </>
     )
 }
