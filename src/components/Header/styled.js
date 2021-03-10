@@ -11,6 +11,7 @@ export const Wrapper = styled.div`
   color: ${fontColor.White};
   position: sticky;
   top: 0;
+  z-index: 3;
 `;
 
 // TODO; stick to the bottom of the page

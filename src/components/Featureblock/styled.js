@@ -125,6 +125,10 @@ export const Image = styled.img`
   @media (max-width: 768px) {
     width: 60%;
   }
+
+  @media (min-width: 1024px) {
+    width: 50%;
+  }
 `;
 
 // export const ImageL = styled.img`
@@ -153,7 +157,7 @@ export const Text = styled.p`
     font-size: 1em;
   }
 
-  @media (min-width: 800px) {
-    font-size: 1.2em;
+  @media (min-width: 1024) {
+    font-size: 1.1em;
   }
 `;

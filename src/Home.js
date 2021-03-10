@@ -18,45 +18,47 @@ const Home = props => {
       <div>
         {/* <Homeblock togglePop={handleToggle} /> */}
         
-        <Container fluid style={{ padding: "0" }}>
-          <Row style={{margin: "0", padding: "0"}}>
-            <Col sm={12} md={{span: 6}} lg={{offset: 1, span: 5}} style={{padding: "0"}}>
-              <Row className="text-center">
+        <Container fluid style={{ padding: "0", textAlign: "center" }}>
+          <Row className="justify-content-center" style={{margin: "0", padding: "0"}}>
+            <Col xs={{ span: 6 }} sm={{ span: 8 }} md={{span: 6}} lg={{offset: 1, span: 5}} style={{padding: "0"}}>
+              <Row sm={{ className: "flex-sm-row" }}>
                 <Row>
                   <Col>
-                  <Animated animationIn="fadeInDownBig">
-                    <h1 color={fontColor.Red}>Schedule Events.</h1>
+                  <Animated animationIn="fadeInLeft" animationOut="fadeOutLeft" animationInDuration={1000} animationOutDuration={1000} >
+                    <h1 style={{ color: fontColor.Red }}>Schedule Events.</h1>
                   </Animated>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                  <Animated animationIn="jello">
-                    <h1 color={fontColor.Yellow}>Manage groups.</h1>
+                  <Animated animationIn="fadeInLeft" animationOut="fadeOutLeft" animationInDuration={1500} animationOutDuration={1000} >
+                    <h1 style={{ color: fontColor.Yellow}}>Manage groups.</h1>
                   </Animated>
                   </Col>
                 </Row>
                 <Row>
                   <Col>
-                  <Animated animationIn="flipInY">
-                    <h1 color={fontColor.Green}>Assign tasks.</h1>
+                  <Animated animationIn="fadeInLeft" animationOut="fadeOutLeft" animationInDuration={2000} animationOutDuration={1000} >
+                    <h1 style={{ color: fontColor.Green }}>Assign tasks.</h1>
                   </Animated>
                   </Col>
                 </Row>            
               </Row>
-              <Row>
+              <Row sm={{ className:"justify-content-center" }}>
                 <Button variant="outline" style={{ color: fontColor.Blue, border: `1px solid ${fontColor.Blue}`, padding: "20px", borderRadius: "50px", fontSize: "16px" }} size="lg" onClick= {handleShow}
                 >TRY VISION FOR FREE</Button>
               </Row>
             </Col>
-            <Col style={{padding: "0"}} sm={{span: 12}}md={{ span: 12}} lg={6}>
-              <img
-              src={logo}
-              width="550px"
-              className="d-inline-block align-right justify-content-end"
-              alt="React Bootstrap logo"
-              style={{ float: "right" }}
-            />
+            <Col style={{padding: "0"}} xs={{ span: 12 }} sm={{span: 12}}md={{ span: 12}} lg={6}>
+            <Animated animationIn="fadeInRight" animationOut="fadeOutRight" animationInDuration={2000} animationOutDuration={1000} >
+                <img
+                  src={logo}
+                  width="600px"
+                  className="d-inline-block align-right justify-content-end"
+                  alt="React Bootstrap logo"
+                  style={{ float: "right", opacity: "0.8", zIndex: "-2" }}
+                />
+              </Animated>
             </Col>
           </Row>
         </Container>
