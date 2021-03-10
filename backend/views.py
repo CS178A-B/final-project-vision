@@ -261,7 +261,7 @@ def deleteEvent(request):#pass in {organization_id: 1288fadf213, id: 5}
             for index in range(len(org_event_list)):
                 if(org_event_list[index] == org_name):
                     pass
-                elif (org_event_list[index]["Id"] == id):
+                elif (org_event_list[index]["id"] == id):
                     del org_event_list[index]
                     break
         else:
@@ -356,29 +356,29 @@ def createOrganization(request): #pass in {organization : Vish's CS Club, org_de
 
 @csrf_exempt
 @api_view(['POST'])
-def createEvent(request): #pass in {organization_id : 132423adf, id: 1, Subject : Meeting, Locaiton : UCR, StartTime: Morning, EndTime: Night, CategoryColor: "342"}
+def createEvent(request): #pass in {organization_id : 132423adf, title : title, allDay : true/false, start: Morning, end: Night, dec: "342"}
     if(request.POST):
         username = request.user.username
         #username = request.POST.get("username")
         organization_id = request.POST.get("organization_id")
-        Id = int(request.POST.get("Id"))
-        Subject = request.POST.get("Subject")
-        Location = request.POST.get("Location")
-        StartTime = request.POST.get("StartTime")
-        EndTime = request.POST.get("EndTime")
-        CategoryColor = request.POST.get("CategoryColor")
-
-        input_data = {
-        "Id": Id,
-        "Subject": Subject,
-        "Location": Location,
-        "StartTime": StartTime,
-        "EndTime": EndTime,
-        "CategoryColor": CategoryColor}
-
-
+        title = request.POST.get("title")
+        allDay = request.POST.get("allDay")
+        start = request.POST.get("start")
+        end = request.POST.get("end")
+        desc = request.POST.get("desc")
 
         org_name = list(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})) [1] #get name of Club, ACM etc
+
+
+        input_data = {
+        "id": 0 if(len(organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["org_events"]) == 0) else organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["org_events"][-1]["id"] + 1,
+        "title": title,
+        "allDay": (allDay == 'true'),
+        "start": start,
+        "end": end,
+        "desc": desc
+        }
+
 
         if(username in organization_info_collection.find_one({'_id': ObjectId(str(organization_id))})[org_name]["Delegators"]): #check if user id is in delegators and can create events
             organization_info_collection.update({"_id":  ObjectId(str(organization_id))},
