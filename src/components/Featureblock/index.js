@@ -9,7 +9,7 @@ class Featureblock extends React.Component {
     return(
       <Wrapper style={{textAlign: 'center'}}>
         <div>
-          <h3 style={{ textDecoration: 'underline', background: 'inherit', paddingBottom: '30px'}}>Application Features</h3>
+          <h3 style={{ textDecoration: 'underline', background: 'inherit', paddingTop: "10px", paddingBottom: '20px'}}>Application Features</h3>
         </div>
         <Content>
           <Block>

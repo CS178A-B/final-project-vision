@@ -83,7 +83,7 @@ export const ContactPhoto = styled.img`
 `;
 
 export const Link = styled.a`
-  background: ${bgColor.Violet};
+  background: ${bgColor.DarkBlue};
   padding: 5%;
   color: ${bgColor.White};
   border-radius: 10px;

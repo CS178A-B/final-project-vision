@@ -3,6 +3,7 @@ import { Button, Container, Modal, Row, Col } from 'react-bootstrap';
 import SignIn from "./components/SIGNIN.js";
 import { fontColor } from "./components/colors";
 import logo from "./components/assets/homeimg.png";
+import logoL from "./components/assets/homeimg2.png";
 import { Animated } from "react-animated-css";
 
 const Home = props => {
@@ -18,8 +19,8 @@ const Home = props => {
       <div>
         <Container fluid style={{ padding: "0"}}>
           <Row style={{margin: "0", padding: "0"}}>
-            <Col xs={{ span: 5, offset: 2 }} sm={{span: 8}} md={{span: 5}} lg={{offset: 1, span: 5}} style={{padding: "0"}}>
-              <Row>
+            <Col xs={{ span: 5, offset: 2 }} sm={{span: 8}} md={{span: 6}} lg={{offset: 1, span: 5}} style={{padding: "0"}}>
+              <Row sm={{ className: "flex-sm-row" }}>
                 <Row >
                   <Col>
                   <Animated animationIn="fadeInLeft" animationOut="fadeOutLeft" animationInDuration={1000} animationOutDuration={1000} >
@@ -50,8 +51,8 @@ const Home = props => {
             <Col style={{padding: "0", zIndex: "-1" }} xs={{ span: 12 }} sm={{span: 12 }} md={{ span: 12}} lg={6} >
             <Animated animationIn="fadeInRight" animationOut="fadeOutRight" animationInDuration={2000} animationOutDuration={1000} >
                 <img
-                  src={logo}
-                  width="600px"
+                  src={logoL}
+                  width="800px"
                   className="d-inline-block align-right justify-content-end"
                   alt="Home Image"
                   style={{ opacity: "0.8" }}

@@ -8,8 +8,13 @@ import Nicole from '../assets/nicole.png';
 class Contactblock extends React.Component {
   render() {
     return(
+      <>
+      <div>
+          <h3 style={{ textDecoration: 'underline', background: 'inherit', paddingTop: '20px', paddingBottom: '10px', textAlign: "center"}}>Who We Are </h3>
+        </div>
       <Wrapper>
         {/* <h2 style={{ textDecoration: 'underline', background: 'inherit', paddingBottom: '20px' }}>Who we are</h2> */}
+        
         {/* VISH */}
           <ContactSection>
             <ContactPhoto src={Vish} alt="VISH" />
@@ -51,6 +56,7 @@ class Contactblock extends React.Component {
             <Link href="https://github.com/nicohhle">See Nicole's work</Link>
           </ContactSection>
       </Wrapper>
+      </>
     );
   }
 }
