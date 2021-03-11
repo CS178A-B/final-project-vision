@@ -136,9 +136,9 @@ const RenderOrganizationInfo = (props) => {
                 <div>{Object.keys(org_events).map((item,i) => 
                     <div key={i}>
                         Event Name: <span>{(org_events[item].title)} {' '} </span>
-                        <Button onClick={handleDelete(org_id,org_events[item].id)}>
+                        {delegator ?<Button onClick={handleDelete(org_id,org_events[item].id)}>
                             Delete
-                        </Button>
+                </Button> : <></>}
                     </div>
                 )}</div> 
             </>
