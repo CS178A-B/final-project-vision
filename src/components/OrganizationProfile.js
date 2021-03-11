@@ -17,13 +17,38 @@ const Button = styled.button`
 const API = 'https://team-vision-cs178.herokuapp.com/api/'
 
 const RenderOrganizationInfo = (props) => {
-    const {getAccessTokenSilently} = useAuth0();
+    const {getAccessTokenSilently,user,isLoading} = useAuth0();
     const org_description = props.currentProfile.org_description;
     const org_name = props.currentProfile.org_name;
     const org_id = props.currentProfile.org_id;
     const org_events = props.currentProfile.org_events;
     const joinLink = `https://team-vision-cs178.herokuapp.com/join/${org_id}`
     let delegator = props.delegatedOrgs[org_id]; //check if you are a delegator for the current org
+    const [members, setMembers] = useState({});
+    const [delegators, setDelegators] = useState({});
+    console.log(user.sub);
+    useEffect(() => {
+        const getOrgMembers = async () => {
+            try {
+                const token = await getAccessTokenSilently();
+                const myHeaders = new Headers();
+                myHeaders.append('Authorization', `Bearer ${token}`)
+                fetch(API + "getDictionaryOfMembers?" + new URLSearchParams({organization_id: org_id}),{
+                    method: 'GET',
+                    headers: myHeaders
+                }).then(res => res.json())
+                .then(res => {
+                    console.log(res)
+                    setMembers(res.members)
+                    setDelegators(res.delegators)
+                })
+
+            } catch (error) {
+                console.log(error)
+            }
+        }
+        getOrgMembers()
+    },[props,getAccessTokenSilently])
     
     const handleDelete = (org_id,event_id) => async () => {
         try{
@@ -47,6 +72,7 @@ const RenderOrganizationInfo = (props) => {
     }
 
     return (
+        (isLoading) ? <Loading /> :
         <>
             {org_id === "" ? <></> :  //only render things when we have an organization info to display
             <>
@@ -67,6 +93,32 @@ const RenderOrganizationInfo = (props) => {
                         </div>
                         </div>
                         </Container>
+
+                        <Container style={{borderRadius: "20px", background: bgColor.LightGray, width: "80%", marginTop: "20px", padding: "10px"}}>
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
+                        <div style={{ marginTop: "10px", marginBottom: "20px", fontSize: "0.8em"}}>
+                            Delegator(s): {Object.keys(delegators).map((name, i) => {
+                                const currentUser= user.sub;
+                                return (
+                                (name === currentUser.replace('|','.')) ? 
+                                <div style={{color: 'blue', fontWeight: 'bold'}}key={i}>{delegators[name]}</div> :
+                                <div key={i}>{delegators[name]}</div>
+                                )
+                            })}
+                           { delegator ? <CreateEvent organization_id={org_id}/> : <></> }
+                        </div>
+                        <div style={{ marginTop: "10px", marginBottom: "20px", fontSize: "0.8em"}}>
+                            Member(s): {Object.keys(members).map((name, i) => {
+                                const currentUser= user.sub;
+                                  return (
+                                    (name === currentUser.replace('|','.')) ? 
+                                    <div style={{color: 'blue', fontWeight: 'bold'}}key={i}>{members[name]}</div> :
+                                    <div key={i}>{members[name]}</div>
+                                    )
+                            })}
+                        </div>
+                        </div>
+                        </Container>
                     </Col>
                     <Col md={{span: 4}} style={{ margin: "auto" }}>
                         {/* <Container style={{ background: bgColor.LightBlue, borderRadius: "20px", height: "80vh"}}>
@@ -76,7 +128,7 @@ const RenderOrganizationInfo = (props) => {
                 </Row>
                 
                 {/* <div>Org Description: {org_description}</div> */}
-                <div>Role: {delegator ? <>Delegator <CreateEvent organization_id={org_id}/></> : "Member"}</div>
+                <div>Role: {delegator ? "Delegator" : "Member"}</div>
                 {/* <div>Org Name: {org_name}</div> */}
                 {/* <div>Org Description: {org_description}</div> */}
                 {/* <div>Join Link: {joinLink}</div> */}

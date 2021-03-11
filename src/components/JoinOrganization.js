@@ -50,8 +50,8 @@ const JoinOrganization = props => {
           method: 'GET',
           headers: myHeaders
         }).then(res => res.json())
-          .then(data => {
-            setOrgInfo(data)
+          .then(res => {
+            setOrgInfo(res)
           })
         setError(false)
       } catch (error) {
